@@ -2,8 +2,10 @@
 
 using namespace std;
 
-int main()
-{
-    cout << "Hello world!" << endl;
-    return 0;
+#include <allegro.h>
+
+int main(){
+
 }
+
+END_OF_MAIN();

@@ -32,6 +32,9 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Clase_mapa.h" />
+		<Unit filename="Control_grafico.h" />
+		<Unit filename="Imagenes.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

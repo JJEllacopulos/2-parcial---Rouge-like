@@ -13,12 +13,12 @@
     ///Matrices:
 #define MAX_FILAS_GUIA 5
 #define MAX_COLUMNAS_GUIA 5
-#define MAX_FILAS_GENERAL 30
-#define MAX_COLUMNAS_GENERAL 30
+#define MAX_FILAS_JUEGO 31
+#define MAX_COLUMNAS_JUEGO 31
 
     ///Contenido de matriz de juego:
 #define MURO_INRROMPIBLE 88 ///X
-#define MURO 77 ///M
+#define MURO_ROMPIBLE 77 ///M
 #define COFRE 67 ///C
 #define AVATAR 65 ///A
 #define PUERTA 80 ///P
@@ -34,14 +34,21 @@
 
 class MAPA {
     private:
-        char mapa_guia[MAX_FILAS_GUIA][MAX_COLUMNAS_GUIA] = {BLOQUE_INABILITADO};
-        char mapa_juego[MAX_FILAS_GENERAL][MAX_COLUMNAS_GENERAL] = {MURO};
+        char mapa_guia[MAX_FILAS_GUIA][MAX_COLUMNAS_GUIA];
+        char mapa_juego[MAX_FILAS_GUIA][MAX_COLUMNAS_GUIA][MAX_FILAS_JUEGO][MAX_COLUMNAS_JUEGO];
         int bioma;
+
+        int movimiento;
+
     public:
         ///Constructor:
             void armar_mapa_guia();
+            void iniciar_mapas();
+            void armar_mapa_general_marco(int x_externo, int y_externo);
+            void armar_mapa_general_puertas(int x_externo, int y_externo);
+            void armar_mapa_general_caminos(int x_externo, int y_externo, int x_interno ,int y_interno);
             void armar_mapa_general();
-        MAPA(int bio);
+            MAPA(int bio);
         ///Gets:
             char gets_mapa_guia();
             char gets_mapa_general();
@@ -55,8 +62,36 @@ class MAPA {
 MAPA::MAPA(int bio){
 
     bioma = bio;
+    iniciar_mapas();
     armar_mapa_guia();
     armar_mapa_general();
+
+}
+
+void MAPA::iniciar_mapas(){
+
+    int w,x,y,z;
+
+    for(w=0 ; w < MAX_FILAS_GUIA ; w++){
+        for(x=0 ; x < MAX_COLUMNAS_GUIA ; x++){
+
+            mapa_guia[w][x] = BLOQUE_INABILITADO;
+
+        }
+    }
+
+    for(w=0 ; w < MAX_FILAS_GUIA ; w++){
+        for(x=0 ; x < MAX_COLUMNAS_GUIA ; x++){
+            for(y=0 ; y < MAX_FILAS_JUEGO ; y++){
+                for(z=0 ; z < MAX_COLUMNAS_JUEGO ; z++){
+
+                    mapa_juego[w][x][y][z] = MURO_ROMPIBLE;
+
+                }
+            }
+        }
+    }
+
 
 }
 
@@ -65,18 +100,18 @@ void MAPA::armar_mapa_guia(){
     int x = 2;
     int y = 2;
 
-    int mov;
+    int movimiento;
     int direccion;
 
     bool key = true;
 
     srand(time(0));
 
-    for(mov=0; mov<20; mov++){
+    for(movimiento=0; movimiento<6; movimiento++){
 
         while(key){
 
-            direccion = ((rand() ) % 4);
+            direccion = ((rand() + x + y) % 4);
 
             switch(direccion){
                 case 0: ///Arriba
@@ -89,7 +124,7 @@ void MAPA::armar_mapa_guia(){
                     }
                 break;
                 case 1: ///Abajo
-                    if((x + 1) < MAX_COLUMNAS_GUIA){
+                    if((x + 1) < MAX_FILAS_GUIA-1){
                         if(mapa_guia[x+1][y] == BLOQUE_INABILITADO){
                             key = false;
                             mapa_guia[x+1][y] = BLOQUE_ABILITADO;
@@ -107,7 +142,7 @@ void MAPA::armar_mapa_guia(){
                     }
                 break;
                 case 3: ///Derecha
-                    if((y + 1) < MAX_FILAS_GUIA){
+                    if((y + 1) < MAX_COLUMNAS_GUIA-1){
                         if(mapa_guia[y+1][y] == BLOQUE_INABILITADO){
                             key = false;
                             mapa_guia[y+1][y] = BLOQUE_ABILITADO;
@@ -124,7 +159,6 @@ void MAPA::armar_mapa_guia(){
 }
 
 
-
 void MAPA::armar_mapa_general(){
 
     int x, y;
@@ -132,9 +166,8 @@ void MAPA::armar_mapa_general(){
     for(x=0;x<MAX_FILAS_GUIA;x++){
         for(y=0;y<MAX_COLUMNAS_GUIA;y++){
             if(mapa_guia[x][y] == BLOQUE_ABILITADO){
-                armar_mapa_general_marco();
-                armar_mapa_general_puertas();
-                armar_mapa_general_caminos();
+                armar_mapa_general_marco(x,y);
+                armar_mapa_general_puertas(x,y);
             }
         }
     }
@@ -142,39 +175,137 @@ void MAPA::armar_mapa_general(){
 }
 
 
+void MAPA::armar_mapa_general_marco(int x_externo, int y_externo){
 
-void MAPA::armar_mapa_general_marco(){
+    int x_interno;
+    int y_interno;
 
+    for(x_interno=0 ; x_interno<MAX_FILAS_JUEGO ; x_interno++){
+        for(y_interno=0 ; y_interno<MAX_COLUMNAS_JUEGO ; y_interno++){
+
+            if(x_interno == 0 || x_interno == (MAX_COLUMNAS_JUEGO - 1)){
+                mapa_juego[x_externo][y_externo][x_interno][x_interno] = MURO_INRROMPIBLE;
+            }
+            if(x_interno == 0 || x_interno == (MAX_COLUMNAS_JUEGO - 1)){
+                mapa_juego[x_externo][y_externo][x_interno][x_interno] = MURO_INRROMPIBLE;
+            }
+
+        }
+    }
+}
+
+
+void MAPA::armar_mapa_general_puertas(int x_externo, int y_externo){
+
+    if(x_externo != 0){
+        if(mapa_guia[x_externo+1][y_externo] == BLOQUE_ABILITADO){
+            mapa_juego[x_externo][y_externo][0][15] = PUERTA;
+            armar_mapa_general_caminos(x_externo, y_externo, 0, 15);
+        }
+    }
+    if(x_externo != MAX_FILAS_GUIA-1){
+        if(mapa_guia[x_externo-1][y_externo] == BLOQUE_ABILITADO){
+            mapa_juego[x_externo][y_externo][MAX_FILAS_JUEGO][15] = PUERTA;
+            armar_mapa_general_caminos(x_externo, y_externo, MAX_FILAS_JUEGO, 15);
+        }
+    }
+    if(y_externo != 0){
+        if(mapa_guia[x_externo][y_externo+1] == BLOQUE_ABILITADO){
+            mapa_juego[x_externo][y_externo][15][0] = PUERTA;
+            armar_mapa_general_caminos(x_externo, y_externo, 15, 0);
+        }
+    }
+    if(y_externo != MAX_COLUMNAS_GUIA-1){
+        if(mapa_guia[x_externo][y_externo-1] == BLOQUE_ABILITADO){
+            mapa_juego[x_externo][y_externo][15][MAX_COLUMNAS_JUEGO] = PUERTA;
+            armar_mapa_general_caminos(x_externo, y_externo, 15, MAX_COLUMNAS_JUEGO);
+        }
+    }
 
 
 }
 
-void MAPA::armar_mapa_general_puertas(){
 
+void MAPA::armar_mapa_general_caminos(int x_externo, int y_externo, int x_interno ,int y_interno){
 
+    int movimiento;
+    int direccion;
+
+    bool key2 = false;
+    bool key = true;
+
+    srand(time(0));
+
+    for(movimiento=0; movimiento<20; movimiento++){
+
+        while(key){
+
+            direccion = ((rand() + x_externo + y_externo + x_interno + y_interno) % 4);
+
+            switch(direccion){
+                case 0: ///Arriba
+                    if((x_interno - 1) > 0){
+                        if(mapa_guia[x_externo][y_externo][x_interno-1][y_interno] == (char *) MURO_ROMPIBLE){
+                            key = false;
+                            mapa_guia[x_externo][y_externo][x_interno-1][y_interno] = PISO;
+                        }
+                        x_externo--;
+                    }
+                break;
+                case 1: ///Abajo
+                    if((x_interno + 1) < MAX_FILAS_GUIA){
+                        if(mapa_guia[x_externo][y_externo][x_interno+1][y_interno] == MURO_ROMPIBLE){
+                            key = false;
+                            mapa_guia[x_externo][y_externo][x_interno+1][y_interno] = PISO;
+                        }
+                        x_externo++;
+                    }
+                break;
+                case 2: ///Izquierda
+                    if((y_interno - 1) > 0){
+                        if(mapa_guia[x_externo][y_externo][x_interno][y_interno-1] == MURO_ROMPIBLE){
+                            key = false;
+                            mapa_guia[x_externo][y_externo][x_interno][y_interno-1] = PISO;
+                        }
+                        y_externo--;
+                    }
+                break;
+                case 3: ///Derecha
+                    if((y_interno + 1) < MAX_COLUMNAS_GUIA){
+                        if(mapa_guia[x_externo][y_externo][x_interno][y_interno+1] == MURO_ROMPIBLE){
+                            key = false;
+                            mapa_guia[x_externo][y_externo][x_interno][y_interno+1] = PISO;
+                        }
+                        y_externo++;
+                    }
+                break;
+            }
+
+        }
+
+        key = true;
+    }
 
 }
 
-void MAPA::armar_mapa_general_caminos(){
-
-
-
-}
 
 ///Gets:
 char MAPA::gets_mapa_guia(){
     return mapa_guia[posicion_en_x][posicion_en_y];
 }
 
+
 char MAPA::gets_mapa_general(){
     return mapa_juego[posicion_x_mayor][posicion_y_mayor][posicion_x_menor][posicion_y_menor];
 }
+
 
 ///Sets:
 ///Ingresa un valor char a la pocicion de la matriz guia señalada.
 void MAPA::sets_mapa_guia(int posicion_en_x, int posicion_en_y, char auxiliar){
     mapa_guia[posicion_en_x][posicion_en_y] = auxiliar;
 }
+
 
 ///Ingresa un valor char a la pocicion de la matriz juego señalada.
 void MAPA::sets_mapa_general(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor, char auxiliar){

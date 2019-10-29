@@ -1,9 +1,10 @@
-#include <iostream>
 #include <ctime>
-
-using namespace std;
-
 #include <allegro.h>
+
+#include "Imagenes.h";
+#include "Clase_mapa.h"
+#include "control.h"
+
 
 int main(){
 

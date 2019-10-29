@@ -3,7 +3,7 @@
 
 #include "Imagenes.h";
 #include "Clase_mapa.h"
-#include "control.h"
+#include "Control_grafico.h"
 
 
 int main(){

@@ -34,8 +34,8 @@
 
 class MAPA {
     private:
-        char mapa_guia[MAX_FILAS_GUIA][MAX_COLUMNAS_GUIA];
-        char mapa_juego[MAX_FILAS_GUIA][MAX_COLUMNAS_GUIA][MAX_FILAS_JUEGO][MAX_COLUMNAS_JUEGO];
+        int mapa_guia[MAX_FILAS_GUIA][MAX_COLUMNAS_GUIA];
+        int mapa_juego[MAX_FILAS_GUIA][MAX_COLUMNAS_GUIA][MAX_FILAS_JUEGO][MAX_COLUMNAS_JUEGO];
         int bioma;
 
         int movimiento;
@@ -50,8 +50,8 @@ class MAPA {
             void armar_mapa_general();
             MAPA(int bio);
         ///Gets:
-            char gets_mapa_guia();
-            char gets_mapa_general();
+            char gets_mapa_guia(int posicion_en_x, int posicion_en_y);
+            char gets_mapa_general(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor);
         ///Sets:
             ///Ingresa un valor char a la pocicion de la matriz guia señalada.
             void sets_mapa_guia(int posicion_en_x, int posicion_en_y, char auxiliar);
@@ -245,36 +245,36 @@ void MAPA::armar_mapa_general_caminos(int x_externo, int y_externo, int x_intern
             switch(direccion){
                 case 0: ///Arriba
                     if((x_interno - 1) > 0){
-                        if(mapa_guia[x_externo][y_externo][x_interno-1][y_interno] == (char *) MURO_ROMPIBLE){
+                        if(mapa_juego[x_externo][y_externo][x_interno-1][y_interno] == MURO_ROMPIBLE){
                             key = false;
-                            mapa_guia[x_externo][y_externo][x_interno-1][y_interno] = PISO;
+                            mapa_juego[x_externo][y_externo][x_interno-1][y_interno] = PISO;
                         }
                         x_externo--;
                     }
                 break;
                 case 1: ///Abajo
                     if((x_interno + 1) < MAX_FILAS_GUIA){
-                        if(mapa_guia[x_externo][y_externo][x_interno+1][y_interno] == MURO_ROMPIBLE){
+                        if(mapa_juego[x_externo][y_externo][x_interno+1][y_interno] == MURO_ROMPIBLE){
                             key = false;
-                            mapa_guia[x_externo][y_externo][x_interno+1][y_interno] = PISO;
+                            mapa_juego[x_externo][y_externo][x_interno+1][y_interno] = PISO;
                         }
                         x_externo++;
                     }
                 break;
                 case 2: ///Izquierda
                     if((y_interno - 1) > 0){
-                        if(mapa_guia[x_externo][y_externo][x_interno][y_interno-1] == MURO_ROMPIBLE){
+                        if(mapa_juego[x_externo][y_externo][x_interno][y_interno-1] == MURO_ROMPIBLE){
                             key = false;
-                            mapa_guia[x_externo][y_externo][x_interno][y_interno-1] = PISO;
+                            mapa_juego[x_externo][y_externo][x_interno][y_interno-1] = PISO;
                         }
                         y_externo--;
                     }
                 break;
                 case 3: ///Derecha
                     if((y_interno + 1) < MAX_COLUMNAS_GUIA){
-                        if(mapa_guia[x_externo][y_externo][x_interno][y_interno+1] == MURO_ROMPIBLE){
+                        if(mapa_juego[x_externo][y_externo][x_interno][y_interno+1] == MURO_ROMPIBLE){
                             key = false;
-                            mapa_guia[x_externo][y_externo][x_interno][y_interno+1] = PISO;
+                            mapa_juego[x_externo][y_externo][x_interno][y_interno+1] = PISO;
                         }
                         y_externo++;
                     }
@@ -290,12 +290,12 @@ void MAPA::armar_mapa_general_caminos(int x_externo, int y_externo, int x_intern
 
 
 ///Gets:
-char MAPA::gets_mapa_guia(){
+char MAPA::gets_mapa_guia(int posicion_en_x, int posicion_en_y){
     return mapa_guia[posicion_en_x][posicion_en_y];
 }
 
 
-char MAPA::gets_mapa_general(){
+char MAPA::gets_mapa_general(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor){
     return mapa_juego[posicion_x_mayor][posicion_y_mayor][posicion_x_menor][posicion_y_menor];
 }
 

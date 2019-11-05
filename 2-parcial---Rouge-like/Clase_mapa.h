@@ -61,6 +61,7 @@ class MAPA {
             void sets_mapa_general(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor, char auxiliar);
 };
 
+///Constructor:
 MAPA::MAPA(int bio){
 
     bioma = bio;
@@ -70,6 +71,7 @@ MAPA::MAPA(int bio){
 
 }
 
+///Otorga los valores iniciales a las matrices.
 void MAPA::iniciar_mapas(){
 
     int w,x,y,z;
@@ -97,6 +99,7 @@ void MAPA::iniciar_mapas(){
 
 }
 
+///Arma el mapa que servira para armar el mapa del juego.
 void MAPA::armar_mapa_guia(){
 
     int x = 1;
@@ -162,7 +165,7 @@ void MAPA::armar_mapa_guia(){
 
 }
 
-
+///Arma el mapa el mapa del juego.
 void MAPA::armar_mapa_general(){
 
     int x, y;
@@ -179,7 +182,7 @@ void MAPA::armar_mapa_general(){
 
 }
 
-
+///Arma los marcos en las secciones habilitadas para los mapas.
 void MAPA::armar_mapa_general_marco(int x_externo, int y_externo){
 
     int x_interno;
@@ -202,7 +205,7 @@ void MAPA::armar_mapa_general_marco(int x_externo, int y_externo){
 
 }
 
-
+///Asigna las puertas.
 void MAPA::armar_mapa_general_puertas(int x_externo, int y_externo){
 
 
@@ -248,7 +251,7 @@ void MAPA::armar_mapa_general_puertas(int x_externo, int y_externo){
 
 }
 
-
+///Arma los caminos en los mapas comensando desde las puertas.
 void MAPA::armar_mapa_general_caminos(int x_externo, int y_externo, int x_interno ,int y_interno){
 
     int movimiento;
@@ -320,11 +323,13 @@ void MAPA::armar_mapa_general_caminos(int x_externo, int y_externo, int x_intern
 
 
 ///Gets:
+
+///Devuelve el valor que contiene las pociciones indicadas en la matriz guia.
 char MAPA::gets_mapa_guia(int posicion_en_x, int posicion_en_y){
     return mapa_guia[posicion_en_x][posicion_en_y];
 }
 
-
+///Devuelve el valor que contiene las pociciones indicadas en la matriz del juego.
 char MAPA::gets_mapa_general(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor){
     return mapa_juego[posicion_x_mayor][posicion_y_mayor][posicion_x_menor][posicion_y_menor];
 }

@@ -53,7 +53,7 @@ class MAPA {
             MAPA(int bio);
         ///Gets:
             char gets_mapa_guia(int posicion_en_x, int posicion_en_y);
-            char gets_mapa_general(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor);
+            char gets_mapa_juego(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor);
         ///Sets:
             ///Ingresa un valor char a la pocicion de la matriz guia señalada.
             void sets_mapa_guia(int posicion_en_x, int posicion_en_y, char auxiliar);
@@ -330,7 +330,7 @@ char MAPA::gets_mapa_guia(int posicion_en_x, int posicion_en_y){
 }
 
 ///Devuelve el valor que contiene las pociciones indicadas en la matriz del juego.
-char MAPA::gets_mapa_general(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor){
+char MAPA::gets_mapa_juego(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor){
     return mapa_juego[posicion_x_mayor][posicion_y_mayor][posicion_x_menor][posicion_y_menor];
 }
 

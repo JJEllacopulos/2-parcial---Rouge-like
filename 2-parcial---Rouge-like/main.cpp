@@ -14,7 +14,7 @@ int main(){
 
     ///Establecer los parametros de la pantalla.
     set_color_depth(32);
-    set_gfx_mode(GFX_AUTODETECT_WINDOWED, TAMAÑO_X_BUFFER, TAMAÑO_Y_BUFFER, 0, 0);
+    set_gfx_mode(GFX_AUTODETECT_WINDOWED, TAMANO_X_BUFFER, TAMANO_Y_BUFFER, 0, 0);
 
     ///Carga las imagenes en los distintos bitmaps.
     asignar_sprites();

@@ -1,8 +1,9 @@
 #ifndef CONTROL_GRAFICO_H_INCLUDED
 #define CONTROL_GRAFICO_H_INCLUDED
 
-#define TAMANO_X_BUFFER 780 ///Tamaño del los buffer en el eje x.
-#define TAMANO_Y_BUFFER 740 ///Tamaño del los buffer en el eje y.
+///Tamaño de la pantalla.
+#define TAMANO_X_BUFFER 1300 ///Tamaño del los buffer en el eje x.
+#define TAMANO_Y_BUFFER 700 ///Tamaño del los buffer en el eje y.
 
 #define TAMANO_X_SPRITE 30 ///Tamaño del los sprites en el eje x.
 #define TAMANO_Y_SPRITE 30 ///Tamaño del los sprites en el eje y.
@@ -14,17 +15,26 @@ void asignar_sprites(){
     buffer = create_bitmap(TAMANO_X_BUFFER, TAMANO_Y_BUFFER);
 
     ///Carga las imagenes en los mapas de bits.
-    MURO_IRROMPIBLE_spr = load_bitmap("Imagenes\Piedra_2.bmp", NULL);
+
+    ///Recuendan como se le mandaba una direccion parcial de un archivo? Porque yo no.
+    /*MURO_IRROMPIBLE_spr = load_bitmap("Imagenes\Piedra_2.bmp", NULL);
     MURO_ROMPIBLE_spr = load_bitmap("Imagenes\Piedra_3.bmp", NULL);
     COFRE_spr = load_bitmap("Imagenes\Cofre_1.bmp", NULL);
     AVATAR_spr = load_bitmap("Imagenes\Viajero_1.bmp", NULL);
     PUERTA_spr = load_bitmap("Imagenes\Puerta_1.bmp", NULL);
-    PISO_spr = load_bitmap("Imagenes\Mosaico_2.bmp", NULL);
+    PISO_spr = load_bitmap("Imagenes\Mosaico_2.bmp", NULL);*/
+
+    MURO_IRROMPIBLE_spr = load_bitmap("Piedra_2.bmp", NULL);
+    MURO_ROMPIBLE_spr = load_bitmap("Piedra_3.bmp", NULL);
+    COFRE_spr = load_bitmap("Cofre_1.bmp", NULL);
+    AVATAR_spr = load_bitmap("Viajero_1.bmp", NULL);
+    PUERTA_spr = load_bitmap("Puerta_1.bmp", NULL);
+    PISO_spr = load_bitmap("Mosaico_2.bmp", NULL);
 
 }
 
 ///Carga en el buffer los elementos de entorno (Piso, muros, etc).
-void Graficar_mapa_base( MAPA &mapa, int x_externo = 0, int y_externo = 0){
+void Graficar_mapa_base( MAPA &mapa, int x_externo = 1, int y_externo = 1){
 
     int x_interno;
     int y_interno;

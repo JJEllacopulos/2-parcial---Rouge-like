@@ -19,6 +19,9 @@ int main(){
     ///Carga las imagenes en los distintos bitmaps.
     asignar_sprites();
 
+    ///Semailla del random:
+    srand(time(0));
+
     ///Inicia y arma el mapa.
     MAPA mapa(1);
 

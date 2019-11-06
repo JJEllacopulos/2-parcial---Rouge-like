@@ -117,7 +117,7 @@ void MAPA::armar_mapa_guia(){
 
         while(key){
 
-            direccion = ((rand() + x + y) % 4);
+            direccion = ((rand()) % 4);
 
             switch(direccion){
                 case 0: ///Arriba

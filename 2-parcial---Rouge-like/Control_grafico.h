@@ -17,19 +17,13 @@ void asignar_sprites(){
     ///Carga las imagenes en los mapas de bits.
 
     ///Recuendan como se le mandaba una direccion parcial de un archivo? Porque yo no.
-    /*MURO_IRROMPIBLE_spr = load_bitmap("Imagenes\Piedra_2.bmp", NULL);
-    MURO_ROMPIBLE_spr = load_bitmap("Imagenes\Piedra_3.bmp", NULL);
-    COFRE_spr = load_bitmap("Imagenes\Cofre_1.bmp", NULL);
-    AVATAR_spr = load_bitmap("Imagenes\Viajero_1.bmp", NULL);
-    PUERTA_spr = load_bitmap("Imagenes\Puerta_1.bmp", NULL);
-    PISO_spr = load_bitmap("Imagenes\Mosaico_2.bmp", NULL);*/
 
-    MURO_IRROMPIBLE_spr = load_bitmap("Piedra_2.bmp", NULL);
-    MURO_ROMPIBLE_spr = load_bitmap("Piedra_3.bmp", NULL);
-    COFRE_spr = load_bitmap("Cofre_1.bmp", NULL);
-    AVATAR_spr = load_bitmap("Viajero_1.bmp", NULL);
-    PUERTA_spr = load_bitmap("Puerta_1.bmp", NULL);
-    PISO_spr = load_bitmap("Mosaico_2.bmp", NULL);
+    MURO_IRROMPIBLE_spr = load_bitmap("Imagenes/Piedra_2.bmp", NULL);
+    MURO_ROMPIBLE_spr = load_bitmap("Imagenes/Piedra_3.bmp", NULL);
+    COFRE_spr = load_bitmap("Imagenes/Cofre_1.bmp", NULL);
+    AVATAR_spr = load_bitmap("Imagenes/Viajero_1.bmp", NULL);
+    PUERTA_spr = load_bitmap("Imagenes/Puerta_1.bmp", NULL);
+    PISO_spr = load_bitmap("Imagenes/Mosaico_2.bmp", NULL);
 
 }
 
@@ -67,7 +61,7 @@ void Graficar_mapa_base( MAPA &mapa, int x_externo = 1, int y_externo = 1){
 }
 
 ///Carga en el buffer los elementos restantes(PJ, NPC, puertas, etc).
-void Graficar_mapa_objetos(MAPA &mapa, int x_externo = 0, int y_externo = 0){
+void Graficar_mapa_objetos(MAPA &mapa, int x_externo = 1, int y_externo = 1){
 
     int x_interno;
     int y_interno;

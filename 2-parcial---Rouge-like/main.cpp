@@ -4,6 +4,7 @@
 #include "Imagenes.h";
 #include "Pistas_de_audio.h";
 #include "Clase_mapa.h"
+#include "Clase_personaje.h"
 #include "Control_grafico.h"
 #include "Control_audio.h"
 
@@ -39,6 +40,9 @@ int main(){
     ///Inicia y arma el mapa.
     MAPA mapa(1);
 
+    ///Inicia y arma el personaje.
+    PERSONAJE pj(mapa);
+
     ///Reproducion en bucle del tema de fondo:
     play_midi(Fondo, 1);
 
@@ -49,9 +53,9 @@ int main(){
         clear(buffer);
 
         ///Carga en el buffer los elementos de entorno (Piso, muros, etc).
-        Graficar_mapa_base(mapa);
+        Graficar_mapa_base(mapa, pj.gets_pocicion_x_guia(), pj.gets_pocicion_y_guia());
         ///Carga en el buffer los elementos restantes(PJ, NPC, puertas, etc).
-        Graficar_mapa_objetos(mapa);
+        Graficar_mapa_objetos(mapa, pj.gets_pocicion_x_guia(), pj.gets_pocicion_y_guia());
 
         ///Imprime en la ventana lo que se cargo en el buffer.
         pantallaso();

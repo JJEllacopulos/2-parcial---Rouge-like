@@ -52,13 +52,13 @@ class MAPA {
             void armar_mapa_general();
             MAPA(int bio);
         ///Gets:
-            char gets_mapa_guia(int posicion_en_x, int posicion_en_y);
-            char gets_mapa_juego(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor);
+            int gets_mapa_guia(int posicion_en_x, int posicion_en_y);
+            int gets_mapa_juego(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor);
         ///Sets:
             ///Ingresa un valor char a la pocicion de la matriz guia señalada.
             void sets_mapa_guia(int posicion_en_x, int posicion_en_y, char auxiliar);
             ///Ingresa un valor char a la pocicion de la matriz juego señalada.
-            void sets_mapa_general(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor, char auxiliar);
+            void sets_mapa_general(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor, int auxiliar);
 };
 
 ///Constructor:
@@ -325,12 +325,12 @@ void MAPA::armar_mapa_general_caminos(int x_externo, int y_externo, int x_intern
 ///Gets:
 
 ///Devuelve el valor que contiene las pociciones indicadas en la matriz guia.
-char MAPA::gets_mapa_guia(int posicion_en_x, int posicion_en_y){
+int MAPA::gets_mapa_guia(int posicion_en_x, int posicion_en_y){
     return mapa_guia[posicion_en_x][posicion_en_y];
 }
 
 ///Devuelve el valor que contiene las pociciones indicadas en la matriz del juego.
-char MAPA::gets_mapa_juego(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor){
+int MAPA::gets_mapa_juego(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor){
     return mapa_juego[posicion_x_mayor][posicion_y_mayor][posicion_x_menor][posicion_y_menor];
 }
 
@@ -343,7 +343,7 @@ void MAPA::sets_mapa_guia(int posicion_en_x, int posicion_en_y, char auxiliar){
 
 
 ///Ingresa un valor char a la pocicion de la matriz juego señalada.
-void MAPA::sets_mapa_general(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor, char auxiliar){
+void MAPA::sets_mapa_general(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor, int auxiliar){
     mapa_juego[posicion_x_mayor][posicion_y_mayor][posicion_x_menor][posicion_y_menor] = auxiliar;
 }
 

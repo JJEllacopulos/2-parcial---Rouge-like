@@ -4,7 +4,7 @@
 void asignar_audio(){
 
     ///Carga de las pistas de audio:
-
+    Fondo = load_midi("Castlevania 2_ Simon's Quest - Bloody Tears.mid");
 
 }
 

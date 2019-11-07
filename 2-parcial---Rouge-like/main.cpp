@@ -39,6 +39,9 @@ int main(){
     ///Inicia y arma el mapa.
     MAPA mapa(1);
 
+    ///Reproducion en bucle del tema de fondo:
+    play_midi(Fondo, 1);
+
     ///Bucle del juego (game loop).
     while(!key[KEY_ESC]){
 

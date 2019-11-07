@@ -2,8 +2,10 @@
 #include <allegro.h>
 
 #include "Imagenes.h";
+#include "Pistas_de_audio.h";
 #include "Clase_mapa.h"
 #include "Control_grafico.h"
+#include "Control_audio.h"
 
 
 int main(){
@@ -16,8 +18,20 @@ int main(){
     set_color_depth(32);
     set_gfx_mode(GFX_AUTODETECT_WINDOWED, TAMANO_X_BUFFER, TAMANO_Y_BUFFER, 0, 0);
 
+    ///Establecer los parametros del audio.
+    if(install_sound(DIGI_AUTODETECT, MIDI_AUTODETECT, NULL) != 0){
+        allegro_message("Error: inicializando sistema de sonido\n%s\n", allegro_error);
+        return 1;
+    }
+
+    ///Ajustes de audio:
+    set_volume(70, 70);
+
     ///Carga las imagenes en los distintos bitmaps.
     asignar_sprites();
+
+    ///Carga las pistas de audio.
+    asignar_audio();
 
     ///Semailla del random:
     srand(time(0));

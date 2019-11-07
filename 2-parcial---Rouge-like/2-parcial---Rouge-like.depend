@@ -1,14 +1,20 @@
 # depslib dependency file v1.0
-1573070242 source:d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\main.cpp
+1573088349 source:d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\main.cpp
 	<ctime>
 	<allegro.h>
 	"Imagenes.h"
+	"Pistas_de_audio.h"
 	"Clase_mapa.h"
 	"Control_grafico.h"
+	"Control_audio.h"
 
 1573068182 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\imagenes.h
 
 1573072050 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_mapa.h
 
 1573069881 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\control_grafico.h
+
+1573087099 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\pistas_de_audio.h
+
+1573088090 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\control_audio.h
 

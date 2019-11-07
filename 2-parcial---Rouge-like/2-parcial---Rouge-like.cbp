@@ -33,8 +33,10 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="Clase_mapa.h" />
+		<Unit filename="Control_audio.h" />
 		<Unit filename="Control_grafico.h" />
 		<Unit filename="Imagenes.h" />
+		<Unit filename="Pistas_de_audio.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

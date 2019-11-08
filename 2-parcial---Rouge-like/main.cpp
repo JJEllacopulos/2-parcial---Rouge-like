@@ -5,6 +5,7 @@
 #include "Pistas_de_audio.h";
 #include "Clase_mapa.h"
 #include "Clase_personaje.h"
+#include "Clase_personaje_jugador.h"
 #include "Control_grafico.h"
 #include "Control_audio.h"
 
@@ -41,7 +42,8 @@ int main(){
     MAPA mapa(1);
 
     ///Inicia y arma el personaje.
-    PERSONAJE pj(mapa);
+    PERSONAJE pj;
+    pj.iniciar_personaje(mapa);
 
     ///Reproducion en bucle del tema de fondo:
     play_midi(Fondo, 1);

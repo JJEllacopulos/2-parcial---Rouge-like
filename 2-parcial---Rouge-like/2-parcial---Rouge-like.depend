@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1573162608 source:d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\main.cpp
+1573162773 source:d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\main.cpp
 	<ctime>
 	<allegro.h>
 	"Imagenes.h"
@@ -17,7 +17,7 @@
 
 1573091346 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\pistas_de_audio.h
 
-1573091482 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\control_audio.h
+1573163863 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\control_audio.h
 
-1573162495 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje.h
+1573170431 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje.h
 

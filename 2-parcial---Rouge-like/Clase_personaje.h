@@ -2,7 +2,7 @@
 #define CLASE_PERSONAJE_H_INCLUDED
 
 class PERSONAJE{
-    private:
+    protected:
         int pocicion_x_guia;
         int pocicion_y_guia;
         int pocicion_x_juego;
@@ -10,7 +10,9 @@ class PERSONAJE{
 
     public:
         void pocicion_inicial(MAPA &mapa);
-        PERSONAJE(MAPA &mapa);
+        void iniciar_personaje(MAPA &mapa);
+
+        ///void mover_personaje(int direcion);
 
         ///Gets
 
@@ -27,9 +29,13 @@ class PERSONAJE{
         void sets_pocicion_x_juego(int x_juego);
         void sets_pocicion_y_juego(int y_juego);
 
+        ///Operadores:
+
+
+
 };
 
-PERSONAJE::PERSONAJE(MAPA &mapa){
+void PERSONAJE::iniciar_personaje(MAPA &mapa){
 
     pocicion_inicial(mapa);
 

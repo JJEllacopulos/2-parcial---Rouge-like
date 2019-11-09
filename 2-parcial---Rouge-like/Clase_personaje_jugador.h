@@ -6,6 +6,8 @@ class JUGADOR: public PERSONAJE{
         int movimiento;
         int direccion;
 
+        int sprite_personaje;
+
     public:
 
         ///---------------------Propio del padre---------------------
@@ -34,7 +36,9 @@ class JUGADOR: public PERSONAJE{
 
 JUGADOR::JUGADOR(MAPA &mapa){
 
-    PERSONAJE::iniciar_personaje(mapa);
+    sprite_personaje = AVATAR;
+
+    PERSONAJE::iniciar_personaje(mapa, sprite_personaje);
 
 }
 
@@ -75,33 +79,84 @@ void JUGADOR::mover_jugador(MAPA &mapa){
     mapa.sets_mapa_general(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego(), PISO);
 
     switch(direccion){
-        case 1:
-            if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego()) == PUERTA){
+        case 1: ///Derecha:
+            if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego() + 1) == PUERTA){
                 mover_en_mapa_guia();
             }
             else{
-                if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego()) == PISO){
-                    sets_pocicion_x_juego(gets_pocicion_y_juego() + 1);
+                if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego() + 1) == PISO){
+                    sets_pocicion_y_juego(gets_pocicion_y_juego() + 1);
                 }
             }
 
         break;
 
-        case 2:
+        case 2:///Izquierda:
+            if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego() - 1) == PUERTA){
+                mover_en_mapa_guia();
+            }
+            else{
+                if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego() - 1) == PISO){
+                    sets_pocicion_y_juego(gets_pocicion_y_juego() - 1);
+                }
+            }
 
         break;
 
-        case 3:
+        case 3:///Arriba:
+            if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego() - 1, gets_pocicion_y_juego()) == PUERTA){
+                mover_en_mapa_guia();
+            }
+            else{
+                if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego() - 1, gets_pocicion_y_juego()) == PISO){
+                    sets_pocicion_x_juego(gets_pocicion_x_juego() - 1);
+                }
+            }
 
         break;
 
-        case 4:
+        case 4:///Abajo:
+            if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego() + 1, gets_pocicion_y_juego()) == PUERTA){
+                mover_en_mapa_guia();
+            }
+            else{
+                if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego() + 1, gets_pocicion_y_juego()) == PISO){
+                    sets_pocicion_x_juego(gets_pocicion_x_juego() + 1);
+                }
+            }
 
         break;
 
     }
 
-    mapa.sets_mapa_general(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_x_guia(), AVATAR);
+    mapa.sets_mapa_general(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego(), sprite_personaje);
+}
+
+void JUGADOR::mover_en_mapa_guia(){
+
+    switch(direccion){
+        case 1: ///Derecha:
+                sets_pocicion_completa(gets_pocicion_x_guia(), gets_pocicion_y_guia() + 1, gets_pocicion_x_juego(), 1);
+
+        break;
+
+        case 2:///Izquierda:
+            sets_pocicion_completa(gets_pocicion_x_guia(), gets_pocicion_y_guia() - 1, gets_pocicion_x_juego(), MAX_COLUMNAS_JUEGO-2);
+
+        break;
+
+        case 3:///Arriba:
+            sets_pocicion_completa(gets_pocicion_x_guia() - 1, gets_pocicion_y_guia(), MAX_FILAS_JUEGO-2, gets_pocicion_y_juego());
+
+        break;
+
+        case 4:///Abajo:
+            sets_pocicion_completa(gets_pocicion_x_guia() + 1, gets_pocicion_y_guia(), 1, gets_pocicion_y_juego());
+
+        break;
+
+    }
+
 }
 
 ///---------------------Propio del padre---------------------

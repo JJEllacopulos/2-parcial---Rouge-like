@@ -13,10 +13,14 @@
     ///Matrices:
 #define MAX_FILAS_GUIA 3
 #define MAX_COLUMNAS_GUIA 3
-#define MAX_FILAS_JUEGO 30
+#define MAX_FILAS_JUEGO 20
 #define MAX_COLUMNAS_JUEGO 20
 #define POSICION_PUERTA_X 11
 #define POSICION_PUERTA_Y 11
+
+    ///Cantidades en el armado de los mapas
+#define BLOQUES_GUIA_HABILITADOS 4
+#define BLOQUES_JUEGOS_PISO 80
 
     ///Contenido de matriz de juego:
 #define MURO_IRROMPIBLE 88 ///X
@@ -113,7 +117,7 @@ void MAPA::armar_mapa_guia(){
 
     mapa_guia[x][y] = BLOQUE_HABILITADO;
 
-    for(movimiento=0; movimiento<4; movimiento++){
+    for(movimiento=0; movimiento<BLOQUES_GUIA_HABILITADOS; movimiento++){
 
         while(key){
 
@@ -261,7 +265,7 @@ void MAPA::armar_mapa_general_caminos(int x_externo, int y_externo, int x_intern
     bool key = true;
 
 
-    for(movimiento=0; movimiento<70; movimiento++){
+    for(movimiento=0; movimiento<BLOQUES_JUEGOS_PISO; movimiento++){
 
         while(key){
 
@@ -269,7 +273,7 @@ void MAPA::armar_mapa_general_caminos(int x_externo, int y_externo, int x_intern
 
             switch(direccion){
                 case 0: ///Arriba
-                    if((x_interno - 1) > 0){
+                    if((x_interno - 1) > 1){
 
                         x_interno--;
                         if(mapa_juego[x_externo][y_externo][x_interno][y_interno] == MURO_ROMPIBLE){
@@ -280,7 +284,7 @@ void MAPA::armar_mapa_general_caminos(int x_externo, int y_externo, int x_intern
                     }
                 break;
                 case 1: ///Abajo
-                    if((x_interno + 1) < MAX_FILAS_JUEGO){
+                    if((x_interno + 1) < MAX_FILAS_JUEGO-1){
 
                         x_interno++;
                         if(mapa_juego[x_externo][y_externo][x_interno][y_interno] == MURO_ROMPIBLE){
@@ -291,7 +295,7 @@ void MAPA::armar_mapa_general_caminos(int x_externo, int y_externo, int x_intern
                     }
                 break;
                 case 2: ///Izquierda
-                    if((y_interno - 1) > 0){
+                    if((y_interno - 1) > 1){
 
                         y_interno--;
                         if(mapa_juego[x_externo][y_externo][x_interno][y_interno] == MURO_ROMPIBLE){
@@ -302,7 +306,7 @@ void MAPA::armar_mapa_general_caminos(int x_externo, int y_externo, int x_intern
                     }
                 break;
                 case 3: ///Derecha
-                    if((y_interno + 1) < MAX_COLUMNAS_JUEGO){
+                    if((y_interno + 1) < MAX_COLUMNAS_JUEGO-1){
 
                         y_interno++;
                         if(mapa_juego[x_externo][y_externo][x_interno][y_interno] == MURO_ROMPIBLE){

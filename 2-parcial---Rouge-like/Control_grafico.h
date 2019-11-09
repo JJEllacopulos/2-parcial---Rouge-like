@@ -39,18 +39,18 @@ void Graficar_mapa_base( MAPA &mapa, int x_externo = 1, int y_externo = 1){
             switch(mapa.gets_mapa_juego(x_externo, y_externo, x_interno, y_interno)){
                 case MURO_IRROMPIBLE:
 
-                    draw_sprite(buffer, MURO_IRROMPIBLE_spr, x_interno * TAMANO_X_SPRITE, y_interno * TAMANO_Y_SPRITE);
+                    draw_sprite(buffer, MURO_IRROMPIBLE_spr, y_interno * TAMANO_Y_SPRITE, x_interno * TAMANO_X_SPRITE);
                 break;
 
                 case MURO_ROMPIBLE:
 
-                    draw_sprite(buffer, MURO_ROMPIBLE_spr, x_interno * TAMANO_X_SPRITE, y_interno * TAMANO_Y_SPRITE);
+                    draw_sprite(buffer, MURO_ROMPIBLE_spr, y_interno * TAMANO_Y_SPRITE, x_interno * TAMANO_X_SPRITE);
                 break;
 
                 ///Cualquier valor que no sean de los anteriores seran asignados como piso.
                 default:
 
-                    draw_sprite(buffer, PISO_spr, x_interno * TAMANO_X_SPRITE, y_interno * TAMANO_Y_SPRITE);
+                    draw_sprite(buffer, PISO_spr, y_interno * TAMANO_Y_SPRITE, x_interno * TAMANO_X_SPRITE);
                 break;
 
             }
@@ -73,17 +73,17 @@ void Graficar_mapa_objetos(MAPA &mapa, int x_externo = 1, int y_externo = 1){
 
                 case COFRE:
 
-                    draw_sprite(buffer, COFRE_spr, x_interno * TAMANO_X_SPRITE, y_interno * TAMANO_Y_SPRITE);
+                    draw_sprite(buffer, COFRE_spr, y_interno * TAMANO_Y_SPRITE, x_interno * TAMANO_X_SPRITE);
                 break;
 
                 case AVATAR:
 
-                    draw_sprite(buffer, AVATAR_spr, x_interno * TAMANO_X_SPRITE, y_interno * TAMANO_Y_SPRITE);
+                    draw_sprite(buffer, AVATAR_spr, y_interno * TAMANO_Y_SPRITE, x_interno * TAMANO_X_SPRITE);
                 break;
 
                 case PUERTA:
 
-                    draw_sprite(buffer, PUERTA_spr, x_interno * TAMANO_X_SPRITE, y_interno * TAMANO_Y_SPRITE);
+                    draw_sprite(buffer, PUERTA_spr, y_interno * TAMANO_Y_SPRITE, x_interno * TAMANO_X_SPRITE);
                 break;
 
             }

@@ -42,8 +42,8 @@ int main(){
     MAPA mapa(1);
 
     ///Inicia y arma el personaje.
-    PERSONAJE pj;
-    pj.iniciar_personaje(mapa);
+    JUGADOR per_jug(mapa);
+    ///per_jug.iniciar_personaje(mapa);
 
     ///Reproducion en bucle del tema de fondo:
     play_midi(Fondo, 1);
@@ -51,13 +51,16 @@ int main(){
     ///Bucle del juego (game loop).
     while(!key[KEY_ESC]){
 
+        ///Mover personaje jugador:
+        per_jug.rutina_de_movimiento(mapa);
+
         ///Limpia el mapa de bits.
         clear(buffer);
 
         ///Carga en el buffer los elementos de entorno (Piso, muros, etc).
-        Graficar_mapa_base(mapa, pj.gets_pocicion_x_guia(), pj.gets_pocicion_y_guia());
+        Graficar_mapa_base(mapa, per_jug.gets_pocicion_x_guia(), per_jug.gets_pocicion_y_guia());
         ///Carga en el buffer los elementos restantes(PJ, NPC, puertas, etc).
-        Graficar_mapa_objetos(mapa, pj.gets_pocicion_x_guia(), pj.gets_pocicion_y_guia());
+        Graficar_mapa_objetos(mapa, per_jug.gets_pocicion_x_guia(), per_jug.gets_pocicion_y_guia());
 
         ///Imprime en la ventana lo que se cargo en el buffer.
         pantallaso();

@@ -9,8 +9,8 @@ class PERSONAJE{
         int pocicion_y_juego;
 
     public:
-        void pocicion_inicial(MAPA &mapa);
-        void iniciar_personaje(MAPA &mapa);
+        void pocicion_inicial(MAPA &mapa, int clave);
+        void iniciar_personaje(MAPA &mapa, int clave);
 
         ///void mover_personaje(int direcion);
 
@@ -35,13 +35,13 @@ class PERSONAJE{
 
 };
 
-void PERSONAJE::iniciar_personaje(MAPA &mapa){
+void PERSONAJE::iniciar_personaje(MAPA &mapa, int clave){
 
-    pocicion_inicial(mapa);
+    pocicion_inicial(mapa, clave);
 
 }
 
-void PERSONAJE::pocicion_inicial(MAPA &mapa){
+void PERSONAJE::pocicion_inicial(MAPA &mapa, int clave){
 
     int x_externo;
     int y_externo;
@@ -68,7 +68,7 @@ void PERSONAJE::pocicion_inicial(MAPA &mapa){
                                 pocicion_x_juego = x_interno;
                                 pocicion_y_juego = y_interno;
 
-                                mapa.sets_mapa_general(x_externo, y_externo, x_interno, y_interno, AVATAR);
+                                mapa.sets_mapa_general(x_externo, y_externo, x_interno, y_interno, clave);
 
                                 return;
 

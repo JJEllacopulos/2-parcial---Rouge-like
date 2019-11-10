@@ -1,13 +1,15 @@
 #include <ctime>
 #include <allegro.h>
 
+#include "Clase_mapa.h"
 #include "Imagenes.h";
 #include "Pistas_de_audio.h";
-#include "Clase_mapa.h"
-#include "Clase_personaje.h"
-#include "Clase_personaje_jugador.h"
 #include "Control_grafico.h"
 #include "Control_audio.h"
+#include "Clase_personaje/Clase_personaje.h"
+#include "Clase_personaje/Clase_personaje_jugador.h"
+#include "Clase_personaje/Clase_personaje_MOBs.h"
+
 
 
 int main(){
@@ -43,7 +45,11 @@ int main(){
 
     ///Inicia y arma el personaje.
     JUGADOR per_jug(mapa);
-    ///per_jug.iniciar_personaje(mapa);
+
+    ///Iniciar MOVs:
+    int cantidad_de_MOBs = 5;
+    int ciclo_MOBs;
+    MOB esqueleto[cantidad_de_MOBs](mapa);
 
     ///Reproducion en bucle del tema de fondo:
     play_midi(Fondo, 1);
@@ -54,6 +60,10 @@ int main(){
         ///Mover personaje jugador:
         per_jug.rutina_de_movimiento(mapa);
 
+        ///Mover MOVs:
+        for(ciclo_MOBs = 0; ciclo_MOBs < cantidad_de_MOBs; ciclo_MOBs++){
+            esqueleto[ciclo_MOBs].rutina_de_movimiento(mapa);
+        }
         ///Limpia el mapa de bits.
         clear(buffer);
 

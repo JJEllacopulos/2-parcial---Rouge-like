@@ -33,8 +33,10 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="Clase_mapa.h" />
-		<Unit filename="Clase_personaje.h" />
-		<Unit filename="Clase_personaje_jugador.h" />
+		<Unit filename="Clase_personaje/Clase_personaje.h" />
+		<Unit filename="Clase_personaje/Clase_personaje_MOBs.h" />
+		<Unit filename="Clase_personaje/Clase_personaje_MOBs_Esqueleto.h" />
+		<Unit filename="Clase_personaje/Clase_personaje_jugador.h" />
 		<Unit filename="Control_audio.h" />
 		<Unit filename="Control_grafico.h" />
 		<Unit filename="Imagenes.h" />

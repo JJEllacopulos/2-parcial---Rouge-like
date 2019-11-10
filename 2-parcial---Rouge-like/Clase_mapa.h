@@ -19,13 +19,14 @@
 #define POSICION_PUERTA_Y 11
 
     ///Cantidades en el armado de los mapas
-#define BLOQUES_GUIA_HABILITADOS 4
-#define BLOQUES_JUEGOS_PISO 80
+#define BLOQUES_GUIA_HABILITADOS 4 ///Candidad de minimapas habilitados.
+#define BLOQUES_JUEGOS_PISO 70 ///Cantidad de bloques que se dispondran como piso.
 
     ///Contenido de matriz de juego:
 #define MURO_IRROMPIBLE 88 ///X
 #define MURO_ROMPIBLE 77 ///M
 #define COFRE 67 ///C
+#define ENEMIGO 69 ///E
 #define AVATAR 65 ///A
 #define PUERTA 80 ///P
 #define PISO 112 ///p
@@ -218,7 +219,7 @@ void MAPA::armar_mapa_general_puertas(int x_externo, int y_externo){
 
         if(mapa_guia[x_externo-1][y_externo] == BLOQUE_HABILITADO){
             mapa_juego[x_externo][y_externo][0][POSICION_PUERTA_Y] = PUERTA;
-            armar_mapa_general_caminos(x_externo, y_externo, 0, POSICION_PUERTA_Y);
+            armar_mapa_general_caminos(x_externo, y_externo, 1, POSICION_PUERTA_Y);
             mapa_juego[x_externo][y_externo][1][POSICION_PUERTA_Y] = PISO;
         }
     }
@@ -228,7 +229,7 @@ void MAPA::armar_mapa_general_puertas(int x_externo, int y_externo){
 
         if(mapa_guia[x_externo+1][y_externo] == BLOQUE_HABILITADO){
             mapa_juego[x_externo][y_externo][MAX_FILAS_JUEGO-1][POSICION_PUERTA_Y] = PUERTA;
-            armar_mapa_general_caminos(x_externo, y_externo, MAX_FILAS_JUEGO-1, POSICION_PUERTA_Y);
+            armar_mapa_general_caminos(x_externo, y_externo, MAX_FILAS_JUEGO-2, POSICION_PUERTA_Y);
             mapa_juego[x_externo][y_externo][MAX_FILAS_JUEGO-2][POSICION_PUERTA_Y] = PISO;
         }
     }
@@ -238,7 +239,7 @@ void MAPA::armar_mapa_general_puertas(int x_externo, int y_externo){
 
         if(mapa_guia[x_externo][y_externo-1] == BLOQUE_HABILITADO){
             mapa_juego[x_externo][y_externo][POSICION_PUERTA_X][0] = PUERTA;
-            armar_mapa_general_caminos(x_externo, y_externo, POSICION_PUERTA_X, 0);
+            armar_mapa_general_caminos(x_externo, y_externo, POSICION_PUERTA_X, 1);
             mapa_juego[x_externo][y_externo][POSICION_PUERTA_X][1] = PISO;
         }
     }
@@ -248,7 +249,7 @@ void MAPA::armar_mapa_general_puertas(int x_externo, int y_externo){
 
         if(mapa_guia[x_externo][y_externo+1] == BLOQUE_HABILITADO){
             mapa_juego[x_externo][y_externo][POSICION_PUERTA_X][MAX_COLUMNAS_JUEGO-1] = PUERTA;
-            armar_mapa_general_caminos(x_externo, y_externo, POSICION_PUERTA_X, MAX_COLUMNAS_JUEGO-1);
+            armar_mapa_general_caminos(x_externo, y_externo, POSICION_PUERTA_X, MAX_COLUMNAS_JUEGO-2);
             mapa_juego[x_externo][y_externo][POSICION_PUERTA_X][MAX_COLUMNAS_JUEGO-2] = PISO;
         }
     }
@@ -273,7 +274,7 @@ void MAPA::armar_mapa_general_caminos(int x_externo, int y_externo, int x_intern
 
             switch(direccion){
                 case 0: ///Arriba
-                    if((x_interno - 1) > 1){
+                    if((x_interno - 1) > 0){
 
                         x_interno--;
                         if(mapa_juego[x_externo][y_externo][x_interno][y_interno] == MURO_ROMPIBLE){
@@ -295,7 +296,7 @@ void MAPA::armar_mapa_general_caminos(int x_externo, int y_externo, int x_intern
                     }
                 break;
                 case 2: ///Izquierda
-                    if((y_interno - 1) > 1){
+                    if((y_interno - 1) > 0){
 
                         y_interno--;
                         if(mapa_juego[x_externo][y_externo][x_interno][y_interno] == MURO_ROMPIBLE){

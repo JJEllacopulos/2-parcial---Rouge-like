@@ -21,6 +21,7 @@ void asignar_sprites(){
     MURO_IRROMPIBLE_spr = load_bitmap("Imagenes/Piedra_2.bmp", NULL);
     MURO_ROMPIBLE_spr = load_bitmap("Imagenes/Piedra_3.bmp", NULL);
     COFRE_spr = load_bitmap("Imagenes/Cofre_1.bmp", NULL);
+    ENEMIGO_spr = load_bitmap("Imagenes/Enemigo_1.bmp", NULL);
     AVATAR_spr = load_bitmap("Imagenes/Viajero_1.bmp", NULL);
     PUERTA_spr = load_bitmap("Imagenes/Puerta_1.bmp", NULL);
     PISO_spr = load_bitmap("Imagenes/Mosaico_2.bmp", NULL);
@@ -79,6 +80,10 @@ void Graficar_mapa_objetos(MAPA &mapa, int x_externo = 1, int y_externo = 1){
                 case AVATAR:
 
                     draw_sprite(buffer, AVATAR_spr, y_interno * TAMANO_Y_SPRITE, x_interno * TAMANO_X_SPRITE);
+                break;
+                case ENEMIGO:
+
+                    draw_sprite(buffer, ENEMIGO_spr, y_interno * TAMANO_Y_SPRITE, x_interno * TAMANO_X_SPRITE);
                 break;
 
                 case PUERTA:

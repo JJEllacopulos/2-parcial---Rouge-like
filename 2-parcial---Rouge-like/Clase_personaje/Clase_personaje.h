@@ -57,7 +57,7 @@ void PERSONAJE::pocicion_inicial(MAPA &mapa, int clave){
                 for(x_interno=0;x_interno<MAX_FILAS_JUEGO;x_interno++){
                     for(y_interno=0;y_interno<MAX_COLUMNAS_JUEGO;y_interno++){
 
-                        moneda = ((rand()) % 50);
+                        moneda = ((rand()) % 1000);
 
                         if(mapa.gets_mapa_juego(x_externo, y_externo, x_interno, y_interno) == PISO){
 

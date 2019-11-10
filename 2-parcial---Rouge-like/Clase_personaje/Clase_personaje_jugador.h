@@ -3,7 +3,6 @@
 
 class JUGADOR: public PERSONAJE{
     protected:
-        int movimiento;
         int direccion;
 
         int sprite_personaje;

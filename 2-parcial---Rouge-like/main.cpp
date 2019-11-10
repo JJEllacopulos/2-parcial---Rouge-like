@@ -1,11 +1,16 @@
 #include <ctime>
 #include <allegro.h>
 
+///Configuracion del mapa:
 #include "Clase_mapa.h"
+
+///Cofiguracion del los elemoentos de audio y graficos:
 #include "Imagenes.h";
 #include "Pistas_de_audio.h";
 #include "Control_grafico.h"
 #include "Control_audio.h"
+
+///Clase personaje:
 #include "Clase_personaje/Clase_personaje.h"
 #include "Clase_personaje/Clase_personaje_jugador.h"
 #include "Clase_personaje/Clase_personaje_MOBs.h"

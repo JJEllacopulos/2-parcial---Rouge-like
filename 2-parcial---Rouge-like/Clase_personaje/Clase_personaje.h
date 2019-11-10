@@ -9,10 +9,10 @@ class PERSONAJE{
         int pocicion_y_juego;
 
     public:
+
+        ///Estabece la poccicion inicial del los personajes.
         void pocicion_inicial(MAPA &mapa, int clave);
         void iniciar_personaje(MAPA &mapa, int clave);
-
-        ///void mover_personaje(int direcion);
 
         ///Gets
 

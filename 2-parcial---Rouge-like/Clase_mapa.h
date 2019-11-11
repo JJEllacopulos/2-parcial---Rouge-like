@@ -262,7 +262,6 @@ void MAPA::armar_mapa_general_caminos(int x_externo, int y_externo, int x_intern
     int movimiento;
     int direccion;
 
-    bool key2 = false;
     bool key = true;
 
 

@@ -3,7 +3,7 @@
 
 /// Aun le falta modificarlo:
 
-class ESQUELETO: public MOB{
+class ESQUELETO: public PERSONAJE{
     protected:
         int direccion;
 
@@ -37,7 +37,7 @@ class ESQUELETO: public MOB{
 
 };
 
-MOB::MOB(MAPA &mapa){
+ESQUELETO::ESQUELETO(MAPA &mapa){
 
     sprite_personaje = ENEMIGO;
     retrazo = 0;
@@ -47,7 +47,7 @@ MOB::MOB(MAPA &mapa){
 }
 
 ///Rutina de MOBimiento del jugador:
-void MOB::rutina_de_movimiento(MAPA &mapa){
+void ESQUELETO::rutina_de_movimiento(MAPA &mapa){
 
     if(retrazo == RETRAZO_MOVIMIENTO_MOB){
         direccion = direccion = ((rand()) % 4);
@@ -57,14 +57,10 @@ void MOB::rutina_de_movimiento(MAPA &mapa){
     else{
         retrazo++;
     }
-    /*
-    direccion = direccion = ((rand()) % 4);
-    MOBer_MOB(mapa);
-    rest(50);
-    */
+
 }
 
-void MOB::MOBer_MOB(MAPA &mapa){
+void ESQUELETO::MOBer_MOB(MAPA &mapa){
 
     mapa.sets_mapa_general(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego(), PISO);
 
@@ -110,25 +106,25 @@ void MOB::MOBer_MOB(MAPA &mapa){
 
 ///Gets
 
-int MOB::gets_pocicion_x_guia(){
+int ESQUELETO::gets_pocicion_x_guia(){
     return PERSONAJE::gets_pocicion_x_guia();
 }
 
-int MOB::gets_pocicion_y_guia(){
+int ESQUELETO::gets_pocicion_y_guia(){
     return PERSONAJE::gets_pocicion_y_guia();
 }
 
-int MOB::gets_pocicion_x_juego(){
+int ESQUELETO::gets_pocicion_x_juego(){
     return PERSONAJE::gets_pocicion_x_juego();
 }
 
-int MOB::gets_pocicion_y_juego(){
+int ESQUELETO::gets_pocicion_y_juego(){
     return PERSONAJE::gets_pocicion_y_juego();
 }
 
 ///Sets:
 
-void MOB::sets_pocicion_completa(int x_guia, int y_guia, int x_juego, int y_juego){
+void ESQUELETO::sets_pocicion_completa(int x_guia, int y_guia, int x_juego, int y_juego){
 
     PERSONAJE::sets_pocicion_x_guia(x_guia);
     PERSONAJE::sets_pocicion_y_guia(y_guia);
@@ -137,19 +133,19 @@ void MOB::sets_pocicion_completa(int x_guia, int y_guia, int x_juego, int y_jueg
 
 }
 
-void MOB::sets_pocicion_x_guia(int x_guia){
+void ESQUELETO::sets_pocicion_x_guia(int x_guia){
     PERSONAJE::sets_pocicion_x_guia(x_guia);
 }
 
-void MOB::sets_pocicion_y_guia(int y_guia){
+void ESQUELETO::sets_pocicion_y_guia(int y_guia){
     PERSONAJE::sets_pocicion_y_guia(y_guia);
 }
 
-void MOB::sets_pocicion_x_juego(int x_juego){
+void ESQUELETO::sets_pocicion_x_juego(int x_juego){
     PERSONAJE::sets_pocicion_x_juego(x_juego);
 }
 
-void MOB::sets_pocicion_y_juego(int y_juego){
+void ESQUELETO::sets_pocicion_y_juego(int y_juego){
     PERSONAJE::sets_pocicion_y_juego(y_juego);
 }
 

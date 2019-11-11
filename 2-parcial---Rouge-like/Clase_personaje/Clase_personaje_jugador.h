@@ -4,8 +4,9 @@
 class JUGADOR: public PERSONAJE{
     protected:
         int direccion;
-
         int sprite_personaje;
+
+        BITMAP *personaje_spr;
 
     public:
 
@@ -39,6 +40,15 @@ JUGADOR::JUGADOR(MAPA &mapa){
 
     PERSONAJE::iniciar_personaje(mapa, sprite_personaje);
 
+
+
+    /*
+    PERSONAJE::cargar_sprite("Imagenes/Viajero_1.bmp");
+
+    personaje_spr == load_bitmap("Imagenes/Viajero_1.bmp", NULL);
+
+    PERSONAJE::graficar_personaje(personaje_spr);
+    */
 }
 
 ///Rutina de movimiento del jugador:

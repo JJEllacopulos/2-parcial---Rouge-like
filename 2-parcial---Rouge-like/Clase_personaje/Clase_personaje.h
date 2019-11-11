@@ -8,11 +8,19 @@ class PERSONAJE{
         int pocicion_x_juego;
         int pocicion_y_juego;
 
+        ///BITMAP *personaje_spr;
+
     public:
 
         ///Estabece la poccicion inicial del los personajes.
         void pocicion_inicial(MAPA &mapa, int clave);
         void iniciar_personaje(MAPA &mapa, int clave);
+
+
+        ///void cargar_sprite(const char *direccion);
+
+        ///void graficar_personaje(BITMAP *personaje);
+
 
         ///Gets
 
@@ -21,6 +29,9 @@ class PERSONAJE{
         int gets_pocicion_x_juego();
         int gets_pocicion_y_juego();
 
+
+        ///BITMAP gets_personaje_spr();
+
         ///Sets:
 
         void sets_pocicion_completa(int x_guia, int y_guia, int x_juego, int y_juego);
@@ -28,6 +39,7 @@ class PERSONAJE{
         void sets_pocicion_y_guia(int y_guia);
         void sets_pocicion_x_juego(int x_juego);
         void sets_pocicion_y_juego(int y_juego);
+
 
         ///Operadores:
 
@@ -84,6 +96,19 @@ void PERSONAJE::pocicion_inicial(MAPA &mapa, int clave){
     }
 }
 
+/*
+void PERSONAJE::cargar_sprite(const char *direccion){
+
+    personaje_spr == load_bitmap(direccion, NULL);
+
+}
+
+void PERSONAJE::graficar_personaje(BITMAP *personaje){
+
+    draw_sprite(buffer, personaje, pocicion_y_juego * TAMANO_Y_SPRITE, pocicion_x_juego * TAMANO_X_SPRITE);
+
+}
+*/
 
 ///Gets
 
@@ -102,6 +127,7 @@ int PERSONAJE::gets_pocicion_x_juego(){
 int PERSONAJE::gets_pocicion_y_juego(){
     return pocicion_y_juego;
 }
+
 
 ///Sets:
 
@@ -127,6 +153,7 @@ void PERSONAJE::sets_pocicion_x_juego(int x_juego){
 void PERSONAJE::sets_pocicion_y_juego(int y_juego){
     pocicion_y_juego = y_juego;
 }
+
 
 
 #endif // CLASE_PERSONAJE_H_INCLUDED

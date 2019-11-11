@@ -1,6 +1,8 @@
 #include <ctime>
 #include <allegro.h>
 
+#include<string.h>
+
 ///Configuracion del mapa:
 #include "Clase_mapa.h"
 

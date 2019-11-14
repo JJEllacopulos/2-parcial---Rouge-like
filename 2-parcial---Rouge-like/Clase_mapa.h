@@ -11,15 +11,15 @@
 
 ///Definiciones:
     ///Matrices:
-#define MAX_FILAS_GUIA 3
-#define MAX_COLUMNAS_GUIA 3
+#define MAX_FILAS_GUIA 10
+#define MAX_COLUMNAS_GUIA 10
 #define MAX_FILAS_JUEGO 20
-#define MAX_COLUMNAS_JUEGO 20
+#define MAX_COLUMNAS_JUEGO 35
 #define POSICION_PUERTA_X 11
 #define POSICION_PUERTA_Y 11
 
     ///Cantidades en el armado de los mapas
-#define BLOQUES_GUIA_HABILITADOS 4
+#define BLOQUES_GUIA_HABILITADOS 10
 #define BLOQUES_JUEGOS_PISO 80
 
     ///Contenido de matriz de juego:
@@ -261,7 +261,6 @@ void MAPA::armar_mapa_general_caminos(int x_externo, int y_externo, int x_intern
     int movimiento;
     int direccion;
 
-    bool key2 = false;
     bool key = true;
 
 

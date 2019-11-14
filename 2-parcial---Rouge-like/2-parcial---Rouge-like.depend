@@ -24,3 +24,37 @@
 
 1573266029 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje_jugador.h
 
+1573602626 source:c:\users\escep\downloads\2-parcial---rouge-like\2-parcial---rouge-like\main.cpp
+	<ctime>
+	<allegro.h>
+	<iostream>
+	"Imagenes.h"
+	"Clase_mapa.h"
+	"Clase_personaje.h"
+	"Clase_personaje_jugador.h"
+	"Clase_personaje_Enemigo.h"
+	"Control_grafico.h"
+
+1573716789 c:\users\escep\downloads\2-parcial---rouge-like\2-parcial---rouge-like\imagenes.h
+
+1573321464 c:\users\escep\downloads\2-parcial---rouge-like\2-parcial---rouge-like\pistas_de_audio.h
+
+1573716733 c:\users\escep\downloads\2-parcial---rouge-like\2-parcial---rouge-like\clase_mapa.h
+
+1573400444 c:\users\escep\downloads\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje.h
+
+1573586216 c:\users\escep\downloads\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje_jugador.h
+	"Control_grafico.h"
+	<iostream>
+
+1573716793 c:\users\escep\downloads\2-parcial---rouge-like\2-parcial---rouge-like\control_grafico.h
+
+1573321464 c:\users\escep\downloads\2-parcial---rouge-like\2-parcial---rouge-like\control_audio.h
+
+1573716866 c:\users\escep\downloads\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje_enemigo.h
+	"Control_grafico.h"
+	"Funciones_auxiliares.h"
+	<iostream>
+
+1573663157 c:\users\escep\downloads\2-parcial---rouge-like\2-parcial---rouge-like\funciones_auxiliares.h
+

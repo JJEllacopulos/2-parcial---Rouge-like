@@ -78,15 +78,16 @@ void ENEMIGO::rutina_de_movimiento_aleatorio(MAPA &mapa){
     int y_guia=PERSONAJE::gets_posicion_y_guia();
     int x_mapa=PERSONAJE::gets_posicion_x_juego();
     int y_mapa=PERSONAJE::gets_posicion_y_juego();
-
+                                            /// VARIABLES AUXILIARES
+    int x=0, y=0;
     int cuadrante=0;
     int dir = 0;
 
     mapa.sets_mapa_general(x_guia, y_guia, x_mapa, y_mapa, PISO); ///BORRA LA UBICACION ANTERIOR DEL ENEMIGO
 
-    dir = ((rand()) % gets_velocidad()); ///RANGO DE VELOCIDAD INVERSO (CUANTO MAS ALTO, MAS LENTO)
+    dir = ((rand()) % gets_velocidad());                          ///RANGO DE VELOCIDAD INVERSO (CUANTO MAS ALTO, MAS LENTO)
 
-    cuadrante=asechar(mapa);             ///AL TENER UN CUADRANTE MARCADO COMO OBJETIVO ENTONCES BUSCA.
+    cuadrante=asechar(mapa);                                     ///SI ENCUENTRA AL CARACTER PERSONAJE ENTONCES SEÑALA EL CUADRANTE
 
     if(cuadrante!=0){
 
@@ -96,74 +97,24 @@ void ENEMIGO::rutina_de_movimiento_aleatorio(MAPA &mapa){
     switch(dir){                     /// SI Y SOLO SI HAY ESPACIO PARA MOVERSE, SE MOVERA EN DIRECCION DEL SWITCH
 
 
-    case 1: x_mapa--;         ///ARRIBA:
-    if(mapa.gets_mapa_juego(x_guia, y_guia, x_mapa, y_mapa)== PISO){
-        mover_enemigo(mapa, x_guia, y_guia, x_mapa, y_mapa);
-    }else { x_mapa++;
-        mapa.sets_mapa_general(x_guia, y_guia, x_mapa, y_mapa, gets_sprite());
-        }break;
-
-    case 2: x_mapa++;         ///ABAJO:
-    if(mapa.gets_mapa_juego(x_guia, y_guia, x_mapa, y_mapa)== PISO){
-        mover_enemigo(mapa, x_guia, y_guia, x_mapa, y_mapa);
-    }else { x_mapa--;
-        mapa.sets_mapa_general(x_guia, y_guia, x_mapa, y_mapa, gets_sprite()); ///SI NO HAY ESPACIO PARA MOVERSE ENTONCES REIMPRIME EL SPRITE EN PANTALLA
-        }break;
-
-
-    case 3: y_mapa--;         ///IZQUIERDA:
-    if(mapa.gets_mapa_juego(x_guia, y_guia, x_mapa, y_mapa)== PISO){
-        mover_enemigo(mapa, x_guia, y_guia, x_mapa, y_mapa);
-    }else { y_mapa++;
-        mapa.sets_mapa_general(x_guia, y_guia, x_mapa, y_mapa, gets_sprite());
-        }break;
-
-
-    case 4: y_mapa++;         ///DERECHA:
-    if(mapa.gets_mapa_juego(x_guia, y_guia, x_mapa, y_mapa)== PISO){
-        mover_enemigo(mapa, x_guia, y_guia, x_mapa, y_mapa);
-    }else { y_mapa--;
-        mapa.sets_mapa_general(x_guia, y_guia, x_mapa, y_mapa, gets_sprite());
-        }break;
-
-     case 9: x_mapa--; y_mapa--;       ///IZQUIERDA ARRIBA
-    if(mapa.gets_mapa_juego(x_guia, y_guia, x_mapa, y_mapa)== PISO){
-        mover_enemigo(mapa, x_guia, y_guia, x_mapa, y_mapa);
-    }else { x_mapa++; y_mapa++;
-        mapa.sets_mapa_general(x_guia, y_guia, x_mapa, y_mapa, gets_sprite());
-        }break;
-
-    case 6:  x_mapa++; y_mapa--;       ///IZQUIERDA ABAJO
-    if(mapa.gets_mapa_juego(x_guia, y_guia, x_mapa, y_mapa)== PISO){
-        mover_enemigo(mapa, x_guia, y_guia, x_mapa, y_mapa);
-    }else { x_mapa--; y_mapa++;
-        mapa.sets_mapa_general(x_guia, y_guia, x_mapa, y_mapa, gets_sprite());
-        }break;
-
-        case 8:  x_mapa++; y_mapa++;       ///DERECHA ABAJO
-    if(mapa.gets_mapa_juego(x_guia, y_guia, x_mapa, y_mapa)== PISO){
-        mover_enemigo(mapa, x_guia, y_guia, x_mapa, y_mapa);
-    }else { x_mapa--; y_mapa--;
-        mapa.sets_mapa_general(x_guia, y_guia, x_mapa, y_mapa, gets_sprite());
-        }break;
-
-        case 7:  x_mapa--; y_mapa++;       ///DERECHA ARRIBA
-    if(mapa.gets_mapa_juego(x_guia, y_guia, x_mapa, y_mapa)== PISO){
-        mover_enemigo(mapa, x_guia, y_guia, x_mapa, y_mapa);
-    }else { x_mapa++; y_mapa--;
-        mapa.sets_mapa_general(x_guia, y_guia, x_mapa, y_mapa, gets_sprite());
-        }break;
-
-
+    case 1: x--;      break;  ///ARRIBA:
+    case 2: x++;      break;  ///ABAJO:
+    case 3: y--;      break;  ///IZQUIERDA:
+    case 4: y++;      break;  ///DERECHA:
+    case 9: x--; y--; break;  ///IZQUIERDA ARRIBA
+    case 6: x++; y--; break;  ///IZQUIERDA ABAJO
+    case 8: x++; y++; break;  ///DERECHA ABAJO
+    case 7: x--; y++; break;  ///DERECHA ARRIBA
 
     default: mapa.sets_mapa_general(x_guia, y_guia, x_mapa, y_mapa, gets_sprite()); break; /// EN ESTE CASO DEBERIA HABER UN IDDLE DE ANIMACION PASIVA
-
-
     // iddle(mapa); break;        ///AÑADIR ANIMACION PASIVA
     }
 
-
-
+    if(mapa.gets_mapa_juego(x_guia, y_guia, x_mapa + x, y_mapa + y)== PISO){
+        mover_enemigo(mapa, x_guia, y_guia, x_mapa + x, y_mapa + y);
+    }else {
+        mapa.sets_mapa_general(x_guia, y_guia, x_mapa, y_mapa, gets_sprite());
+        }
 }
 
 ///RUTINA DE MOVIMIENTO DEL ENEMIGO

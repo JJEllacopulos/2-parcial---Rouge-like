@@ -43,7 +43,7 @@
 
 1573400444 c:\users\escep\downloads\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje.h
 
-1573586216 c:\users\escep\downloads\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje_jugador.h
+1573750750 c:\users\escep\downloads\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje_jugador.h
 	"Control_grafico.h"
 	<iostream>
 
@@ -51,7 +51,7 @@
 
 1573321464 c:\users\escep\downloads\2-parcial---rouge-like\2-parcial---rouge-like\control_audio.h
 
-1573716866 c:\users\escep\downloads\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje_enemigo.h
+1573751277 c:\users\escep\downloads\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje_enemigo.h
 	"Control_grafico.h"
 	"Funciones_auxiliares.h"
 	<iostream>

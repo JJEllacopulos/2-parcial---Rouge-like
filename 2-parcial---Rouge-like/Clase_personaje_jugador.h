@@ -74,23 +74,34 @@ void JUGADOR::rutina_de_movimiento(MAPA &mapa){
 
     direccion = 0;
 
-    if(key[KEY_RIGHT]){
-        direccion = 1;
-        mover_jugador(mapa);
-    }
-    else if(key[KEY_LEFT]){
-            direccion = 2;
+    if(key[KEY_RIGHT]&&key[KEY_UP]){                                               ///DERECHA ARRIBA
+            direccion = 5;
+
+        }else if(key[KEY_RIGHT]&&key[KEY_DOWN]){                                   ///DERECHA ABAJO
+                    direccion = 6;
+
+                }else if(key[KEY_LEFT]&&key[KEY_UP]){                              ///IZQUIERDA ARRIBA
+                            direccion = 7;
+
+                        }else if(key[KEY_LEFT]&&key[KEY_DOWN]){                    ///IZQUIERDA ABAJO
+                                    direccion = 8;
+
+                                }else if(key[KEY_RIGHT]){                          ///DERECHA
+                                            direccion = 1;
+
+                                        }else if(key[KEY_LEFT]){                   ///IZQUIERDA
+                                                    direccion = 2;
+
+                                                }else if(key[KEY_UP]){             ///ARRIBA
+                                                        direccion = 3;
+
+                                                        }else if(key[KEY_DOWN]){   ///ABAJO
+                                                                direccion = 4;
+                                                                }
             mover_jugador(mapa);
-        }
-        else if(key[KEY_UP]){
-                direccion = 3;
-                mover_jugador(mapa);
-            }
-            else if(key[KEY_DOWN]){
-                    direccion = 4;
-                    mover_jugador(mapa);
-                }
-            }
+}
+
+
 
 void JUGADOR::eliminar_muro(MAPA &mapa, int anterior_direccion, int x, int y, int x_ext, int y_ext){
 
@@ -117,60 +128,33 @@ cout<<endl<<endl;
 
 void JUGADOR::mover_jugador(MAPA &mapa){
 
-    mapa.sets_mapa_general(gets_posicion_x_guia(), gets_posicion_y_guia(), gets_posicion_x_juego(), gets_posicion_y_juego(), PISO);
+int x=0, y=0;   ///variables auxiliares para el uso de las posiciones.
+
+    mapa.sets_mapa_general(gets_posicion_x_guia(), gets_posicion_y_guia(), gets_posicion_x_juego(), gets_posicion_y_juego(), PISO); ///ACTIUALIZA EL CARACTER DE PISO EN LA POSICION ANTERIOR
 
     switch(direccion){
-        case 1: ///Derecha:
-            if(mapa.gets_mapa_juego(gets_posicion_x_guia(), gets_posicion_y_guia(), gets_posicion_x_juego(), gets_posicion_y_juego() + 1) == PUERTA){
+
+        case 1: y++; break; ///Derecha;
+        case 2: y--; break; ///Izquierda;
+        case 3: x--; break; ///Arriba;
+        case 4: x++; break; ///Abajo;
+        case 5: x--; y++; break; ///DERECHA ARRIBA;
+        case 6: x++; y++; break; ///DERECHA ABAJO;
+        case 7: x--; y--; break; ///IZQUIERDA ARRIBA;
+        case 8: x++; y--; break; ///IZQUIERDA ABAJO;
+
+  }
+            if(mapa.gets_mapa_juego(gets_posicion_x_guia(), gets_posicion_y_guia(), gets_posicion_x_juego() + x, gets_posicion_y_juego() +y) == PUERTA){
                 mover_en_mapa_guia();
             }
             else{
-                if(mapa.gets_mapa_juego(gets_posicion_x_guia(), gets_posicion_y_guia(), gets_posicion_x_juego(), gets_posicion_y_juego() + 1) == PISO){
-                    sets_posicion_y_juego(gets_posicion_y_juego() + 1);
+                if(mapa.gets_mapa_juego(gets_posicion_x_guia(), gets_posicion_y_guia(), gets_posicion_x_juego() + x, gets_posicion_y_juego() +y) == PISO){
+                    sets_posicion_x_juego(gets_posicion_x_juego() + x);
+                    sets_posicion_y_juego(gets_posicion_y_juego() + y);
                 }
             }
 
-        break;
-
-        case 2:///Izquierda:
-            if(mapa.gets_mapa_juego(gets_posicion_x_guia(), gets_posicion_y_guia(), gets_posicion_x_juego(), gets_posicion_y_juego() - 1) == PUERTA){
-                mover_en_mapa_guia();
-            }
-            else{
-                if(mapa.gets_mapa_juego(gets_posicion_x_guia(), gets_posicion_y_guia(), gets_posicion_x_juego(), gets_posicion_y_juego() - 1) == PISO){
-                    sets_posicion_y_juego(gets_posicion_y_juego() - 1);
-                }
-            }
-
-        break;
-
-        case 3:///Arriba:
-            if(mapa.gets_mapa_juego(gets_posicion_x_guia(), gets_posicion_y_guia(), gets_posicion_x_juego() - 1, gets_posicion_y_juego()) == PUERTA){
-                mover_en_mapa_guia();
-            }
-            else{
-                if(mapa.gets_mapa_juego(gets_posicion_x_guia(), gets_posicion_y_guia(), gets_posicion_x_juego() - 1, gets_posicion_y_juego()) == PISO){
-                    sets_posicion_x_juego(gets_posicion_x_juego() - 1);
-                }
-            }
-
-        break;
-
-        case 4:///Abajo:
-            if(mapa.gets_mapa_juego(gets_posicion_x_guia(), gets_posicion_y_guia(), gets_posicion_x_juego() + 1, gets_posicion_y_juego()) == PUERTA){
-                mover_en_mapa_guia();
-            }
-            else{
-                if(mapa.gets_mapa_juego(gets_posicion_x_guia(), gets_posicion_y_guia(), gets_posicion_x_juego() + 1, gets_posicion_y_juego()) == PISO){
-                    sets_posicion_x_juego(gets_posicion_x_juego() + 1);
-                }
-            }
-
-        break;
-
-    }
-
-    mapa.sets_mapa_general(gets_posicion_x_guia(), gets_posicion_y_guia(), gets_posicion_x_juego(), gets_posicion_y_juego(), sprite_personaje);
+    mapa.sets_mapa_general(gets_posicion_x_guia(), gets_posicion_y_guia(), gets_posicion_x_juego(), gets_posicion_y_juego(), sprite_personaje); ///ACTUALIZA LA UBICACION DEL OBJETO
 }
 
 void JUGADOR::mover_en_mapa_guia(){

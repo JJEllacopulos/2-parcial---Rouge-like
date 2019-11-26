@@ -11,6 +11,11 @@ class MOB: public PERSONAJE{
 
         int sprite_personaje;
 
+
+        int vision;
+        int movimiento;
+        int velocidad;
+
     public:
 
         ///---------------------Propio del padre---------------------
@@ -30,9 +35,19 @@ class MOB: public PERSONAJE{
         void sets_pocicion_y_juego(int y_juego);
 
         ///---------------------Propio del hijo---------------------
+        ///Gets
+        int gets_velocidad(){return velocidad;}
+        int gets_sprite(){return sprite_personaje;}
+        int gets_vision(){return vision;}
+
+        ///Sets:
+        void set_sprite( char c){sprite_personaje=c;}
+
+
+
         MOB(MAPA &mapa);
 
-        void MOBer_MOB(MAPA &mapa);
+        void mover_MOB(MAPA &mapa);
         void rutina_de_movimiento(MAPA &mapa);
 
 };
@@ -51,20 +66,15 @@ void MOB::rutina_de_movimiento(MAPA &mapa){
 
     if(retrazo == RETRAZO_MOVIMIENTO_MOB){
         direccion = direccion = ((rand()) % 4);
-        MOBer_MOB(mapa);
+        mover_MOB(mapa);
         retrazo = 0;
     }
     else{
         retrazo++;
     }
-    /*
-    direccion = direccion = ((rand()) % 4);
-    MOBer_MOB(mapa);
-    rest(50);
-    */
 }
 
-void MOB::MOBer_MOB(MAPA &mapa){
+void MOB::mover_MOB(MAPA &mapa){
 
     mapa.sets_mapa_general(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego(), PISO);
 

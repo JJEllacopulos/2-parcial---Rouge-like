@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1573516730 source:d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\main.cpp
+1574808648 source:d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\main.cpp
 	<ctime>
 	<allegro.h>
 	<string.h>
@@ -14,9 +14,9 @@
 
 1573516730 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\imagenes.h
 
-1574805618 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_mapa.h
+1574808763 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_mapa.h
 
-1573516730 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\control_grafico.h
+1574809016 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\control_grafico.h
 
 1573516730 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\pistas_de_audio.h
 
@@ -28,9 +28,9 @@
 
 1573419849 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje_enemigo.h
 
-1573516730 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\clase_personaje.h
+1574808574 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\clase_personaje.h
 
 1574806356 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\clase_personaje_jugador.h
 
-1574808183 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\clase_personaje_mobs.h
+1574812595 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\clase_personaje_mobs.h
 

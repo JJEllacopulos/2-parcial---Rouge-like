@@ -54,7 +54,7 @@ int main(){
     JUGADOR per_jug(mapa);
 
     ///Iniciar MOVs:
-    int cantidad_de_MOBs = 5;
+    int cantidad_de_MOBs = 15;
     int ciclo_MOBs;
     MOB esqueleto[cantidad_de_MOBs](mapa);
 

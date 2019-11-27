@@ -20,7 +20,7 @@
 
     ///Cantidades en el armado de los mapas
 #define BLOQUES_GUIA_HABILITADOS 10 ///Candidad de minimapas habilitados.
-#define BLOQUES_JUEGOS_PISO 100 ///Cantidad de bloques que se dispondran como piso.
+#define BLOQUES_JUEGOS_PISO 120 ///Cantidad de bloques que se dispondran como piso.
 
     ///Contenido de matriz de juego:
 #define MURO_IRROMPIBLE 88 ///X

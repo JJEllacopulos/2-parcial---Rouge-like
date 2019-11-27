@@ -1,7 +1,7 @@
 #ifndef CLASE_PERSONAJE_ENEMIGO_H_INCLUDED
 #define CLASE_PERSONAJE_ENEMIGO_H_INCLUDED
 
-#define RETRAZO_MOVIMIENTO_MOB 5 ///Intrevalo entre movimientos de los MOBs
+#define RETRAZO_MOVIMIENTO_MOB 3 ///Intrevalo entre movimientos de los MOBs
 
 /// IDENTIFICACION DE CUADRANTES
     int buscar_cuadrante(int x, int y, int i, int j){   ///"*" SIGNIFICA QUE ESTA CHEQUEADA LA LOGICA
@@ -95,6 +95,8 @@ MOB::MOB(MAPA &mapa){
 void MOB::rutina_de_movimiento(MAPA &mapa){
 
     if(retrazo == RETRAZO_MOVIMIENTO_MOB){
+
+        retrazo = 0;
 
         /// pocicion ACTUAL DEL OBJETO
         int x_guia=PERSONAJE::gets_pocicion_x_guia();

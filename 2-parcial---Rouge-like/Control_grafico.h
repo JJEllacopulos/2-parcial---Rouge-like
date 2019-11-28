@@ -5,8 +5,8 @@
 #define TAMANO_X_BUFFER 1300 ///Tamaño del los buffer en el eje x.
 #define TAMANO_Y_BUFFER 700 ///Tamaño del los buffer en el eje y.
 
-#define TAMANO_X_SPRITE 30 ///Tamaño del los sprites en el eje x.
-#define TAMANO_Y_SPRITE 30 ///Tamaño del los sprites en el eje y.
+#define TAMANO_X_SPRITE 32 ///Tamaño del los sprites en el eje x.
+#define TAMANO_Y_SPRITE 32 ///Tamaño del los sprites en el eje y.
 
 ///Carga las imagenes en los difenentes mapas de bits.
 void asignar_sprites(){

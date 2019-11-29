@@ -1,8 +1,10 @@
 # depslib dependency file v1.0
-1574808648 source:d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\main.cpp
+1575067836 source:d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\main.cpp
 	<ctime>
 	<allegro.h>
 	<string.h>
+	<iostream>
+	"Cronometro.h"
 	"Clase_mapa.h"
 	"Imagenes.h"
 	"Pistas_de_audio.h"
@@ -12,11 +14,11 @@
 	"Clase_personaje/Clase_personaje_jugador.h"
 	"Clase_personaje/Clase_personaje_MOBs.h"
 
-1573516730 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\imagenes.h
+1575062211 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\imagenes.h
 
-1574808763 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_mapa.h
+1575061545 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_mapa.h
 
-1574905053 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\control_grafico.h
+1575065151 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\control_grafico.h
 
 1573516730 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\pistas_de_audio.h
 
@@ -30,7 +32,9 @@
 
 1574808574 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\clase_personaje.h
 
-1574806356 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\clase_personaje_jugador.h
+1575067776 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\clase_personaje_jugador.h
 
-1574813767 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\clase_personaje_mobs.h
+1575067859 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\clase_personaje_mobs.h
+
+1574996322 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\cronometro.h
 

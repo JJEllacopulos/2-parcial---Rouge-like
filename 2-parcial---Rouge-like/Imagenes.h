@@ -11,4 +11,17 @@ BITMAP *AVATAR_spr;
 BITMAP *PUERTA_spr;
 BITMAP *PISO_spr;
 
+BITMAP *JUGADOR_spr;
+BITMAP *JUGADOR_mov_spr;
+
+///Decorado
+
+BITMAP *ANTORCHA_spr;
+BITMAP *ANTORCHA_efect_spr;
+
+BITMAP *SANGRE_spr;
+BITMAP *SANGRE_efect_spr;
+
+
+
 #endif // IMAGENES_H_INCLUDED

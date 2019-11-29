@@ -35,15 +35,31 @@
 #define BLOQUE_HABILITADO 43 ///+
 #define BLOQUE_INHABILITADO 45 ///-
 
-    ///Biomas:
-        ///Proximamente...
+///Contenido de matriz de efectos:
+#define VACIO 48 ///0 (Cero)
+
+#define PARED_SANGRE_1 65 /// A
+#define PARED_SANGRE_2 66 /// B
+#define PARED_SANGRE_3 67 /// C
+#define PARED_SANGRE_4 68 /// D
+#define PARED_SANGRE_5 69 /// E
+#define PARED_SANGRE_6 70 /// F
+
+#define PISO_SANGRE_1 71 /// G
+#define PISO_SANGRE_2 72 /// H
+#define PISO_SANGRE_3 73 /// I
+#define PISO_SANGRE_4 74 /// J
+#define PISO_SANGRE_5 75 /// K
+#define PISO_SANGRE_6 76 /// L
+
+#define ANTORCHA 90 /// Z
 
 
 class MAPA {
     private:
         int mapa_guia[MAX_FILAS_GUIA][MAX_COLUMNAS_GUIA];
         int mapa_juego[MAX_FILAS_GUIA][MAX_COLUMNAS_GUIA][MAX_FILAS_JUEGO][MAX_COLUMNAS_JUEGO];
-        int bioma;
+        int mapa_de_efectos[MAX_FILAS_GUIA][MAX_COLUMNAS_GUIA][MAX_FILAS_JUEGO][MAX_COLUMNAS_JUEGO];
 
         int movimiento;
 
@@ -55,21 +71,24 @@ class MAPA {
             void armar_mapa_general_puertas(int x_externo, int y_externo);
             void armar_mapa_general_caminos(int x_externo, int y_externo, int x_interno ,int y_interno);
             void armar_mapa_general();
-            MAPA(int bio);
+            MAPA();
         ///Gets:
             int gets_mapa_guia(int posicion_en_x, int posicion_en_y);
             int gets_mapa_juego(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor);
+            int gets_mapa_de_efectos(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor);
         ///Sets:
             ///Ingresa un valor char a la pocicion de la matriz guia señalada.
             void sets_mapa_guia(int posicion_en_x, int posicion_en_y, char auxiliar);
             ///Ingresa un valor char a la pocicion de la matriz juego señalada.
             void sets_mapa_general(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor, int auxiliar);
+            ///Ingresa un valor char a la pocicion de la matriz de efectos señalada.
+            void sets_mapa_de_efectos(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor, int auxiliar);
+
 };
 
 ///Constructor:
-MAPA::MAPA(int bio){
+MAPA::MAPA(){
 
-    bioma = bio;
     iniciar_mapas();
     armar_mapa_guia();
     armar_mapa_general();
@@ -95,6 +114,18 @@ void MAPA::iniciar_mapas(){
                 for(z=0 ; z < MAX_COLUMNAS_JUEGO ; z++){
 
                     mapa_juego[w][x][y][z] = MURO_ROMPIBLE;
+
+                }
+            }
+        }
+    }
+
+    for(w=0 ; w < MAX_FILAS_GUIA ; w++){
+        for(x=0 ; x < MAX_COLUMNAS_GUIA ; x++){
+            for(y=0 ; y < MAX_FILAS_JUEGO ; y++){
+                for(z=0 ; z < MAX_COLUMNAS_JUEGO ; z++){
+
+                    mapa_de_efectos[w][x][y][z] = VACIO;
 
                 }
             }
@@ -338,6 +369,11 @@ int MAPA::gets_mapa_juego(int posicion_x_mayor, int posicion_y_mayor, int posici
     return mapa_juego[posicion_x_mayor][posicion_y_mayor][posicion_x_menor][posicion_y_menor];
 }
 
+///Devuelve el valor que contiene las pociciones indicadas en la matriz de efectos.
+int MAPA::gets_mapa_de_efectos(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor){
+    return mapa_de_efectos[posicion_x_mayor][posicion_y_mayor][posicion_x_menor][posicion_y_menor];
+}
+
 
 ///Sets:
 ///Ingresa un valor char a la pocicion de la matriz guia señalada.
@@ -345,13 +381,15 @@ void MAPA::sets_mapa_guia(int posicion_en_x, int posicion_en_y, char auxiliar){
     mapa_guia[posicion_en_x][posicion_en_y] = auxiliar;
 }
 
-
 ///Ingresa un valor char a la pocicion de la matriz juego señalada.
 void MAPA::sets_mapa_general(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor, int auxiliar){
     mapa_juego[posicion_x_mayor][posicion_y_mayor][posicion_x_menor][posicion_y_menor] = auxiliar;
 }
 
-
+///Ingresa un valor char a la pocicion de la matriz de efectos señalada.
+void MAPA::sets_mapa_de_efectos(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor, int auxiliar){
+    mapa_de_efectos[posicion_x_mayor][posicion_y_mayor][posicion_x_menor][posicion_y_menor] = auxiliar;
+}
 
 
 #endif // CLASE_MAPA_H_INCLUDED

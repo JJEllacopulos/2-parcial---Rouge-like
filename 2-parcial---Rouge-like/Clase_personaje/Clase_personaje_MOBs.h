@@ -31,7 +31,7 @@ class MOB: public PERSONAJE{
     protected:
         int direccion;
 
-        int retrazo;
+        CRONO retraso_movimiento;
 
         int sprite_personaje;
 
@@ -82,7 +82,7 @@ class MOB: public PERSONAJE{
 MOB::MOB(MAPA &mapa){
 
     sprite_personaje = ENEMIGO;
-    retrazo = 0;
+    retraso_movimiento.sets_tiempo(10);
 
     velocidad=25;
     vision=6;
@@ -94,9 +94,7 @@ MOB::MOB(MAPA &mapa){
 ///Rutina de MOBimiento del jugador:
 void MOB::rutina_de_movimiento(MAPA &mapa){
 
-    if(retrazo == RETRAZO_MOVIMIENTO_MOB){
-
-        retrazo = 0;
+    if(!retraso_movimiento.control_bool_invertido()){
 
         /// pocicion ACTUAL DEL OBJETO
         int x_guia=PERSONAJE::gets_pocicion_x_guia();
@@ -148,9 +146,7 @@ void MOB::rutina_de_movimiento(MAPA &mapa){
         retrazo = 0;
         */
     }
-    else{
-        retrazo++;
-    }
+
 }
 
 void MOB::realisar_movimiento(MAPA &mapa,  int x_guia, int y_guia, int x_mapa, int y_mapa){

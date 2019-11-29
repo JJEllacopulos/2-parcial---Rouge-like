@@ -8,6 +8,11 @@ class JUGADOR: public PERSONAJE{
 
         BITMAP *personaje_spr;
 
+        CRONO retraso_movimiento;
+        CRONO animacion;
+        CRONO frame_estatico;
+        int direcion_anima;
+
     public:
 
         ///---------------------Propio del padre---------------------
@@ -32,11 +37,16 @@ class JUGADOR: public PERSONAJE{
         void mover_jugador(MAPA &mapa);
         void rutina_de_movimiento(MAPA &mapa);
 
+        void graficar_jugador();
 };
 
 JUGADOR::JUGADOR(MAPA &mapa){
 
     sprite_personaje = AVATAR;
+
+    retraso_movimiento.sets_tiempo(5);
+    animacion.sets_tiempo(9);
+    frame_estatico.sets_tiempo(3);
 
     PERSONAJE::iniciar_personaje(mapa, sprite_personaje);
 
@@ -45,34 +55,36 @@ JUGADOR::JUGADOR(MAPA &mapa){
 ///Rutina de movimiento del jugador:
 void JUGADOR::rutina_de_movimiento(MAPA &mapa){
 
-    direccion = 0;
+    if(!frame_estatico.gets_cont_bool()){
 
-    if(key[KEY_RIGHT]&&key[KEY_UP]){                                               ///DERECHA ARRIBA
-            direccion = 5;
+        direccion = 0;
 
-        }else if(key[KEY_RIGHT]&&key[KEY_DOWN]){                                   ///DERECHA ABAJO
-                    direccion = 6;
+        if(key[KEY_RIGHT]&&key[KEY_UP]){                                               ///DERECHA ARRIBA
+                direccion = 5;
 
-                }else if(key[KEY_LEFT]&&key[KEY_UP]){                              ///IZQUIERDA ARRIBA
-                            direccion = 7;
+            }else if(key[KEY_RIGHT]&&key[KEY_DOWN]){                                   ///DERECHA ABAJO
+                        direccion = 6;
 
-                        }else if(key[KEY_LEFT]&&key[KEY_DOWN]){                    ///IZQUIERDA ABAJO
-                                    direccion = 8;
+                    }else if(key[KEY_LEFT]&&key[KEY_UP]){                              ///IZQUIERDA ARRIBA
+                                direccion = 7;
 
-                                }else if(key[KEY_RIGHT]){                          ///DERECHA
-                                            direccion = 1;
+                            }else if(key[KEY_LEFT]&&key[KEY_DOWN]){                    ///IZQUIERDA ABAJO
+                                        direccion = 8;
 
-                                        }else if(key[KEY_LEFT]){                   ///IZQUIERDA
-                                                    direccion = 2;
+                                    }else if(key[KEY_RIGHT]){                          ///DERECHA
+                                                direccion = 1;
 
-                                                }else if(key[KEY_UP]){             ///ARRIBA
-                                                        direccion = 3;
+                                            }else if(key[KEY_LEFT]){                   ///IZQUIERDA
+                                                        direccion = 2;
 
-                                                        }else if(key[KEY_DOWN]){   ///ABAJO
-                                                                direccion = 4;
-                                                                }
-            mover_jugador(mapa);
+                                                    }else if(key[KEY_UP]){             ///ARRIBA
+                                                            direccion = 3;
 
+                                                            }else if(key[KEY_DOWN]){   ///ABAJO
+                                                                    direccion = 4;
+                                                                    }
+                mover_jugador(mapa);
+    }
 }
 
 ///-----------------------------------------Aun sin terminar---------------------------------------------
@@ -102,6 +114,10 @@ void JUGADOR::mover_jugador(MAPA &mapa){
                 if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego() + x, gets_pocicion_y_juego() +y) == PISO){
                     sets_pocicion_x_juego(gets_pocicion_x_juego() + x);
                     sets_pocicion_y_juego(gets_pocicion_y_juego() + y);
+                    direcion_anima = direccion;
+                }
+                else{
+                    direcion_anima = 0;
                 }
             }
 
@@ -133,6 +149,62 @@ void JUGADOR::mover_en_mapa_guia(){
 
     }
 
+}
+
+///-----------------------------------------Graficar jugador---------------------------------------------
+
+void JUGADOR::graficar_jugador(){
+
+    if(direccion == 0){
+
+        blit(JUGADOR_spr, JUGADOR_mov_spr, 0 * TAMANO_Y_SPRITE, 0 * TAMANO_X_SPRITE, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+        draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_X_SPRITE, gets_pocicion_x_juego() * TAMANO_Y_SPRITE);
+    }
+    else{
+        animacion.control_int();
+        frame_estatico.control_int_invertido();
+        switch(direcion_anima){
+            case 0:
+                blit(JUGADOR_spr, JUGADOR_mov_spr, 0 * TAMANO_Y_SPRITE, 0 * TAMANO_X_SPRITE, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE, gets_pocicion_x_juego() * TAMANO_Y_SPRITE);
+            break;
+            case 1:
+                blit(JUGADOR_spr, JUGADOR_mov_spr, animacion.gets_cont() * TAMANO_Y_SPRITE, 7 * TAMANO_X_SPRITE, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE - frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT, gets_pocicion_x_juego() * TAMANO_X_SPRITE);
+            break;
+            case 2:
+                blit(JUGADOR_spr, JUGADOR_mov_spr, animacion.gets_cont() * TAMANO_Y_SPRITE, 5 * TAMANO_X_SPRITE, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT, gets_pocicion_x_juego() * TAMANO_X_SPRITE);
+            break;
+            case 3:
+                blit(JUGADOR_spr, JUGADOR_mov_spr, animacion.gets_cont() * TAMANO_Y_SPRITE, 6 * TAMANO_X_SPRITE, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE, gets_pocicion_x_juego() * TAMANO_X_SPRITE + frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT);
+            break;
+            case 4:
+                blit(JUGADOR_spr, JUGADOR_mov_spr, animacion.gets_cont() * TAMANO_Y_SPRITE, 4 * TAMANO_X_SPRITE, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE, gets_pocicion_x_juego() * TAMANO_X_SPRITE - frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT);
+            break;
+            case 5:
+                blit(JUGADOR_spr, JUGADOR_mov_spr, animacion.gets_cont() * TAMANO_Y_SPRITE, 6 * TAMANO_X_SPRITE, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE - frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT, gets_pocicion_x_juego() * TAMANO_X_SPRITE + frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT);
+            break;
+            case 6:
+                blit(JUGADOR_spr, JUGADOR_mov_spr, animacion.gets_cont() * TAMANO_Y_SPRITE, 4 * TAMANO_X_SPRITE, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE - frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT, gets_pocicion_x_juego() * TAMANO_X_SPRITE - frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT);
+            break;
+            case 7:
+                blit(JUGADOR_spr, JUGADOR_mov_spr, animacion.gets_cont() * TAMANO_Y_SPRITE, 6 * TAMANO_X_SPRITE, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT, gets_pocicion_x_juego() * TAMANO_X_SPRITE + frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT);
+            break;
+            case 8:
+                blit(JUGADOR_spr, JUGADOR_mov_spr, animacion.gets_cont() * TAMANO_Y_SPRITE, 4 * TAMANO_X_SPRITE, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT, gets_pocicion_x_juego() * TAMANO_X_SPRITE - frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT);
+            break;
+        }
+
+        return;
+    }
+    ///draw_sprite(buffer, AVATAR_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE, gets_pocicion_x_juego() * TAMANO_X_SPRITE);
 }
 
 ///---------------------Propio del padre---------------------

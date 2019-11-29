@@ -8,6 +8,9 @@
 #define TAMANO_X_SPRITE 32 ///Tamaño del los sprites en el eje x.
 #define TAMANO_Y_SPRITE 32 ///Tamaño del los sprites en el eje y.
 
+#define TAMANO_X_SPRITE_INT 8 ///Intervalo de la animacion.
+#define TAMANO_Y_SPRITE_INT 8 ///Intervalo de la animacion.
+
 ///Carga las imagenes en los difenentes mapas de bits.
 void asignar_sprites(){
 
@@ -16,8 +19,6 @@ void asignar_sprites(){
 
     ///Carga las imagenes en los mapas de bits.
 
-    ///Recuendan como se le mandaba una direccion parcial de un archivo? Porque yo no.
-
     MURO_IRROMPIBLE_spr = load_bitmap("Imagenes/Piedra_2.bmp", NULL);
     MURO_ROMPIBLE_spr = load_bitmap("Imagenes/Piedra_3.bmp", NULL);
     COFRE_spr = load_bitmap("Imagenes/Cofre_1.bmp", NULL);
@@ -25,6 +26,19 @@ void asignar_sprites(){
     AVATAR_spr = load_bitmap("Imagenes/Viajero_1.bmp", NULL);
     PUERTA_spr = load_bitmap("Imagenes/Puerta_1.bmp", NULL);
     PISO_spr = load_bitmap("Imagenes/Mosaico_2.bmp", NULL);
+
+    JUGADOR_spr = load_bitmap("Imagenes/Animacion_movimiento.bmp", NULL);
+    JUGADOR_mov_spr = create_bitmap(TAMANO_X_SPRITE, TAMANO_Y_SPRITE);
+
+}
+
+void asignar_sprites_decorado(){
+
+    SANGRE_spr = load_bitmap("Imagenes/Efectos/Sangre.bmp", NULL);
+    SANGRE_efect_spr = create_bitmap(TAMANO_X_SPRITE, TAMANO_Y_SPRITE);
+
+    ANTORCHA_spr = load_bitmap("Imagenes/Efectos/Antorcha.bmp", NULL);
+    ANTORCHA_efect_spr = create_bitmap(TAMANO_X_SPRITE, TAMANO_Y_SPRITE);
 
 }
 
@@ -77,10 +91,6 @@ void Graficar_mapa_objetos(MAPA &mapa, int x_externo = 1, int y_externo = 1){
                     draw_sprite(buffer, COFRE_spr, y_interno * TAMANO_Y_SPRITE, x_interno * TAMANO_X_SPRITE);
                 break;
 
-                case AVATAR:
-
-                    draw_sprite(buffer, AVATAR_spr, y_interno * TAMANO_Y_SPRITE, x_interno * TAMANO_X_SPRITE);
-                break;
                 case ENEMIGO:
 
                     draw_sprite(buffer, ENEMIGO_spr, y_interno * TAMANO_Y_SPRITE, x_interno * TAMANO_X_SPRITE);
@@ -91,6 +101,80 @@ void Graficar_mapa_objetos(MAPA &mapa, int x_externo = 1, int y_externo = 1){
                     draw_sprite(buffer, PUERTA_spr, y_interno * TAMANO_Y_SPRITE, x_interno * TAMANO_X_SPRITE);
                 break;
 
+            }
+
+        }
+    }
+
+}
+
+///Carga en el buffer los elementos que decoran el fondo(sangre, pilares, oro, etc).
+void Graficar_mapa_de_efectos(MAPA &mapa, int x_externo = 1, int y_externo = 1, int num = 1){
+
+    int x_interno;
+    int y_interno;
+
+    for(x_interno=0;x_interno<MAX_FILAS_JUEGO;x_interno++){
+        for(y_interno=0;y_interno<MAX_COLUMNAS_JUEGO;y_interno++){
+
+            switch(mapa.gets_mapa_de_efectos(x_externo, y_externo, x_interno, y_interno)){
+
+                case 1:
+                break;
+
+                case PARED_SANGRE_1:
+                    blit(SANGRE_spr, SANGRE_efect_spr, 1 * TAMANO_Y_SPRITE, 0 * TAMANO_X_SPRITE, 0, 0, TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                    draw_sprite(buffer, SANGRE_efect_spr, y_interno * TAMANO_Y_SPRITE, x_interno * TAMANO_X_SPRITE);
+                break;
+                case PARED_SANGRE_2:
+                    blit(SANGRE_spr, SANGRE_efect_spr, 2 * TAMANO_Y_SPRITE, 0 * TAMANO_X_SPRITE, 0, 0, TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                    draw_sprite(buffer, SANGRE_efect_spr, y_interno * TAMANO_Y_SPRITE, x_interno * TAMANO_X_SPRITE);
+                break;
+                case PARED_SANGRE_3:
+                    blit(SANGRE_spr, SANGRE_efect_spr, 3 * TAMANO_Y_SPRITE, 0 * TAMANO_X_SPRITE, 0, 0, TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                    draw_sprite(buffer, SANGRE_efect_spr, y_interno * TAMANO_Y_SPRITE, x_interno * TAMANO_X_SPRITE);
+                break;
+                case PARED_SANGRE_4:
+                    blit(SANGRE_spr, SANGRE_efect_spr, 4 * TAMANO_Y_SPRITE, 0 * TAMANO_X_SPRITE, 0, 0, TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                    draw_sprite(buffer, SANGRE_efect_spr, y_interno * TAMANO_Y_SPRITE, x_interno * TAMANO_X_SPRITE);
+                break;
+                case PARED_SANGRE_5:
+                    blit(SANGRE_spr, SANGRE_efect_spr, 5 * TAMANO_Y_SPRITE, 0 * TAMANO_X_SPRITE, 0, 0, TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                    draw_sprite(buffer, SANGRE_efect_spr, y_interno * TAMANO_Y_SPRITE, x_interno * TAMANO_X_SPRITE);
+                break;
+                case PARED_SANGRE_6:
+                    blit(SANGRE_spr, SANGRE_efect_spr, 6 * TAMANO_Y_SPRITE, 0 * TAMANO_X_SPRITE, 0, 0, TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                    draw_sprite(buffer, SANGRE_efect_spr, y_interno * TAMANO_Y_SPRITE, x_interno * TAMANO_X_SPRITE);
+                break;
+                case PISO_SANGRE_1:
+                    blit(SANGRE_spr, SANGRE_efect_spr, 7 * TAMANO_Y_SPRITE, 0 * TAMANO_X_SPRITE, 0, 0, TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                    draw_sprite(buffer, SANGRE_efect_spr, y_interno * TAMANO_Y_SPRITE, x_interno * TAMANO_X_SPRITE);
+                break;
+                case PISO_SANGRE_2:
+                    blit(SANGRE_spr, SANGRE_efect_spr, 8 * TAMANO_Y_SPRITE, 0 * TAMANO_X_SPRITE, 0, 0, TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                    draw_sprite(buffer, SANGRE_efect_spr, y_interno * TAMANO_Y_SPRITE, x_interno * TAMANO_X_SPRITE);
+                break;
+                case PISO_SANGRE_3:
+                    blit(SANGRE_spr, SANGRE_efect_spr, 9 * TAMANO_Y_SPRITE, 0 * TAMANO_X_SPRITE, 0, 0, TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                    draw_sprite(buffer, SANGRE_efect_spr, y_interno * TAMANO_Y_SPRITE, x_interno * TAMANO_X_SPRITE);
+                break;
+                case PISO_SANGRE_4:
+                    blit(SANGRE_spr, SANGRE_efect_spr, 10 * TAMANO_Y_SPRITE, 0 * TAMANO_X_SPRITE, 0, 0, TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                    draw_sprite(buffer, SANGRE_efect_spr, y_interno * TAMANO_Y_SPRITE, x_interno * TAMANO_X_SPRITE);
+                break;
+                case PISO_SANGRE_5:
+                    blit(SANGRE_spr, SANGRE_efect_spr, 11 * TAMANO_Y_SPRITE, 0 * TAMANO_X_SPRITE, 0, 0, TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                    draw_sprite(buffer, SANGRE_efect_spr, y_interno * TAMANO_Y_SPRITE, x_interno * TAMANO_X_SPRITE);
+                break;
+                case PISO_SANGRE_6:
+                    blit(SANGRE_spr, SANGRE_efect_spr, 12 * TAMANO_Y_SPRITE, 0 * TAMANO_X_SPRITE, 0, 0, TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                    draw_sprite(buffer, SANGRE_efect_spr, y_interno * TAMANO_Y_SPRITE, x_interno * TAMANO_X_SPRITE);
+                break;
+
+                case ANTORCHA:
+                    blit(ANTORCHA_spr, ANTORCHA_efect_spr, num * TAMANO_Y_SPRITE, 0 * TAMANO_X_SPRITE, 0, 0, TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                    draw_sprite(buffer, ANTORCHA_efect_spr, y_interno * TAMANO_Y_SPRITE, x_interno * TAMANO_X_SPRITE);
+                break;
             }
 
         }

@@ -10,6 +10,7 @@ using namespace std;
 
 ///Configuracion del mapa:
 #include "Clase_mapa.h"
+#include "Clase_mapa_grafico.h"
 
 ///Cofiguracion del los elemoentos de audio y graficos:
 #include "Imagenes.h";
@@ -51,7 +52,7 @@ int main(){
     asignar_sprites();
 
     ///Carga las imagenes en los distintos bitmaps(Decorados).
-    asignar_sprites_decorado();
+    ///asignar_sprites_decorado();
 
     ///Carga las pistas de audio.
     asignar_audio();
@@ -61,6 +62,8 @@ int main(){
 
     ///Inicia y arma el mapa.
     MAPA mapa;
+    MAPA_GRAFICO mapa_grafico(mapa);
+    int zona = ((rand()) % 12);
     cout<< "Mapa iniciado."<< endl;
 
     ///Inicia y arma el personaje.
@@ -74,7 +77,7 @@ int main(){
 
     ///Inicicar conometro:
     CRONO cronometro;
-    cronometro.sets_tiempo(4);
+    cronometro.sets_tiempo(2);
 
     ///Reproducion en bucle del tema de fondo:
     play_midi(Fondo, 1);
@@ -93,22 +96,24 @@ int main(){
         clear(buffer);
 
         ///Carga en el buffer los elementos de entorno (Piso, muros, etc).
-        Graficar_mapa_base(mapa, per_jug.gets_pocicion_x_guia(), per_jug.gets_pocicion_y_guia());
+        Graficar_fondo(mapa_grafico, per_jug.gets_pocicion_x_guia(), per_jug.gets_pocicion_y_guia(), zona);
 
         ///Carga en el buffer los elementos restantes(manchas, efectos, etc).
-        Graficar_mapa_de_efectos(mapa, per_jug.gets_pocicion_x_guia(), per_jug.gets_pocicion_y_guia(), cronometro.control_int()+1);
-
-        ///Carga en el buffer los elementos restantes(PJ, NPC, puertas, etc).
-        Graficar_mapa_objetos(mapa, per_jug.gets_pocicion_x_guia(), per_jug.gets_pocicion_y_guia());
+        Graficar_superpocicion_1(mapa_grafico, per_jug.gets_pocicion_x_guia(), per_jug.gets_pocicion_y_guia(), cronometro.control_int(), zona);
 
         ///Carga en el buffer el sprite del jugador.
         per_jug.graficar_jugador();
+
+        ///Graficar MOVs:
+        for(ciclo_MOBs = 0; ciclo_MOBs < cantidad_de_MOBs; ciclo_MOBs++){
+            esqueleto[ciclo_MOBs].graficar_MOBs(per_jug.gets_pocicion_x_guia(), per_jug.gets_pocicion_y_guia());
+        }
 
         ///Imprime en la ventana lo que se cargo en el buffer.
         pantallaso();
 
         ///Retraso de actividades en nanosegundos.
-        rest(40);
+        rest(60);
     }
 
 }

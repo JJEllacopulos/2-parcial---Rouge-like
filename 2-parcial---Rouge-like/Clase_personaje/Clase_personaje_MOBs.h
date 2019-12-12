@@ -76,6 +76,7 @@ class MOB: public PERSONAJE{
         void mover_MOB(MAPA &mapa);
         void rutina_de_movimiento(MAPA &mapa);
 
+        void graficar_MOBs(int x_externo, int y_externo);
 
 };
 
@@ -230,6 +231,16 @@ void MOB::mover_MOB(MAPA &mapa){
     }
 
     mapa.sets_mapa_general(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego(), sprite_personaje);
+}
+
+void MOB::graficar_MOBs(int x_externo, int y_externo){
+
+    if(x_externo == gets_pocicion_x_guia()){
+        if(y_externo == gets_pocicion_y_guia()){
+            draw_sprite(buffer, ENEMIGO_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE, gets_pocicion_x_juego() * TAMANO_X_SPRITE);
+        }
+    }
+
 }
 
 ///---------------------Propio del padre---------------------

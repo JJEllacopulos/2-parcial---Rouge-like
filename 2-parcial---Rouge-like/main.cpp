@@ -19,9 +19,12 @@ using namespace std;
 #include "Control_audio.h"
 
 ///Clase personaje:
+
 #include "Clase_personaje/Clase_personaje.h"
-#include "Clase_personaje/Clase_personaje_jugador.h"
 #include "Clase_personaje/Clase_personaje_MOBs.h"
+#include "Clase_personaje/Clase_personaje_jugador.h"
+
+
 
 
 
@@ -71,9 +74,9 @@ int main(){
     cout<< "Personaje jugador iniciado."<< endl;
 
     ///Iniciar MOVs:
-    int cantidad_de_MOBs = 15;
+    ///int cantidad_de_MOBs = 15;
     int ciclo_MOBs;
-    MOB esqueleto[cantidad_de_MOBs](mapa);
+    MOB esqueleto[CANTIDAD_MODS](mapa);
 
     ///Inicicar conometro:
     CRONO cronometro;
@@ -89,9 +92,13 @@ int main(){
         per_jug.rutina_de_movimiento(mapa);
 
         ///Mover MOVs:
-        for(ciclo_MOBs = 0; ciclo_MOBs < cantidad_de_MOBs; ciclo_MOBs++){
+        for(ciclo_MOBs = 0; ciclo_MOBs < CANTIDAD_MODS; ciclo_MOBs++){
             esqueleto[ciclo_MOBs].rutina_de_movimiento(mapa);
         }
+
+        ///Atacar personaje jugador:
+        per_jug.realizar_ataque(esqueleto);
+
         ///Limpia el mapa de bits.
         clear(buffer);
 
@@ -105,7 +112,7 @@ int main(){
         per_jug.graficar_jugador();
 
         ///Graficar MOVs:
-        for(ciclo_MOBs = 0; ciclo_MOBs < cantidad_de_MOBs; ciclo_MOBs++){
+        for(ciclo_MOBs = 0; ciclo_MOBs < CANTIDAD_MODS; ciclo_MOBs++){
             esqueleto[ciclo_MOBs].graficar_MOBs(per_jug.gets_pocicion_x_guia(), per_jug.gets_pocicion_y_guia());
         }
 

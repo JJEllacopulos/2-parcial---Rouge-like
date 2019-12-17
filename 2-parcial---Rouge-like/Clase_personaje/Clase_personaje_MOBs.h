@@ -2,6 +2,7 @@
 #define CLASE_PERSONAJE_ENEMIGO_H_INCLUDED
 
 #define RETRAZO_MOVIMIENTO_MOB 3 ///Intrevalo entre movimientos de los MOBs
+#define CANTIDAD_MODS 15
 
 /// IDENTIFICACION DE CUADRANTES
     int buscar_cuadrante(int x, int y, int i, int j){   ///"*" SIGNIFICA QUE ESTA CHEQUEADA LA LOGICA
@@ -40,6 +41,9 @@ class MOB: public PERSONAJE{
         int movimiento;
         int velocidad;
 
+        int vida;
+        bool vivo;
+
     public:
 
         ///---------------------Propio del padre---------------------
@@ -63,9 +67,13 @@ class MOB: public PERSONAJE{
         int gets_velocidad(){return velocidad;}
         int gets_sprite(){return sprite_personaje;}
         int gets_vision(){return vision;}
+        int gets_vida(){return vida;}
 
         ///Sets:
         void set_sprite( char c){sprite_personaje=c;}
+        void sets_vida(int aux){vida = aux;}
+        void restar_vida();
+        void muerte();
 
 
 
@@ -89,6 +97,9 @@ MOB::MOB(MAPA &mapa){
     vision=6;
 
     PERSONAJE::iniciar_personaje(mapa, sprite_personaje);
+
+    vida = 3;
+    vivo = true;
 
 }
 
@@ -147,7 +158,6 @@ void MOB::rutina_de_movimiento(MAPA &mapa){
         retrazo = 0;
         */
     }
-
 }
 
 void MOB::realisar_movimiento(MAPA &mapa,  int x_guia, int y_guia, int x_mapa, int y_mapa){
@@ -235,12 +245,28 @@ void MOB::mover_MOB(MAPA &mapa){
 
 void MOB::graficar_MOBs(int x_externo, int y_externo){
 
-    if(x_externo == gets_pocicion_x_guia()){
-        if(y_externo == gets_pocicion_y_guia()){
-            draw_sprite(buffer, ENEMIGO_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE, gets_pocicion_x_juego() * TAMANO_X_SPRITE);
+    if(vivo){
+        if(x_externo == gets_pocicion_x_guia()){
+            if(y_externo == gets_pocicion_y_guia()){
+                draw_sprite(buffer, ENEMIGO_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE, gets_pocicion_x_juego() * TAMANO_X_SPRITE);
+            }
         }
     }
 
+}
+
+void MOB::restar_vida(){
+    if(vida > 0){
+        vida--;
+    }
+    else{
+        muerte();
+    }
+}
+
+void MOB::muerte(){
+    vivo = false;
+    sprite_personaje = PISO;
 }
 
 ///---------------------Propio del padre---------------------

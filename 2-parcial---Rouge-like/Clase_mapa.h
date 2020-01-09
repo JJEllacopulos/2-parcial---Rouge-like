@@ -14,7 +14,7 @@
 
     ///Cantidades en el armado de los mapas
 #define BLOQUES_GUIA_HABILITADOS 10 ///Candidad de minimapas habilitados.
-#define BLOQUES_JUEGOS_PISO 48 ///Cantidad de bloques que se dispondran como piso.
+#define BLOQUES_JUEGOS_PISO 49 ///Cantidad de bloques que se dispondran como piso.
 
 ///Contenido de matriz de juego:
 #define MURO_IRROMPIBLE 88 ///X
@@ -51,6 +51,10 @@ class MAPA {
             void armar_mapa_general_caminos(int x_externo, int y_externo, int x_interno ,int y_interno);
             void armar_mapa_general();
             MAPA();
+
+        ///Reiniciar mapa:
+            void Reiniciar_mapa();
+
         ///Gets:
             int gets_mapa_guia(int posicion_en_x, int posicion_en_y);
             int gets_mapa_juego(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor);
@@ -67,6 +71,15 @@ class MAPA {
 
 ///Constructor:
 MAPA::MAPA(){
+
+    iniciar_mapas();
+    armar_mapa_guia();
+    armar_mapa_general();
+
+}
+
+///Reiniciar mapa:
+void MAPA::Reiniciar_mapa(){
 
     iniciar_mapas();
     armar_mapa_guia();

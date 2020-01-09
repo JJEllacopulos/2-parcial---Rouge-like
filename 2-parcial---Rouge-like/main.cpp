@@ -58,7 +58,7 @@ int main(){
     ///asignar_sprites_decorado();
 
     ///Carga las pistas de audio.
-    asignar_audio();
+    ///asignar_audio();
 
     ///Semailla del random:
     srand(time(0));
@@ -66,7 +66,7 @@ int main(){
     ///Inicia y arma el mapa.
     MAPA mapa;
     MAPA_GRAFICO mapa_grafico(mapa);
-    int zona = 3;///((rand()) % 9);
+    int zona = 0;///((rand()) % 9);
     cout<< "Mapa iniciado."<< endl;
 
     ///Inicia y arma el personaje.
@@ -80,47 +80,73 @@ int main(){
 
     ///Inicicar conometro:
     CRONO cronometro;
+    CRONO cronometro_int;
     cronometro.sets_tiempo(2);
+    cronometro_int.sets_tiempo(0);
 
-    ///Reproducion en bucle del tema de fondo:
-    play_midi(Fondo, 1);
+    while(zona != 9){
 
-    ///Bucle del juego (game loop).
-    while(!key[KEY_ESC]){
+        ///Carga las pistas de audio.
+        asignar_audio(zona);
 
-        ///Mover personaje jugador:
-        per_jug.rutina_de_movimiento(mapa);
+        ///Reproducion en bucle del tema de fondo:
+        play_midi(Fondo, 1);
 
-        ///Mover MOVs:
-        for(ciclo_MOBs = 0; ciclo_MOBs < CANTIDAD_MODS; ciclo_MOBs++){
-            esqueleto[ciclo_MOBs].rutina_de_movimiento(mapa);
+        ///Bucle del juego (game loop).
+        while(!key[KEY_ESC]){
+
+            ///Mover personaje jugador:
+            per_jug.rutina_de_movimiento(mapa);
+
+            ///Mover MOVs:
+            for(ciclo_MOBs = 0; ciclo_MOBs < CANTIDAD_MODS; ciclo_MOBs++){
+                esqueleto[ciclo_MOBs].rutina_de_movimiento(mapa);
+            }
+
+            ///Atacar personaje jugador:
+            per_jug.realizar_ataque(esqueleto);
+
+            ///Limpia el mapa de bits.
+            clear(buffer);
+
+            ///Carga en el buffer los elementos de entorno (Piso, muros, etc).
+            Graficar_fondo(mapa_grafico, per_jug.gets_pocicion_x_guia(), per_jug.gets_pocicion_y_guia(), zona);
+
+            ///Carga en el buffer los elementos restantes(manchas, efectos, etc).
+
+            if(cronometro_int.control_bool()){
+                cronometro.control_int();
+            }
+            //cronometro.control_int();
+
+            Graficar_superpocicion_1(mapa_grafico, per_jug.gets_pocicion_x_guia(), per_jug.gets_pocicion_y_guia(), cronometro.gets_cont(), zona);
+
+            ///Carga en el buffer el sprite del jugador.
+            per_jug.graficar_jugador();
+
+            ///Graficar MOVs:
+            for(ciclo_MOBs = 0; ciclo_MOBs < CANTIDAD_MODS; ciclo_MOBs++){
+                esqueleto[ciclo_MOBs].graficar_MOBs(per_jug.gets_pocicion_x_guia(), per_jug.gets_pocicion_y_guia());
+            }
+
+            ///Imprime en la ventana lo que se cargo en el buffer.
+            pantallaso();
+
+            ///Retraso de actividades en nanosegundos.
+            rest(60);
         }
 
-        ///Atacar personaje jugador:
-        per_jug.realizar_ataque(esqueleto);
+        while(key[KEY_ESC]){}
 
-        ///Limpia el mapa de bits.
-        clear(buffer);
+        zona++;
 
-        ///Carga en el buffer los elementos de entorno (Piso, muros, etc).
-        Graficar_fondo(mapa_grafico, per_jug.gets_pocicion_x_guia(), per_jug.gets_pocicion_y_guia(), zona);
-
-        ///Carga en el buffer los elementos restantes(manchas, efectos, etc).
-        Graficar_superpocicion_1(mapa_grafico, per_jug.gets_pocicion_x_guia(), per_jug.gets_pocicion_y_guia(), cronometro.control_int(), zona);
-
-        ///Carga en el buffer el sprite del jugador.
-        per_jug.graficar_jugador();
-
-        ///Graficar MOVs:
+        mapa.Reiniciar_mapa();
+        mapa_grafico.Reiniciar_mapa_grefico(mapa);
+        per_jug.Reiniciar_jugador(mapa);
         for(ciclo_MOBs = 0; ciclo_MOBs < CANTIDAD_MODS; ciclo_MOBs++){
-            esqueleto[ciclo_MOBs].graficar_MOBs(per_jug.gets_pocicion_x_guia(), per_jug.gets_pocicion_y_guia());
+            esqueleto[ciclo_MOBs].Reiniciar_MOBs(mapa);
         }
 
-        ///Imprime en la ventana lo que se cargo en el buffer.
-        pantallaso();
-
-        ///Retraso de actividades en nanosegundos.
-        rest(60);
     }
 
 }

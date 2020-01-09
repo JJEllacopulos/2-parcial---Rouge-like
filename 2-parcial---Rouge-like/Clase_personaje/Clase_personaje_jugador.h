@@ -44,6 +44,9 @@ class JUGADOR: public PERSONAJE{
 
         void realizar_ataque(MOB esqueleto[]);
         void atacar(int x_guia, int y_guia, int x_juego, int y_juego, MOB esqueleto[]);
+
+        ///Reiniciar;
+        void Reiniciar_jugador(MAPA &mapa);
 };
 
 JUGADOR::JUGADOR(MAPA &mapa){
@@ -58,6 +61,15 @@ JUGADOR::JUGADOR(MAPA &mapa){
     PERSONAJE::iniciar_personaje(mapa, sprite_personaje);
 
     frente = 0;
+
+}
+
+///Reiniciar JUGADOR:
+void JUGADOR::Reiniciar_jugador(MAPA &mapa){
+
+    frente = 0;
+
+    PERSONAJE::iniciar_personaje(mapa, sprite_personaje);
 
 }
 
@@ -153,6 +165,7 @@ void JUGADOR::mover_jugador(MAPA &mapa){
             direcion_anima = direccion;
         }
         else{
+            direccion = 0;
             direcion_anima = 0;
         }
     }

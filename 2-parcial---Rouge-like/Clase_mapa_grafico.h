@@ -49,9 +49,11 @@ class MAPA_GRAFICO{
         ///Constructor:
             void armar_mapa_grafico_fondo(MAPA &mapa);
             void armar_mapa_grafico_1_sup(MAPA &mapa);
-            ///void armar_mapa_grafico_2_sup(MAPA &mapa);
             void iniciar_mapas();
             MAPA_GRAFICO(MAPA &mapa);
+
+        ///Reiniciar mapa grafico:
+            void Reiniciar_mapa_grefico(MAPA &mapa);
 
         ///Gets:
             int gets_mapa_grafico_fondo(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor);
@@ -71,7 +73,15 @@ MAPA_GRAFICO::MAPA_GRAFICO(MAPA &mapa){
     iniciar_mapas();
     armar_mapa_grafico_fondo(mapa);
     armar_mapa_grafico_1_sup(mapa);
-    ///armar_mapa_grafico_2_sup(mapa);
+
+}
+
+///Reiniciar mapa grafico.
+void MAPA_GRAFICO::Reiniciar_mapa_grefico(MAPA &mapa){
+
+    iniciar_mapas();
+    armar_mapa_grafico_fondo(mapa);
+    armar_mapa_grafico_1_sup(mapa);
 
 }
 

@@ -37,7 +37,7 @@ int main(){
 
     ///Establecer los parametros de la pantalla.
     set_color_depth(32);
-    set_gfx_mode(GFX_AUTODETECT_WINDOWED, TAMANO_X_BUFFER, TAMANO_Y_BUFFER, 0, 0);
+    set_gfx_mode(GFX_AUTODETECT_FULLSCREEN , TAMANO_X_BUFFER, TAMANO_Y_BUFFER, 0, 0);
     cout<< "Parametros del buffer iniciados."<< endl;
 
     ///Establecer los parametros del audio.
@@ -66,7 +66,7 @@ int main(){
     ///Inicia y arma el mapa.
     MAPA mapa;
     MAPA_GRAFICO mapa_grafico(mapa);
-    int zona = ((rand()) % 12);
+    int zona = 3;///((rand()) % 9);
     cout<< "Mapa iniciado."<< endl;
 
     ///Inicia y arma el personaje.

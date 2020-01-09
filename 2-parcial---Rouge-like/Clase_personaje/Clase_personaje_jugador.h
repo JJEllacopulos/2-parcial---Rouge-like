@@ -104,8 +104,7 @@ void JUGADOR::rutina_de_movimiento(MAPA &mapa){
     }
 }
 
-///-----------------------------------------Aun sin terminar---------------------------------------------
-
+///Mover al jugador.
 void JUGADOR::mover_jugador(MAPA &mapa){
 
    int x=0, y=0;   ///variables auxiliares para el uso de las posiciones.
@@ -114,29 +113,49 @@ void JUGADOR::mover_jugador(MAPA &mapa){
 
     switch(direccion){
 
-        case 1: y++; break; ///Derecha;
-        case 2: y--; break; ///Izquierda;
-        case 3: x--; break; ///Arriba;
-        case 4: x++; break; ///Abajo;
-        case 5: x--; y++; break; ///DERECHA ARRIBA;
-        case 6: x++; y++; break; ///DERECHA ABAJO;
-        case 7: x--; y--; break; ///IZQUIERDA ARRIBA;
-        case 8: x++; y--; break; ///IZQUIERDA ABAJO;
+        case 1: ///Derecha;
+            y++;
+        break;
+        case 2: ///Izquierda;
+            y--;
+        break;
+        case 3: ///Arriba;
+            x--;
+        break;
+        case 4: ///Abajo;
+            x++;
+        break;
+        case 5: ///DERECHA ARRIBA;
+            x--;
+            y++;
+        break;
+        case 6: ///DERECHA ABAJO;
+            x++;
+            y++;
+        break;
+        case 7: ///IZQUIERDA ARRIBA;
+            x--;
+            y--;
+        break;
+        case 8: ///IZQUIERDA ABAJO;
+            x++;
+            y--;
+        break;
 
-  }
-            if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego() + x, gets_pocicion_y_juego() +y) == PUERTA){
-                mover_en_mapa_guia();
-            }
-            else{
-                if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego() + x, gets_pocicion_y_juego() +y) == PISO){
-                    sets_pocicion_x_juego(gets_pocicion_x_juego() + x);
-                    sets_pocicion_y_juego(gets_pocicion_y_juego() + y);
-                    direcion_anima = direccion;
-                }
-                else{
-                    direcion_anima = 0;
-                }
-            }
+    }
+    if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego() + x, gets_pocicion_y_juego() +y) == PUERTA){
+        mover_en_mapa_guia();
+    }
+    else{
+        if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego() + x, gets_pocicion_y_juego() +y) == PISO){
+            sets_pocicion_x_juego(gets_pocicion_x_juego() + x);
+            sets_pocicion_y_juego(gets_pocicion_y_juego() + y);
+            direcion_anima = direccion;
+        }
+        else{
+            direcion_anima = 0;
+        }
+    }
 
     mapa.sets_mapa_general(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego(), sprite_personaje); ///ACTUALIZA LA UBICACION DEL OBJETO
 }
@@ -145,7 +164,7 @@ void JUGADOR::mover_en_mapa_guia(){
 
     switch(direccion){
         case 1: ///Derecha:
-                sets_pocicion_completa(gets_pocicion_x_guia(), gets_pocicion_y_guia() + 1, gets_pocicion_x_juego(), 1);
+            sets_pocicion_completa(gets_pocicion_x_guia(), gets_pocicion_y_guia() + 1, gets_pocicion_x_juego(), 1);
 
         break;
 
@@ -174,65 +193,75 @@ void JUGADOR::graficar_jugador(){
 
     if(direccion == 0){
 
+        ///Pocicion estatica.
         switch(frente){
             case 0:
-                blit(JUGADOR_spr, JUGADOR_mov_spr, 0 * TAMANO_Y_SPRITE, 0 * TAMANO_X_SPRITE, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_X_SPRITE, gets_pocicion_x_juego() * TAMANO_Y_SPRITE);
+                blit(JUGADOR_spr, JUGADOR_mov_spr, 0 * DESPLAZAR_Y_PIXEL, 0 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_X_SPRITE, gets_pocicion_x_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y);
             break;
             case 1:
-                blit(JUGADOR_spr, JUGADOR_mov_spr, 0 * TAMANO_Y_SPRITE, 1 * TAMANO_X_SPRITE, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_X_SPRITE, gets_pocicion_x_juego() * TAMANO_Y_SPRITE);
+                blit(JUGADOR_spr, JUGADOR_mov_spr, 0 * DESPLAZAR_Y_PIXEL, 1 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                draw_sprite_h_flip(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_X_SPRITE, gets_pocicion_x_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y);
             break;
             case 2:
-                blit(JUGADOR_spr, JUGADOR_mov_spr, 0 * TAMANO_Y_SPRITE, 2 * TAMANO_X_SPRITE, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_X_SPRITE, gets_pocicion_x_juego() * TAMANO_Y_SPRITE);
+                blit(JUGADOR_spr, JUGADOR_mov_spr, 0 * DESPLAZAR_Y_PIXEL, 2 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_X_SPRITE, gets_pocicion_x_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y);
             break;
             case 3:
-                blit(JUGADOR_spr, JUGADOR_mov_spr, 0 * TAMANO_Y_SPRITE, 3 * TAMANO_X_SPRITE, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_X_SPRITE, gets_pocicion_x_juego() * TAMANO_Y_SPRITE);
+                blit(JUGADOR_spr, JUGADOR_mov_spr, 0 * DESPLAZAR_Y_PIXEL, 1 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_X_SPRITE, gets_pocicion_x_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y);
             break;
 
         }
     }
-    else{
+    else{ ///Animacion de movimiento.
         animacion.control_int();
         frame_estatico.control_int_invertido();
         switch(direcion_anima){
-            case 0:
-                blit(JUGADOR_spr, JUGADOR_mov_spr, 0 * TAMANO_Y_SPRITE, 0 * TAMANO_X_SPRITE, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE, gets_pocicion_x_juego() * TAMANO_Y_SPRITE);
+
+            case 0: ///Estatico.
+                blit(JUGADOR_spr, JUGADOR_mov_spr, 0 * DESPLAZAR_Y_PIXEL, 0 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_X_SPRITE, gets_pocicion_x_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y);
             break;
-            case 1:
-                blit(JUGADOR_spr, JUGADOR_mov_spr, animacion.gets_cont() * TAMANO_Y_SPRITE, 7 * TAMANO_X_SPRITE, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE - frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT, gets_pocicion_x_juego() * TAMANO_X_SPRITE);
+
+            case 1: ///Derecha;
+                blit(JUGADOR_spr, JUGADOR_mov_spr, animacion.gets_cont() * DESPLAZAR_Y_PIXEL, 1 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE - frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_Y);
             break;
-            case 2:
-                blit(JUGADOR_spr, JUGADOR_mov_spr, animacion.gets_cont() * TAMANO_Y_SPRITE, 5 * TAMANO_X_SPRITE, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT, gets_pocicion_x_juego() * TAMANO_X_SPRITE);
+
+            case 2: ///Izquierda;
+                blit(JUGADOR_spr, JUGADOR_mov_spr, animacion.gets_cont() * DESPLAZAR_Y_PIXEL, 1 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                draw_sprite_h_flip(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_Y);
             break;
-            case 3:
-                blit(JUGADOR_spr, JUGADOR_mov_spr, animacion.gets_cont() * TAMANO_Y_SPRITE, 6 * TAMANO_X_SPRITE, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE, gets_pocicion_x_juego() * TAMANO_X_SPRITE + frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT);
+
+            case 3: ///Arriba;
+                blit(JUGADOR_spr, JUGADOR_mov_spr, animacion.gets_cont() * DESPLAZAR_Y_PIXEL, 2 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE, gets_pocicion_x_juego() * TAMANO_X_SPRITE + frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT + ESPACIO_SUPERIOR_Y);
             break;
-            case 4:
-                blit(JUGADOR_spr, JUGADOR_mov_spr, animacion.gets_cont() * TAMANO_Y_SPRITE, 4 * TAMANO_X_SPRITE, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE, gets_pocicion_x_juego() * TAMANO_X_SPRITE - frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT);
+
+            case 4: ///Abajo;
+                blit(JUGADOR_spr, JUGADOR_mov_spr, animacion.gets_cont() * DESPLAZAR_Y_PIXEL, 0 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE, gets_pocicion_x_juego() * TAMANO_X_SPRITE - frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT + ESPACIO_SUPERIOR_Y);
             break;
-            case 5:
-                blit(JUGADOR_spr, JUGADOR_mov_spr, animacion.gets_cont() * TAMANO_Y_SPRITE, 6 * TAMANO_X_SPRITE, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE - frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT, gets_pocicion_x_juego() * TAMANO_X_SPRITE + frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT);
+
+            case 5: ///DERECHA ARRIBA;
+                blit(JUGADOR_spr, JUGADOR_mov_spr, animacion.gets_cont() * DESPLAZAR_Y_PIXEL, 2 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE - frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT, gets_pocicion_x_juego() * TAMANO_X_SPRITE + frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT + ESPACIO_SUPERIOR_Y);
             break;
-            case 6:
-                blit(JUGADOR_spr, JUGADOR_mov_spr, animacion.gets_cont() * TAMANO_Y_SPRITE, 4 * TAMANO_X_SPRITE, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE - frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT, gets_pocicion_x_juego() * TAMANO_X_SPRITE - frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT);
+
+            case 6: ///DERECHA ABAJO;
+                blit(JUGADOR_spr, JUGADOR_mov_spr, animacion.gets_cont() * DESPLAZAR_Y_PIXEL, 0 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE - frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT, gets_pocicion_x_juego() * TAMANO_X_SPRITE - frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT + ESPACIO_SUPERIOR_Y);
             break;
-            case 7:
-                blit(JUGADOR_spr, JUGADOR_mov_spr, animacion.gets_cont() * TAMANO_Y_SPRITE, 6 * TAMANO_X_SPRITE, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT, gets_pocicion_x_juego() * TAMANO_X_SPRITE + frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT);
+
+            case 7: ///IZQUIERDA ARRIBA;
+                blit(JUGADOR_spr, JUGADOR_mov_spr, animacion.gets_cont() * DESPLAZAR_Y_PIXEL, 2 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT, gets_pocicion_x_juego() * TAMANO_X_SPRITE + frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT + ESPACIO_SUPERIOR_Y);
             break;
-            case 8:
-                blit(JUGADOR_spr, JUGADOR_mov_spr, animacion.gets_cont() * TAMANO_Y_SPRITE, 4 * TAMANO_X_SPRITE, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT, gets_pocicion_x_juego() * TAMANO_X_SPRITE - frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT);
+
+            case 8: ///IZQUIERDA ABAJO;
+                blit(JUGADOR_spr, JUGADOR_mov_spr, animacion.gets_cont() * DESPLAZAR_Y_PIXEL, 0 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+                draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT, gets_pocicion_x_juego() * TAMANO_X_SPRITE - frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT + ESPACIO_SUPERIOR_Y);
             break;
         }
 

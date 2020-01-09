@@ -1,65 +1,44 @@
-///Clace mapa:
-///Aqui se encuentra tanto la clase mapa como sus propiedades y metodos del mismo.
-
-///Propiedades:
-///     Mapa guia: Matriz de 5 x 5.
-///     Mapa juego: Matriz de 30 x 30
-///     Bioma: char (Cada letra se la ocupa como clabe para cargar los diferentes juegos de sprites).
-
 #ifndef CLASE_MAPA_H_INCLUDED
 #define CLASE_MAPA_H_INCLUDED
 
 ///Definiciones:
     ///Matrices:
-#define MAX_FILAS_GUIA 10
-#define MAX_COLUMNAS_GUIA 10
-#define MAX_FILAS_JUEGO 20
-#define MAX_COLUMNAS_JUEGO 34
-#define POSICION_PUERTA_X 10
-#define POSICION_PUERTA_Y 16
+#define MAX_FILAS_GUIA 14
+#define MAX_COLUMNAS_GUIA 14
+
+#define MAX_FILAS_JUEGO 13
+#define MAX_COLUMNAS_JUEGO 20
+
+#define POSICION_PUERTA_X 6
+#define POSICION_PUERTA_Y 9
 
     ///Cantidades en el armado de los mapas
 #define BLOQUES_GUIA_HABILITADOS 10 ///Candidad de minimapas habilitados.
-#define BLOQUES_JUEGOS_PISO 120 ///Cantidad de bloques que se dispondran como piso.
+#define BLOQUES_JUEGOS_PISO 48 ///Cantidad de bloques que se dispondran como piso.
 
-    ///Contenido de matriz de juego:
+///Contenido de matriz de juego:
 #define MURO_IRROMPIBLE 88 ///X
 #define MURO_ROMPIBLE 77 ///M
-#define COFRE 67 ///C
+#define PISO 112 ///p
+
+#define PUERTA 80 ///P
+
 #define ENEMIGO 69 ///E
 #define AVATAR 65 ///A
-#define PUERTA 80 ///P
-#define PISO 112 ///p
+
+
 
     ///Contenido de matriz guia:
 #define BLOQUE_HABILITADO 43 ///+
 #define BLOQUE_INHABILITADO 45 ///-
 
-///Contenido de matriz de efectos:
-#define VACIO 48 ///0 (Cero)
-
-#define PARED_SANGRE_1 65 /// A
-#define PARED_SANGRE_2 66 /// B
-#define PARED_SANGRE_3 67 /// C
-#define PARED_SANGRE_4 68 /// D
-#define PARED_SANGRE_5 69 /// E
-#define PARED_SANGRE_6 70 /// F
-
-#define PISO_SANGRE_1 71 /// G
-#define PISO_SANGRE_2 72 /// H
-#define PISO_SANGRE_3 73 /// I
-#define PISO_SANGRE_4 74 /// J
-#define PISO_SANGRE_5 75 /// K
-#define PISO_SANGRE_6 76 /// L
-
-#define ANTORCHA 90 /// Z
 
 
 class MAPA {
     private:
         int mapa_guia[MAX_FILAS_GUIA][MAX_COLUMNAS_GUIA];
         int mapa_juego[MAX_FILAS_GUIA][MAX_COLUMNAS_GUIA][MAX_FILAS_JUEGO][MAX_COLUMNAS_JUEGO];
-        int mapa_de_efectos[MAX_FILAS_GUIA][MAX_COLUMNAS_GUIA][MAX_FILAS_JUEGO][MAX_COLUMNAS_JUEGO];
+        ///int mapa_de_efectos[MAX_FILAS_GUIA][MAX_COLUMNAS_GUIA][MAX_FILAS_JUEGO][MAX_COLUMNAS_JUEGO];
 
         int movimiento;
 
@@ -75,14 +54,14 @@ class MAPA {
         ///Gets:
             int gets_mapa_guia(int posicion_en_x, int posicion_en_y);
             int gets_mapa_juego(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor);
-            int gets_mapa_de_efectos(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor);
+            ///int gets_mapa_de_efectos(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor);
         ///Sets:
             ///Ingresa un valor char a la pocicion de la matriz guia señalada.
             void sets_mapa_guia(int posicion_en_x, int posicion_en_y, char auxiliar);
             ///Ingresa un valor char a la pocicion de la matriz juego señalada.
             void sets_mapa_general(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor, int auxiliar);
             ///Ingresa un valor char a la pocicion de la matriz de efectos señalada.
-            void sets_mapa_de_efectos(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor, int auxiliar);
+            ///void sets_mapa_de_efectos(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor, int auxiliar);
 
 };
 
@@ -120,7 +99,7 @@ void MAPA::iniciar_mapas(){
         }
     }
 
-    for(w=0 ; w < MAX_FILAS_GUIA ; w++){
+    /*for(w=0 ; w < MAX_FILAS_GUIA ; w++){
         for(x=0 ; x < MAX_COLUMNAS_GUIA ; x++){
             for(y=0 ; y < MAX_FILAS_JUEGO ; y++){
                 for(z=0 ; z < MAX_COLUMNAS_JUEGO ; z++){
@@ -130,7 +109,7 @@ void MAPA::iniciar_mapas(){
                 }
             }
         }
-    }
+    }*/
 
 
 }
@@ -370,9 +349,9 @@ int MAPA::gets_mapa_juego(int posicion_x_mayor, int posicion_y_mayor, int posici
 }
 
 ///Devuelve el valor que contiene las pociciones indicadas en la matriz de efectos.
-int MAPA::gets_mapa_de_efectos(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor){
+/*int MAPA::gets_mapa_de_efectos(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor){
     return mapa_de_efectos[posicion_x_mayor][posicion_y_mayor][posicion_x_menor][posicion_y_menor];
-}
+}*/
 
 
 ///Sets:
@@ -387,9 +366,9 @@ void MAPA::sets_mapa_general(int posicion_x_mayor, int posicion_y_mayor, int pos
 }
 
 ///Ingresa un valor char a la pocicion de la matriz de efectos señalada.
-void MAPA::sets_mapa_de_efectos(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor, int auxiliar){
+/*void MAPA::sets_mapa_de_efectos(int posicion_x_mayor, int posicion_y_mayor, int posicion_x_menor, int posicion_y_menor, int auxiliar){
     mapa_de_efectos[posicion_x_mayor][posicion_y_mayor][posicion_x_menor][posicion_y_menor] = auxiliar;
-}
+}*/
 
 
 #endif // CLASE_MAPA_H_INCLUDED

@@ -3,6 +3,7 @@
 
 #include<string.h>
 #include <iostream>
+#include <cstdio>
 using namespace std;
 
 ///Control de tiempo:
@@ -13,10 +14,11 @@ using namespace std;
 #include "Clase_mapa_grafico.h"
 
 ///Cofiguracion del los elemoentos de audio y graficos:
-#include "Imagenes.h";
-#include "Pistas_de_audio.h";
-#include "Control_grafico.h"
-#include "Control_audio.h"
+#include "Controles_de_archivos/Imagenes.h";
+#include "Controles_de_archivos/Pistas_de_audio.h";
+#include "Controles_de_archivos/Control_grafico.h"
+#include "Controles_de_archivos/Control_audio.h"
+
 
 ///Clase personaje:
 
@@ -24,7 +26,8 @@ using namespace std;
 #include "Clase_personaje/Clase_personaje_MOBs.h"
 #include "Clase_personaje/Clase_personaje_jugador.h"
 
-
+///Guardado de progreso.
+#include "Controles_de_archivos/Control_partida.h"
 
 
 
@@ -54,29 +57,26 @@ int main(){
     ///Carga las imagenes en los distintos bitmaps.
     asignar_sprites();
 
-    ///Carga las imagenes en los distintos bitmaps(Decorados).
-    ///asignar_sprites_decorado();
-
-    ///Carga las pistas de audio.
-    ///asignar_audio();
-
     ///Semailla del random:
     srand(time(0));
 
     ///Inicia y arma el mapa.
     MAPA mapa;
-    MAPA_GRAFICO mapa_grafico(mapa);
+    MAPA_GRAFICO mapa_grafico;
+    ///MAPA_GRAFICO mapa_grafico(mapa);
     int zona = 0;///((rand()) % 9);
     cout<< "Mapa iniciado."<< endl;
 
     ///Inicia y arma el personaje.
-    JUGADOR per_jug(mapa);
+    JUGADOR per_jug;
+    ///JUGADOR per_jug(mapa);
     cout<< "Personaje jugador iniciado."<< endl;
 
     ///Iniciar MOVs:
     ///int cantidad_de_MOBs = 15;
     int ciclo_MOBs;
-    MOB esqueleto[CANTIDAD_MODS](mapa);
+    MOB esqueleto[CANTIDAD_MODS];
+    ///MOB esqueleto[CANTIDAD_MODS](mapa);
 
     ///Inicicar conometro:
     CRONO cronometro;
@@ -84,7 +84,22 @@ int main(){
     cronometro.sets_tiempo(2);
     cronometro_int.sets_tiempo(0);
 
+    ///Archivo de guardado:
+    ARCHIVO_PARTIDA archivo_guardado;
+
     while(zona != 9){
+
+
+        ///Iniciar y reiniciar el mapa.
+        mapa.Reiniciar_mapa();
+        mapa_grafico.Reiniciar_mapa_grefico(mapa);
+        per_jug.Reiniciar_jugador(mapa);
+        for(ciclo_MOBs = 0; ciclo_MOBs < CANTIDAD_MODS; ciclo_MOBs++){
+            esqueleto[ciclo_MOBs].Reiniciar_MOBs(mapa);
+        }
+
+        ///Guardar partida.
+        //archivo_guardado.Guardar_partida(zona, mapa, mapa_grafico, per_jug);
 
         ///Carga las pistas de audio.
         asignar_audio(zona);
@@ -112,12 +127,11 @@ int main(){
             ///Carga en el buffer los elementos de entorno (Piso, muros, etc).
             Graficar_fondo(mapa_grafico, per_jug.gets_pocicion_x_guia(), per_jug.gets_pocicion_y_guia(), zona);
 
-            ///Carga en el buffer los elementos restantes(manchas, efectos, etc).
+            ///Carga en el buffer los elementos de la superpocicion 1(decorados, efectos, animaciones, etc).
 
             if(cronometro_int.control_bool()){
                 cronometro.control_int();
             }
-            //cronometro.control_int();
 
             Graficar_superpocicion_1(mapa_grafico, per_jug.gets_pocicion_x_guia(), per_jug.gets_pocicion_y_guia(), cronometro.gets_cont(), zona);
 
@@ -140,12 +154,8 @@ int main(){
 
         zona++;
 
-        mapa.Reiniciar_mapa();
-        mapa_grafico.Reiniciar_mapa_grefico(mapa);
-        per_jug.Reiniciar_jugador(mapa);
-        for(ciclo_MOBs = 0; ciclo_MOBs < CANTIDAD_MODS; ciclo_MOBs++){
-            esqueleto[ciclo_MOBs].Reiniciar_MOBs(mapa);
-        }
+        ///Cargar partida.
+        //archivo_guardado.Cargar_partida(zona, mapa, mapa_grafico, per_jug);
 
     }
 

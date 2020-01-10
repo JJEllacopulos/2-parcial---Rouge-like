@@ -72,9 +72,9 @@ class MAPA {
 ///Constructor:
 MAPA::MAPA(){
 
-    iniciar_mapas();
-    armar_mapa_guia();
-    armar_mapa_general();
+    ///iniciar_mapas();
+    ///armar_mapa_guia();
+    ///armar_mapa_general();
 
 }
 

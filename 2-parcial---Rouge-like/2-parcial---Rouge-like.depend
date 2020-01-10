@@ -1,29 +1,31 @@
 # depslib dependency file v1.0
-1578605222 source:d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\main.cpp
+1578697368 source:d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\main.cpp
 	<ctime>
 	<allegro.h>
 	<string.h>
 	<iostream>
+	<cstdio>
 	"Cronometro.h"
 	"Clase_mapa.h"
 	"Clase_mapa_grafico.h"
-	"Imagenes.h"
-	"Pistas_de_audio.h"
-	"Control_grafico.h"
-	"Control_audio.h"
+	"Controles_de_archivos/Imagenes.h"
+	"Controles_de_archivos/Pistas_de_audio.h"
+	"Controles_de_archivos/Control_grafico.h"
+	"Controles_de_archivos/Control_audio.h"
 	"Clase_personaje/Clase_personaje.h"
 	"Clase_personaje/Clase_personaje_MOBs.h"
 	"Clase_personaje/Clase_personaje_jugador.h"
+	"Controles_de_archivos/Control_partida.h"
 
 1578443711 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\imagenes.h
 
-1578602624 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_mapa.h
+1578693476 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_mapa.h
 
 1578539756 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\control_grafico.h
 
 1573516730 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\pistas_de_audio.h
 
-1578605337 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\control_audio.h
+1578611808 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\control_audio.h
 
 1573418766 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje.h
 
@@ -33,11 +35,21 @@
 
 1574808574 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\clase_personaje.h
 
-1578602195 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\clase_personaje_jugador.h
+1578693589 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\clase_personaje_jugador.h
 
-1578602197 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\clase_personaje_mobs.h
+1578693635 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\clase_personaje_mobs.h
 
 1574996322 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\cronometro.h
 
-1578601925 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_mapa_grafico.h
+1578693542 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_mapa_grafico.h
+
+1578443711 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\controles_de_archivos\imagenes.h
+
+1573516730 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\controles_de_archivos\pistas_de_audio.h
+
+1578539756 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\controles_de_archivos\control_grafico.h
+
+1578611808 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\controles_de_archivos\control_audio.h
+
+1578697557 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\controles_de_archivos\control_partida.h
 

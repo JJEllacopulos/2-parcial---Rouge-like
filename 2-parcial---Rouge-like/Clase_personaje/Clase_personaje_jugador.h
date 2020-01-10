@@ -35,7 +35,7 @@ class JUGADOR: public PERSONAJE{
         void sets_pocicion_y_juego(int y_juego);
 
         ///---------------------Propio del hijo---------------------
-        JUGADOR(MAPA &mapa);
+        JUGADOR(/*MAPA &mapa*/);
         void mover_en_mapa_guia();
         void mover_jugador(MAPA &mapa);
         void rutina_de_movimiento(MAPA &mapa);
@@ -49,7 +49,7 @@ class JUGADOR: public PERSONAJE{
         void Reiniciar_jugador(MAPA &mapa);
 };
 
-JUGADOR::JUGADOR(MAPA &mapa){
+JUGADOR::JUGADOR(/*MAPA &mapa*/){
 
     sprite_personaje = AVATAR;
 
@@ -58,7 +58,7 @@ JUGADOR::JUGADOR(MAPA &mapa){
     frame_estatico.sets_tiempo(3);
     frames_ataque.sets_tiempo(5);
 
-    PERSONAJE::iniciar_personaje(mapa, sprite_personaje);
+    ///PERSONAJE::iniciar_personaje(mapa, sprite_personaje);
 
     frente = 0;
 

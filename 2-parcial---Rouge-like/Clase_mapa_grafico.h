@@ -50,7 +50,7 @@ class MAPA_GRAFICO{
             void armar_mapa_grafico_fondo(MAPA &mapa);
             void armar_mapa_grafico_1_sup(MAPA &mapa);
             void iniciar_mapas();
-            MAPA_GRAFICO(MAPA &mapa);
+            MAPA_GRAFICO(/*MAPA &mapa*/);
 
         ///Reiniciar mapa grafico:
             void Reiniciar_mapa_grefico(MAPA &mapa);
@@ -68,11 +68,11 @@ class MAPA_GRAFICO{
 };
 
 ///Constructor:
-MAPA_GRAFICO::MAPA_GRAFICO(MAPA &mapa){
+MAPA_GRAFICO::MAPA_GRAFICO(/*MAPA &mapa*/){
 
-    iniciar_mapas();
-    armar_mapa_grafico_fondo(mapa);
-    armar_mapa_grafico_1_sup(mapa);
+    ///iniciar_mapas();
+    ///armar_mapa_grafico_fondo(mapa);
+    ///armar_mapa_grafico_1_sup(mapa);
 
 }
 

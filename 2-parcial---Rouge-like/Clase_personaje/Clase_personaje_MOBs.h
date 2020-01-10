@@ -87,7 +87,7 @@ class MOB: public PERSONAJE{
 
 
 
-        MOB(MAPA &mapa);
+        MOB(/*MAPA &mapa*/);
 
         int asechar(MAPA &mapa);
         void realisar_movimiento(MAPA &mapa, int x_guia, int y_guia, int x_mapa, int y_mapa);
@@ -102,7 +102,7 @@ class MOB: public PERSONAJE{
 
 };
 
-MOB::MOB(MAPA &mapa){
+MOB::MOB(/*MAPA &mapa*/){
 
     sprite_personaje = ENEMIGO;
     retraso_movimiento.sets_tiempo(10);
@@ -118,7 +118,7 @@ MOB::MOB(MAPA &mapa){
     frame_estatico.sets_tiempo(3);
     frames_ataque.sets_tiempo(5);
 
-    PERSONAJE::iniciar_personaje(mapa, sprite_personaje);
+    ///PERSONAJE::iniciar_personaje(mapa, sprite_personaje);
 
     vida = 3;
     vivo = true;

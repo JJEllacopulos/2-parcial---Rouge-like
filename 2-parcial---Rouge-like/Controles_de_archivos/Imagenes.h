@@ -25,6 +25,9 @@ BITMAP *DECORADO_spr;
 BITMAP *ANIMACIONES_spr;
 BITMAP *ANIMACION_spr;
 
+///--------------
+BITMAP *BARRAS_spr;
+BITMAP *BARRAS_ACT_spr;
 
 
 #endif // IMAGENES_H_INCLUDED

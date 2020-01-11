@@ -343,19 +343,19 @@ void MOB::Graficar_movimiento_MOBs(){
         switch(frente){
             case 0:
                 blit(ENEMIGO_1_spr, ENEMIGO_1_mov_spr, 0 * DESPLAZAR_Y_PIXEL, 0 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_X_SPRITE, gets_pocicion_x_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y);
+                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X);
             break;
             case 1:
                 blit(ENEMIGO_1_spr, ENEMIGO_1_mov_spr, 0 * DESPLAZAR_Y_PIXEL, 1 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite_h_flip(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_X_SPRITE, gets_pocicion_x_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y);
+                draw_sprite_h_flip(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X);
             break;
             case 2:
                 blit(ENEMIGO_1_spr, ENEMIGO_1_mov_spr, 0 * DESPLAZAR_Y_PIXEL, 2 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_X_SPRITE, gets_pocicion_x_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y);
+                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X);
             break;
             case 3:
                 blit(ENEMIGO_1_spr, ENEMIGO_1_mov_spr, 0 * DESPLAZAR_Y_PIXEL, 1 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_X_SPRITE, gets_pocicion_x_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y);
+                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X);
             break;
 
         }
@@ -371,47 +371,47 @@ void MOB::Graficar_movimiento_MOBs(){
 
             case 0: ///Estatico.
                 blit(ENEMIGO_1_spr, ENEMIGO_1_mov_spr, 0 * DESPLAZAR_Y_PIXEL, 0 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE, gets_pocicion_x_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y);
+                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X);
             break;
 
             case 1: ///Derecha;
                 blit(ENEMIGO_1_spr, ENEMIGO_1_mov_spr, animacion.gets_cont() * DESPLAZAR_Y_PIXEL, 1 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE - frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_Y);
+                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE - frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X);
             break;
 
             case 2: ///Izquierda;
                 blit(ENEMIGO_1_spr, ENEMIGO_1_mov_spr, animacion.gets_cont() * DESPLAZAR_Y_PIXEL, 1 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite_h_flip(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_Y);
+                draw_sprite_h_flip(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X);
             break;
 
             case 3: ///Arriba;
                 blit(ENEMIGO_1_spr, ENEMIGO_1_mov_spr, animacion.gets_cont() * DESPLAZAR_Y_PIXEL, 2 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE, gets_pocicion_x_juego() * TAMANO_X_SPRITE + frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT + ESPACIO_SUPERIOR_Y);
+                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT + ESPACIO_SUPERIOR_X);
             break;
 
             case 4: ///Abajo;
                 blit(ENEMIGO_1_spr, ENEMIGO_1_mov_spr, animacion.gets_cont() * DESPLAZAR_Y_PIXEL, 0 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE, gets_pocicion_x_juego() * TAMANO_X_SPRITE - frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT + ESPACIO_SUPERIOR_Y);
+                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE - frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT + ESPACIO_SUPERIOR_X);
             break;
 
             case 5: ///DERECHA ARRIBA;
                 blit(ENEMIGO_1_spr, ENEMIGO_1_mov_spr, animacion.gets_cont() * DESPLAZAR_Y_PIXEL, 2 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE - frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT, gets_pocicion_x_juego() * TAMANO_X_SPRITE + frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT + ESPACIO_SUPERIOR_Y);
+                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE - frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT + ESPACIO_SUPERIOR_X);
             break;
 
             case 6: ///DERECHA ABAJO;
                 blit(ENEMIGO_1_spr, ENEMIGO_1_mov_spr, animacion.gets_cont() * DESPLAZAR_Y_PIXEL, 0 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE - frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT, gets_pocicion_x_juego() * TAMANO_X_SPRITE - frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT + ESPACIO_SUPERIOR_Y);
+                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE - frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE - frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT + ESPACIO_SUPERIOR_X);
             break;
 
             case 7: ///IZQUIERDA ARRIBA;
                 blit(ENEMIGO_1_spr, ENEMIGO_1_mov_spr, animacion.gets_cont() * DESPLAZAR_Y_PIXEL, 2 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT, gets_pocicion_x_juego() * TAMANO_X_SPRITE + frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT + ESPACIO_SUPERIOR_Y);
+                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT + ESPACIO_SUPERIOR_X);
             break;
 
             case 8: ///IZQUIERDA ABAJO;
                 blit(ENEMIGO_1_spr, ENEMIGO_1_mov_spr, animacion.gets_cont() * DESPLAZAR_Y_PIXEL, 0 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT, gets_pocicion_x_juego() * TAMANO_X_SPRITE - frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT + ESPACIO_SUPERIOR_Y);
+                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE - frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT + ESPACIO_SUPERIOR_X);
             break;
         }
 

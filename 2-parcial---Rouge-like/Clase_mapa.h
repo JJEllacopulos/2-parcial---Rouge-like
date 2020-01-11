@@ -7,14 +7,14 @@
 #define MAX_COLUMNAS_GUIA 14
 
 #define MAX_FILAS_JUEGO 13
-#define MAX_COLUMNAS_JUEGO 20
+#define MAX_COLUMNAS_JUEGO 19
 
 #define POSICION_PUERTA_X 6
 #define POSICION_PUERTA_Y 9
 
     ///Cantidades en el armado de los mapas
 #define BLOQUES_GUIA_HABILITADOS 10 ///Candidad de minimapas habilitados.
-#define BLOQUES_JUEGOS_PISO 49 ///Cantidad de bloques que se dispondran como piso.
+#define BLOQUES_JUEGOS_PISO 46 ///Cantidad de bloques que se dispondran como piso.
 
 ///Contenido de matriz de juego:
 #define MURO_IRROMPIBLE 88 ///X

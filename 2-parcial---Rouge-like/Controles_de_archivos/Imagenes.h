@@ -28,6 +28,8 @@ BITMAP *ANIMACION_spr;
 ///--------------
 BITMAP *BARRAS_spr;
 BITMAP *BARRAS_ACT_spr;
+BITMAP *CORAZON_spr;
+
 
 
 #endif // IMAGENES_H_INCLUDED

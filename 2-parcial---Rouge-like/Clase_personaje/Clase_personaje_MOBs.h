@@ -1,31 +1,8 @@
 #ifndef CLASE_PERSONAJE_ENEMIGO_H_INCLUDED
 #define CLASE_PERSONAJE_ENEMIGO_H_INCLUDED
 
-#define RETRAZO_MOVIMIENTO_MOB 3 ///Intrevalo entre movimientos de los MOBs
+///#define RETRAZO_MOVIMIENTO_MOB 3 ///Intrevalo entre movimientos de los MOBs
 #define CANTIDAD_MODS 15
-
-/// IDENTIFICACION DE CUADRANTES
-    int buscar_cuadrante(int x, int y, int i, int j){   ///"*" SIGNIFICA QUE ESTA CHEQUEADA LA LOGICA
-
-
-    if(y<j&&x<i){       /// PRIMER * derecha abajo
-        return 8;
-    }else if(y==j&&x<i){///SEGUNDO * abajo
-        return 2;
-    }else if(y>j&&x<i){ /// TERCER * iizquierda abajo
-        return 6;
-    }else if(y<j&&x==i){/// CUARTO * derecha
-        return 4;                               /// * QUINTO ES LA pocicion DEL OBJETO ENEMIGO
-    }else if(y>j&&x==i){///  SEXTO * izquierda
-        return 3;
-    }else if(y<j&&x>i){/// SEPTIMO * derecha arriba
-        return 7;
-    }else if(y==j&&x>i){/// OCTAVO * arriba
-        return 1;
-    }else if(y>j&&x>i){///  NOVENO * izquierda arriba
-        return 9;
-    }
-}
 
 
 class MOB: public PERSONAJE{
@@ -38,7 +15,9 @@ class MOB: public PERSONAJE{
         int movimiento;
         int velocidad;
 
-        int vida;
+        ///Estadisticas del MOB:
+        int vida_actual;
+        int vida_maxima;
         bool vivo;
 
 
@@ -77,27 +56,34 @@ class MOB: public PERSONAJE{
         int gets_velocidad(){return velocidad;}
         int gets_sprite(){return sprite_personaje;}
         int gets_vision(){return vision;}
-        int gets_vida(){return vida;}
+        int gets_vida(){return vida_actual;}
 
         ///Sets:
         void set_sprite( char c){sprite_personaje=c;}
-        void sets_vida(int aux){vida = aux;}
+        void sets_vida(int aux){vida_actual = aux;}
         void restar_vida();
         void muerte();
 
 
-
+        ///Constructor.
         MOB(/*MAPA &mapa*/);
 
-        int asechar(MAPA &mapa);
-        void realisar_movimiento(MAPA &mapa, int x_guia, int y_guia, int x_mapa, int y_mapa);
-        void mover_MOB(MAPA &mapa);
+        ///Rutina de movimiento.
         void rutina_de_movimiento(MAPA &mapa);
 
-        void Graficar_movimiento_MOBs();
-        void graficar_MOBs(int x_externo, int y_externo);
+        void mover_MOB(MAPA &mapa);
+        void realisar_movimiento(MAPA &mapa, int x_guia, int y_guia, int x_mapa, int y_mapa);
+        int asechar(MAPA &mapa);
+        int buscar_cuadrante(int x, int y, int i, int j);
 
-        ///Reiniciar MOBs:
+        ///Graficar MOB:
+        void graficar_MOBs(int x_externo, int y_externo);
+        void Graficar_accion_MOBs();
+        void Graficar_accion_MOBs_pocicion_estatica();
+        void Graficar_accion_MOBs_caminar();
+        void Graficar_accion_MOBs_estado();
+
+        ///Iniciar y reiniciar las estadisticas del MOBs:
         void Reiniciar_MOBs(MAPA &mapa);
 
 };
@@ -120,16 +106,17 @@ MOB::MOB(/*MAPA &mapa*/){
 
     ///PERSONAJE::iniciar_personaje(mapa, sprite_personaje);
 
-    vida = 3;
-    vivo = true;
-    frente = 0;
+    //vida = 3;
+    //vivo = true;
+    //frente = 0;
 
 }
 
 ///Reiniciar MOBs:
 void MOB::Reiniciar_MOBs(MAPA &mapa){
 
-    vida = 3;
+    vida_actual = 3;
+    vida_maxima = 3;
     vivo = true;
     frente = 0;
 
@@ -139,6 +126,8 @@ void MOB::Reiniciar_MOBs(MAPA &mapa){
 
 ///Rutina de MOBimiento del jugador:
 void MOB::rutina_de_movimiento(MAPA &mapa){
+
+    if(vivo){
 
     if(!frame_estatico.gets_cont_bool()){
 
@@ -239,6 +228,12 @@ void MOB::rutina_de_movimiento(MAPA &mapa){
 
         }
     }
+
+    }
+    else{
+        mapa.sets_mapa_general(PERSONAJE::gets_pocicion_x_guia(), PERSONAJE::gets_pocicion_y_guia(), PERSONAJE::gets_pocicion_x_juego(), PERSONAJE::gets_pocicion_y_juego(), PISO); ///BORRA LA UBICACION ANTERIOR DEL ENEMIGO
+    }
+
 }
 
 void MOB::realisar_movimiento(MAPA &mapa,  int x_guia, int y_guia, int x_mapa, int y_mapa){
@@ -323,106 +318,33 @@ void MOB::mover_MOB(MAPA &mapa){
     mapa.sets_mapa_general(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego(), sprite_personaje);
 }
 
-void MOB::graficar_MOBs(int x_externo, int y_externo){
+/// IDENTIFICACION DE CUADRANTES
+int MOB:: buscar_cuadrante(int x, int y, int i, int j){   ///"*" SIGNIFICA QUE ESTA CHEQUEADA LA LOGICA
 
-    if(vivo){
-        if(x_externo == gets_pocicion_x_guia()){
-            if(y_externo == gets_pocicion_y_guia()){
-                Graficar_movimiento_MOBs();
-            }
-        }
+
+    if(y<j&&x<i){       /// PRIMER * derecha abajo
+        return 8;
+    }else if(y==j&&x<i){///SEGUNDO * abajo
+        return 2;
+    }else if(y>j&&x<i){ /// TERCER * iizquierda abajo
+        return 6;
+    }else if(y<j&&x==i){/// CUARTO * derecha
+        return 4;                               /// * QUINTO ES LA pocicion DEL OBJETO ENEMIGO
+    }else if(y>j&&x==i){///  SEXTO * izquierda
+        return 3;
+    }else if(y<j&&x>i){/// SEPTIMO * derecha arriba
+        return 7;
+    }else if(y==j&&x>i){/// OCTAVO * arriba
+        return 1;
+    }else if(y>j&&x>i){///  NOVENO * izquierda arriba
+        return 9;
     }
-
 }
 
-void MOB::Graficar_movimiento_MOBs(){
-
-    if(direccion == 0){
-
-        ///Pocicion estatica.
-        switch(frente){
-            case 0:
-                blit(ENEMIGO_1_spr, ENEMIGO_1_mov_spr, 0 * DESPLAZAR_Y_PIXEL, 0 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X);
-            break;
-            case 1:
-                blit(ENEMIGO_1_spr, ENEMIGO_1_mov_spr, 0 * DESPLAZAR_Y_PIXEL, 1 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite_h_flip(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X);
-            break;
-            case 2:
-                blit(ENEMIGO_1_spr, ENEMIGO_1_mov_spr, 0 * DESPLAZAR_Y_PIXEL, 2 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X);
-            break;
-            case 3:
-                blit(ENEMIGO_1_spr, ENEMIGO_1_mov_spr, 0 * DESPLAZAR_Y_PIXEL, 1 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X);
-            break;
-
-        }
-    }
-    else{ ///Animacion de movimiento.
-
-        if(animacion_int.control_bool()){
-            animacion.control_int();
-        }
-
-        frame_estatico.control_int_invertido();
-        switch(direcion_anima){
-
-            case 0: ///Estatico.
-                blit(ENEMIGO_1_spr, ENEMIGO_1_mov_spr, 0 * DESPLAZAR_Y_PIXEL, 0 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X);
-            break;
-
-            case 1: ///Derecha;
-                blit(ENEMIGO_1_spr, ENEMIGO_1_mov_spr, animacion.gets_cont() * DESPLAZAR_Y_PIXEL, 1 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE - frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X);
-            break;
-
-            case 2: ///Izquierda;
-                blit(ENEMIGO_1_spr, ENEMIGO_1_mov_spr, animacion.gets_cont() * DESPLAZAR_Y_PIXEL, 1 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite_h_flip(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X);
-            break;
-
-            case 3: ///Arriba;
-                blit(ENEMIGO_1_spr, ENEMIGO_1_mov_spr, animacion.gets_cont() * DESPLAZAR_Y_PIXEL, 2 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT + ESPACIO_SUPERIOR_X);
-            break;
-
-            case 4: ///Abajo;
-                blit(ENEMIGO_1_spr, ENEMIGO_1_mov_spr, animacion.gets_cont() * DESPLAZAR_Y_PIXEL, 0 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE - frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT + ESPACIO_SUPERIOR_X);
-            break;
-
-            case 5: ///DERECHA ARRIBA;
-                blit(ENEMIGO_1_spr, ENEMIGO_1_mov_spr, animacion.gets_cont() * DESPLAZAR_Y_PIXEL, 2 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE - frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT + ESPACIO_SUPERIOR_X);
-            break;
-
-            case 6: ///DERECHA ABAJO;
-                blit(ENEMIGO_1_spr, ENEMIGO_1_mov_spr, animacion.gets_cont() * DESPLAZAR_Y_PIXEL, 0 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE - frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE - frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT + ESPACIO_SUPERIOR_X);
-            break;
-
-            case 7: ///IZQUIERDA ARRIBA;
-                blit(ENEMIGO_1_spr, ENEMIGO_1_mov_spr, animacion.gets_cont() * DESPLAZAR_Y_PIXEL, 2 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT + ESPACIO_SUPERIOR_X);
-            break;
-
-            case 8: ///IZQUIERDA ABAJO;
-                blit(ENEMIGO_1_spr, ENEMIGO_1_mov_spr, animacion.gets_cont() * DESPLAZAR_Y_PIXEL, 0 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-                draw_sprite(buffer, ENEMIGO_1_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + frame_estatico.gets_cont() * TAMANO_Y_SPRITE_INT + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE - frame_estatico.gets_cont() * TAMANO_X_SPRITE_INT + ESPACIO_SUPERIOR_X);
-            break;
-        }
-
-        return;
-    }
-    ///draw_sprite(buffer, AVATAR_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE, gets_pocicion_x_juego() * TAMANO_X_SPRITE);
-}
-
+///Resibir daño.
 void MOB::restar_vida(){
-    if(vida > 0){
-        vida--;
+    if(vida_actual > 0){
+        vida_actual--;
     }
     else{
         muerte();

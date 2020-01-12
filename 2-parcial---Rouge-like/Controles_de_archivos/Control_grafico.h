@@ -21,6 +21,9 @@
 #define TAMANO_X_BARRA 32 ///Tamaño de las barras en el eje x.
 #define TAMANO_Y_BARRA 16 ///Tamaño de las barras en el eje y.
 
+#define TAMANO_X_CORAZON 8 ///Tamaño de las barras en el eje x.
+#define TAMANO_Y_CORAZON 8 ///Tamaño de las barras en el eje y.
+
 
 ///Carga las imagenes en los difenentes mapas de bits.
 void asignar_sprites(){
@@ -57,6 +60,7 @@ void asignar_sprites(){
     ///------------------------------------------
     BARRAS_spr = load_bitmap("Imagenes/Barras.bmp", NULL);
     BARRAS_ACT_spr = create_bitmap(TAMANO_Y_BARRA, TAMANO_X_BARRA);
+    CORAZON_spr = create_bitmap(TAMANO_Y_CORAZON, TAMANO_X_CORAZON);
 
 }
 

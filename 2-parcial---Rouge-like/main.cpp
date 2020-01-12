@@ -24,7 +24,9 @@ using namespace std;
 
 #include "Clase_personaje/Clase_personaje.h"
 #include "Clase_personaje/Clase_personaje_MOBs.h"
+#include "Clase_personaje/Clase_personaje_MOBs_graficos.h"
 #include "Clase_personaje/Clase_personaje_jugador.h"
+#include "Clase_personaje/Clase_personaje_jugador_graficos.h"
 
 ///Guardado de progreso.
 #include "Controles_de_archivos/Control_partida.h"

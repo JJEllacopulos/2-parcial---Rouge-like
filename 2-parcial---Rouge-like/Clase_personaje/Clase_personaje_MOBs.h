@@ -18,7 +18,7 @@ class MOB: public PERSONAJE{
         ///Estadisticas del MOB:
         int vida_actual;
         int vida_maxima;
-        bool vivo;
+        bool estado_vivo;
 
 
 
@@ -117,8 +117,9 @@ void MOB::Reiniciar_MOBs(MAPA &mapa){
 
     vida_actual = 3;
     vida_maxima = 3;
-    vivo = true;
+    estado_vivo = true;
     frente = 0;
+    sprite_personaje = ENEMIGO;
 
     PERSONAJE::iniciar_personaje(mapa, sprite_personaje);
 
@@ -127,7 +128,7 @@ void MOB::Reiniciar_MOBs(MAPA &mapa){
 ///Rutina de MOBimiento del jugador:
 void MOB::rutina_de_movimiento(MAPA &mapa){
 
-    if(vivo){
+    if(estado_vivo){
 
     if(!frame_estatico.gets_cont_bool()){
 
@@ -343,7 +344,7 @@ int MOB:: buscar_cuadrante(int x, int y, int i, int j){   ///"*" SIGNIFICA QUE E
 
 ///Resibir daño.
 void MOB::restar_vida(){
-    if(vida_actual > 0){
+    if(vida_actual > 1){
         vida_actual--;
     }
     else{
@@ -352,7 +353,7 @@ void MOB::restar_vida(){
 }
 
 void MOB::muerte(){
-    vivo = false;
+    estado_vivo = false;
     sprite_personaje = PISO;
 }
 

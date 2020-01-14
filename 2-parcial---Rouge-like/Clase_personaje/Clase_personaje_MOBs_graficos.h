@@ -3,7 +3,7 @@
 
 void MOB::graficar_MOBs(int x_externo, int y_externo){
 
-    if(vivo){
+    if(estado_vivo){
         if(x_externo == gets_pocicion_x_guia()){
             if(y_externo == gets_pocicion_y_guia()){
                 Graficar_accion_MOBs();

@@ -11,13 +11,21 @@ class JUGADOR: public PERSONAJE{
 
         BITMAP *personaje_spr;
 
-        CRONO retraso_movimiento;
-        CRONO animacion;
-        CRONO frame_estatico;
-        int direcion_anima;
+        //CRONO retraso_movimiento;
+        //CRONO animacion;
+        //CRONO frame_estatico;
+        //int direcion_anima;
 
         int frente;
         CRONO frames_ataque;
+
+        ///
+
+        ///Animaciones:
+        CRONO inavilitar_acciones; ///frame_estatico;
+        CRONO frames_animacion_ataque_1; ///frames_ataque
+        CRONO frames_animacion_desplasamiento; ///retraso_movimiento
+        CRONO frames_animacion_caminar; ///animacion
 
         ///Estadisticas del jugador:
         int vida_actual;
@@ -45,17 +53,24 @@ class JUGADOR: public PERSONAJE{
 
         ///---------------------Propio del hijo---------------------
         JUGADOR(/*MAPA &mapa*/);
+
+        ///---Acciones:
+        void rutinas_de_acciones(MAPA &mapa, MOB esqueleto[]);
+
+        ///Moviniento
         void mover_en_mapa_guia();
         void mover_jugador(MAPA &mapa);
         void rutina_de_movimiento(MAPA &mapa);
 
+        ///Ataque 1 (Z);
         void realizar_ataque(MOB esqueleto[]);
         void atacar(int x_guia, int y_guia, int x_juego, int y_juego, MOB esqueleto[]);
 
-        ///Animaciones:
+        ///---Animaciones:
         void graficar_jugador();
         void graficar_jugador_pocicion_estatica();
         void graficar_jugador_caminar();
+        void graficar_jugador_ataque_1();
         void graficar_jugador_barras();
 
         ///Iniciar y reiniciar las estadisticas;
@@ -66,14 +81,19 @@ JUGADOR::JUGADOR(/*MAPA &mapa*/){
 
     sprite_personaje = AVATAR;
 
-    retraso_movimiento.sets_tiempo(5);
+    /*retraso_movimiento.sets_tiempo(20);
     animacion.sets_tiempo(9);
     frame_estatico.sets_tiempo(3);
-    frames_ataque.sets_tiempo(5);
+    frames_ataque.sets_tiempo(5);*/
+
+    inavilitar_acciones.sets_tiempo(1);
+    frames_animacion_desplasamiento.sets_tiempo(3);
+    frames_animacion_caminar.sets_tiempo(9);
+    frames_animacion_ataque_1.sets_tiempo(7);
 
     ///PERSONAJE::iniciar_personaje(mapa, sprite_personaje);
 
-    frente = 0;
+    ///frente = 0;
 
 }
 
@@ -90,12 +110,46 @@ void JUGADOR::Reiniciar_jugador(MAPA &mapa){
     runa_maxima = MAXIMA_RUNA;
 }
 
-///-------------------------------------------Rutina de movimiento del jugador:
-void JUGADOR::rutina_de_movimiento(MAPA &mapa){
+///-------------------------------------------Rutinas de acciones:
+void JUGADOR::rutinas_de_acciones(MAPA &mapa, MOB esqueleto[]){
 
-    if(!frame_estatico.gets_cont_bool()){
+    if(!inavilitar_acciones.gets_cont_bool()){
 
         direccion = 0;
+
+        ///Mobimiento:
+        if(key[KEY_RIGHT] ||key[KEY_LEFT] || key[KEY_DOWN] || key[KEY_UP]){
+
+            //frames_animacion_ataque_1.sets_cont(0);
+            inavilitar_acciones.sets_tiempo(3);
+            rutina_de_movimiento(mapa);
+        }
+        else{
+
+            if(key[KEY_Z]){
+
+                if(!frames_animacion_ataque_1.gets_cont_bool()){
+
+                    frames_animacion_ataque_1.sets_cont(1);
+                    inavilitar_acciones.sets_tiempo(7);
+                    realizar_ataque(esqueleto);
+
+                }
+            }
+
+        }
+
+    }
+
+}
+
+
+///---Rutina de movimiento del jugador:
+void JUGADOR::rutina_de_movimiento(MAPA &mapa){
+
+    //if(!frame_estatico.gets_cont_bool()){
+
+        //direccion = 0;
 
         if(key[KEY_RIGHT]&&key[KEY_UP]){                                               ///DERECHA ARRIBA
                 direccion = 5;
@@ -130,7 +184,7 @@ void JUGADOR::rutina_de_movimiento(MAPA &mapa){
                                                                     frente = 0;
                                                                     }
                 mover_jugador(mapa);
-    }
+    //}
 }
 
 ///Mover al jugador.
@@ -181,11 +235,11 @@ void JUGADOR::mover_jugador(MAPA &mapa){
         if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego() + x, gets_pocicion_y_juego() +y) == PISO){
             sets_pocicion_x_juego(gets_pocicion_x_juego() + x);
             sets_pocicion_y_juego(gets_pocicion_y_juego() + y);
-            direcion_anima = direccion;
+            //direcion_anima = direccion;
         }
         else{
             direccion = 0;
-            direcion_anima = 0;
+            //direcion_anima = 0;
         }
     }
 
@@ -210,12 +264,12 @@ void JUGADOR::mover_en_mapa_guia(){
 
 }
 
-///-------------------------------------------Rutina de ataque
+///---Rutina de ataque 1
 
 void JUGADOR::realizar_ataque(MOB esqueleto[]){
 
-    if(!frames_ataque.control_bool()){
-        if(key[KEY_SPACE]){
+    //if(frames_animacion_ataque_1.control_bool()){
+        //if(key[KEY_Z]){
             if(frente == 0){
                 atacar(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego()+1, gets_pocicion_y_juego(), esqueleto);
             }
@@ -228,8 +282,8 @@ void JUGADOR::realizar_ataque(MOB esqueleto[]){
             else if(frente == 3){
                 atacar(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego()+1, esqueleto);
             }
-        }
-    }
+        //}
+    //}
 
 }
 

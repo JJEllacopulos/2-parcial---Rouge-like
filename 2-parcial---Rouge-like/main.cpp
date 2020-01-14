@@ -113,7 +113,7 @@ int main(){
         while(!key[KEY_ESC]){
 
             ///Mover personaje jugador:
-            per_jug.rutina_de_movimiento(mapa);
+            per_jug.rutinas_de_acciones(mapa, esqueleto);
 
             ///Mover MOVs:
             for(ciclo_MOBs = 0; ciclo_MOBs < CANTIDAD_MODS; ciclo_MOBs++){
@@ -121,7 +121,7 @@ int main(){
             }
 
             ///Atacar personaje jugador:
-            per_jug.realizar_ataque(esqueleto);
+            //per_jug.realizar_ataque(esqueleto);
 
             ///Limpia el mapa de bits.
             clear(buffer);

@@ -6,21 +6,41 @@
 #define TAMANO_X_BUFFER 640 ///Tamaño del los buffer en el eje x.
 #define TAMANO_Y_BUFFER 480 ///Tamaño del los buffer en el eje y.
 
+
+///---Propios de todo sprite:
 #define TAMANO_X_SPRITE 32 ///Tamaño del los sprites en el eje x.
 #define TAMANO_Y_SPRITE 32 ///Tamaño del los sprites en el eje y.
 
 #define DESPLAZAR_X_PIXEL 33 ///Tamaño de pixels en el eje x que se debe desplazar para cortar la imagen.
 #define DESPLAZAR_Y_PIXEL 33 ///Tamaño de pixels en el eje y que se debe desplazar para cortar la imagen.
 
-#define TAMANO_X_SPRITE_INT 10 ///Intervalo de la animacion.
-#define TAMANO_Y_SPRITE_INT 10 ///Intervalo de la animacion.
-
+///Espacio para los bordes:
 #define ESPACIO_SUPERIOR_Y 16 ///Espacio marcos.
 #define ESPACIO_SUPERIOR_X 64 ///Espacio superior.
 
+
+///---Propios de los personajes:
+
+#define TAMANO_X_SPRITE_INT 10 ///Intervalo de la animacion.
+#define TAMANO_Y_SPRITE_INT 10 ///Intervalo de la animacion.
+
+///Ataque:
+#define TAMANO_X_SPRITE_ATTACK 64 ///Tamaño del los sprites de attack en el eje x.
+#define TAMANO_Y_SPRITE_ATTACK 64 ///Tamaño del los sprites de attack en el eje y.
+
+#define DESPLAZAR_X_SPRITE_ATTACK 66 ///Tamaño del los sprites de attack en el eje x que se debe desplazar para cortar la imagen.
+#define DESPLAZAR_Y_SPRITE_ATTACK 66 ///Tamaño del los sprites de attack en el eje y que se debe desplazar para cortar la imagen.
+
+#define CENTRAR_X_SPRITE_ATTACK 16 ///Tamaño del los sprites de attack en el eje x que se debe desplazar para centrar la imagen.
+#define CENTRAR_Y_SPRITE_ATTACK 16 ///Tamaño del los sprites de attack en el eje y que se debe desplazar para centrar la imagen.
+
+///Propios de los jugador:
 #define TAMANO_X_BARRA 32 ///Tamaño de las barras en el eje x.
 #define TAMANO_Y_BARRA 16 ///Tamaño de las barras en el eje y.
 
+#define ANIMACION_ATAQUE_1 265 ///Tamaño de las barras en el eje y.
+
+///Propios de los MOBs:
 #define TAMANO_X_CORAZON 8 ///Tamaño de las barras en el eje x.
 #define TAMANO_Y_CORAZON 8 ///Tamaño de las barras en el eje y.
 
@@ -35,6 +55,7 @@ void asignar_sprites(){
 
     JUGADOR_spr = load_bitmap("Imagenes/Jugador.bmp", NULL);
     JUGADOR_mov_spr = create_bitmap(TAMANO_X_SPRITE, TAMANO_Y_SPRITE);
+    JUGADOR_attack_spr = create_bitmap(TAMANO_X_SPRITE_ATTACK, TAMANO_Y_SPRITE_ATTACK);
 
     ENEMIGO_1_spr = load_bitmap("Imagenes/Enemigo_1.bmp", NULL);
     ENEMIGO_1_mov_spr = create_bitmap(TAMANO_X_SPRITE, TAMANO_Y_SPRITE);

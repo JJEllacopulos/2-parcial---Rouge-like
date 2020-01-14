@@ -15,11 +15,19 @@ class CRONO{
         bool gets_cont_bool();
         void sets_cont(int aux);
 
+        ///Con reinicio:
         bool control_bool();
         int control_int();
 
         bool control_bool_invertido();
         int control_int_invertido();
+
+        ///Sin reincio:
+        bool control_bool_sin_reinicio();
+        int control_int_sin_reinicio();
+
+        bool control_bool_invertido_sin_reinicio();
+        int control_int_invertido_sin_reinicio();
 };
 
 CRONO::CRONO(){
@@ -47,6 +55,7 @@ void CRONO::sets_cont(int aux){
     cont = aux;
 }
 
+///---Con reinicio:
 bool CRONO::control_bool(){
     if(cont <= tiempo){
         cont++;
@@ -89,6 +98,40 @@ int CRONO:: control_int_invertido(){
         cont = tiempo;
         return cont;
     }
+}
+
+///---Sin reinicio:
+
+bool CRONO::control_bool_sin_reinicio(){
+    if(cont <= tiempo){
+        cont++;
+        return true;
+    }
+    return false;
+}
+
+int CRONO:: control_int_sin_reinicio(){
+    if(cont <= tiempo){
+        cont++;
+        return cont;
+    }
+    return cont;
+}
+
+bool CRONO::control_bool_invertido_sin_reinicio(){
+    if(cont != 0){
+        cont--;
+        return true;
+    }
+    return false;
+}
+
+int CRONO:: control_int_invertido_sin_reinicio(){
+    if(cont != 0){
+        cont--;
+        return cont;
+    }
+    return cont;
 }
 
 #endif // CRONOMETRO_H_INCLUDED

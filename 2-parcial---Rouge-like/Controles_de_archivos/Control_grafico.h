@@ -38,7 +38,8 @@
 #define TAMANO_X_BARRA 32 ///Tamaño de las barras en el eje x.
 #define TAMANO_Y_BARRA 16 ///Tamaño de las barras en el eje y.
 
-#define ANIMACION_ATAQUE_1 265 ///Tamaño de las barras en el eje y.
+#define ANIMACION_ATAQUE_1 265 ///Pocicion inicial de la animacion del ataque 1.
+#define ANIMACION_ATAQUE_2 529 ///Pocicion inicial de la animacion del ataque 2.
 
 ///Propios de los MOBs:
 #define TAMANO_X_CORAZON 8 ///Tamaño de las barras en el eje x.

@@ -23,7 +23,8 @@ class JUGADOR: public PERSONAJE{
 
         ///Animaciones:
         CRONO inavilitar_acciones; ///frame_estatico;
-        CRONO frames_animacion_ataque_1; ///frames_ataque
+        CRONO frames_animacion_ataque_1; ///frames_ataque 1
+        CRONO frames_animacion_ataque_2; ///frames_ataque 2
         CRONO frames_animacion_desplasamiento; ///retraso_movimiento
         CRONO frames_animacion_caminar; ///animacion
 
@@ -71,6 +72,7 @@ class JUGADOR: public PERSONAJE{
         void graficar_jugador_pocicion_estatica();
         void graficar_jugador_caminar();
         void graficar_jugador_ataque_1();
+        void graficar_jugador_ataque_2();
         void graficar_jugador_barras();
 
         ///Iniciar y reiniciar las estadisticas;
@@ -90,6 +92,7 @@ JUGADOR::JUGADOR(/*MAPA &mapa*/){
     frames_animacion_desplasamiento.sets_tiempo(3);
     frames_animacion_caminar.sets_tiempo(9);
     frames_animacion_ataque_1.sets_tiempo(7);
+    frames_animacion_ataque_2.sets_tiempo(8);
 
     ///PERSONAJE::iniciar_personaje(mapa, sprite_personaje);
 
@@ -123,21 +126,36 @@ void JUGADOR::rutinas_de_acciones(MAPA &mapa, MOB esqueleto[]){
             //frames_animacion_ataque_1.sets_cont(0);
             inavilitar_acciones.sets_tiempo(3);
             rutina_de_movimiento(mapa);
+
+            return;
         }
-        else{
 
-            if(key[KEY_Z]){
+        ///Ataque 1:
+        if(key[KEY_Z]){
 
-                if(!frames_animacion_ataque_1.gets_cont_bool()){
+            if(!frames_animacion_ataque_1.gets_cont_bool()){
 
-                    frames_animacion_ataque_1.sets_cont(1);
-                    inavilitar_acciones.sets_tiempo(7);
-                    realizar_ataque(esqueleto);
+                frames_animacion_ataque_1.sets_cont(1);
+                inavilitar_acciones.sets_tiempo(7);
+                realizar_ataque(esqueleto);
 
-                }
             }
-
+            return;
         }
+
+        ///Ataque 2:
+        if(key[KEY_X]){
+
+            if(!frames_animacion_ataque_2.gets_cont_bool()){
+
+                frames_animacion_ataque_2.sets_cont(1);
+                inavilitar_acciones.sets_tiempo(8);
+                realizar_ataque(esqueleto);
+
+            }
+            return;
+        }
+
 
     }
 

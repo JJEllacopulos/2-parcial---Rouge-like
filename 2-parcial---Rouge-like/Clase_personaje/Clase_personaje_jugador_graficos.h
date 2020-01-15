@@ -13,6 +13,13 @@ void JUGADOR::graficar_jugador(){
         ///frames_animacion_ataque_1.control_bool_invertido_sin_reinicio();
 
     }
+
+    if(frames_animacion_ataque_2.gets_cont_bool() != 0){
+        graficar_jugador_ataque_2();
+        return;
+
+    }
+
     if(direccion == 0){
 
         //inavilitar_acciones.sets_tiempo(1);
@@ -156,6 +163,36 @@ void JUGADOR::graficar_jugador_ataque_1(){
     }
 
         ///return;
+
+}
+
+void JUGADOR::graficar_jugador_ataque_2(){
+
+    frames_animacion_ataque_2.control_int();
+    inavilitar_acciones.control_int_invertido();
+    switch(frente){
+
+        case 0: ///Abajo;
+            blit(JUGADOR_spr, JUGADOR_attack_spr, (frames_animacion_ataque_2.gets_cont() - 1) * DESPLAZAR_Y_SPRITE_ATTACK, (0 * DESPLAZAR_X_SPRITE_ATTACK) + ANIMACION_ATAQUE_2, 0, 0,  TAMANO_Y_SPRITE_ATTACK, TAMANO_X_SPRITE_ATTACK);
+            draw_sprite(buffer, JUGADOR_attack_spr, (gets_pocicion_y_juego() * TAMANO_Y_SPRITE) - CENTRAR_Y_SPRITE_ATTACK + ESPACIO_SUPERIOR_Y, (gets_pocicion_x_juego() * TAMANO_X_SPRITE) - CENTRAR_X_SPRITE_ATTACK + ESPACIO_SUPERIOR_X);
+        break;
+
+        case 1: ///Izquierda;
+            blit(JUGADOR_spr, JUGADOR_attack_spr, (frames_animacion_ataque_2.gets_cont() - 1) * DESPLAZAR_Y_SPRITE_ATTACK, (1 * DESPLAZAR_X_SPRITE_ATTACK) + ANIMACION_ATAQUE_2, 0, 0,  TAMANO_Y_SPRITE_ATTACK, TAMANO_X_SPRITE_ATTACK);
+            draw_sprite_h_flip(buffer, JUGADOR_attack_spr, (gets_pocicion_y_juego() * TAMANO_Y_SPRITE) - CENTRAR_Y_SPRITE_ATTACK + ESPACIO_SUPERIOR_Y, (gets_pocicion_x_juego() * TAMANO_X_SPRITE) - CENTRAR_X_SPRITE_ATTACK + ESPACIO_SUPERIOR_X);
+        break;
+
+        case 2: ///Arriba;
+            blit(JUGADOR_spr, JUGADOR_attack_spr, (frames_animacion_ataque_2.gets_cont() - 1) * DESPLAZAR_Y_SPRITE_ATTACK, (2 * DESPLAZAR_X_SPRITE_ATTACK) + ANIMACION_ATAQUE_2, 0, 0,  TAMANO_Y_SPRITE_ATTACK, TAMANO_X_SPRITE_ATTACK);
+            draw_sprite(buffer, JUGADOR_attack_spr, (gets_pocicion_y_juego() * TAMANO_Y_SPRITE) - CENTRAR_Y_SPRITE_ATTACK + ESPACIO_SUPERIOR_Y, (gets_pocicion_x_juego() * TAMANO_X_SPRITE) - CENTRAR_X_SPRITE_ATTACK + ESPACIO_SUPERIOR_X);
+        break;
+
+        case 3: ///Derecha;
+            blit(JUGADOR_spr, JUGADOR_attack_spr, (frames_animacion_ataque_2.gets_cont() - 1) * DESPLAZAR_Y_SPRITE_ATTACK, (1 * DESPLAZAR_X_SPRITE_ATTACK) + ANIMACION_ATAQUE_2, 0, 0,  TAMANO_Y_SPRITE_ATTACK, TAMANO_X_SPRITE_ATTACK);
+            draw_sprite(buffer, JUGADOR_attack_spr, (gets_pocicion_y_juego() * TAMANO_Y_SPRITE) - CENTRAR_Y_SPRITE_ATTACK + ESPACIO_SUPERIOR_Y, (gets_pocicion_x_juego() * TAMANO_X_SPRITE) - CENTRAR_X_SPRITE_ATTACK + ESPACIO_SUPERIOR_X);
+        break;
+
+    }
 
 }
 

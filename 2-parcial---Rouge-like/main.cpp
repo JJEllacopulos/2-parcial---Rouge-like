@@ -86,9 +86,13 @@ int main(){
     cout<< "Personaje jugador iniciado."<< endl;
 
     ///Iniciar MOVs:
-    ///int cantidad_de_MOBs = 15;
+    /*
+    int cantidad_de_MOBs = 15;
     int ciclo_MOBs;
     ENEMIGO_1 esqueleto[CANTIDAD_MODS];
+    */
+    PILA_ENEMIGOS pila;
+
     ///MOB esqueleto[CANTIDAD_MODS](mapa);
 
     ///Inicicar conometro:

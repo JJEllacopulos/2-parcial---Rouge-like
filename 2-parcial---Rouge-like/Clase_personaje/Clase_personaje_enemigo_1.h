@@ -5,7 +5,7 @@
 #define CANTIDAD_MODS 15
 
 
-class MOB: public PERSONAJE{
+class ENEMIGO_1: public PERSONAJE{
     protected:
         int direccion;
 
@@ -61,12 +61,12 @@ class MOB: public PERSONAJE{
         ///Sets:
         void set_sprite( char c){sprite_personaje=c;}
         void sets_vida(int aux){vida_actual = aux;}
-        void restar_vida();
+        void restar_vida(int dano);
         void muerte();
 
 
         ///Constructor.
-        MOB(/*MAPA &mapa*/);
+        ENEMIGO_1(/*MAPA &mapa*/);
 
         ///Rutina de movimiento.
         void rutina_de_movimiento(MAPA &mapa);
@@ -88,7 +88,7 @@ class MOB: public PERSONAJE{
 
 };
 
-MOB::MOB(/*MAPA &mapa*/){
+ENEMIGO_1::ENEMIGO_1(/*MAPA &mapa*/){
 
     sprite_personaje = ENEMIGO;
     retraso_movimiento.sets_tiempo(10);
@@ -113,7 +113,7 @@ MOB::MOB(/*MAPA &mapa*/){
 }
 
 ///Reiniciar MOBs:
-void MOB::Reiniciar_MOBs(MAPA &mapa){
+void ENEMIGO_1::Reiniciar_MOBs(MAPA &mapa){
 
     vida_actual = 3;
     vida_maxima = 3;
@@ -126,7 +126,7 @@ void MOB::Reiniciar_MOBs(MAPA &mapa){
 }
 
 ///Rutina de MOBimiento del jugador:
-void MOB::rutina_de_movimiento(MAPA &mapa){
+void ENEMIGO_1::rutina_de_movimiento(MAPA &mapa){
 
     if(estado_vivo){
 
@@ -237,14 +237,14 @@ void MOB::rutina_de_movimiento(MAPA &mapa){
 
 }
 
-void MOB::realisar_movimiento(MAPA &mapa,  int x_guia, int y_guia, int x_mapa, int y_mapa){
+void ENEMIGO_1::realisar_movimiento(MAPA &mapa,  int x_guia, int y_guia, int x_mapa, int y_mapa){
 
     PERSONAJE::sets_pocicion_completa(x_guia, y_guia, x_mapa, y_mapa);        ///ACTUALIZA LA UBICACION DEL ENEMIGO EN EL OBJETO
     mapa.sets_mapa_general(x_guia, y_guia, x_mapa, y_mapa, sprite_personaje);  ///ACTUALIZA LA UBICACION DEL ENEMIGO EN EL MAPA
 
 }
 
-int MOB::asechar(MAPA &mapa){
+int ENEMIGO_1::asechar(MAPA &mapa){
 
     int contador=0;
 
@@ -277,7 +277,7 @@ int MOB::asechar(MAPA &mapa){
     return cuadrante;
 }
 
-void MOB::mover_MOB(MAPA &mapa){
+void ENEMIGO_1::mover_MOB(MAPA &mapa){
 
     mapa.sets_mapa_general(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego(), PISO);
 
@@ -320,7 +320,7 @@ void MOB::mover_MOB(MAPA &mapa){
 }
 
 /// IDENTIFICACION DE CUADRANTES
-int MOB:: buscar_cuadrante(int x, int y, int i, int j){   ///"*" SIGNIFICA QUE ESTA CHEQUEADA LA LOGICA
+int ENEMIGO_1:: buscar_cuadrante(int x, int y, int i, int j){   ///"*" SIGNIFICA QUE ESTA CHEQUEADA LA LOGICA
 
 
     if(y<j&&x<i){       /// PRIMER * derecha abajo
@@ -343,16 +343,16 @@ int MOB:: buscar_cuadrante(int x, int y, int i, int j){   ///"*" SIGNIFICA QUE E
 }
 
 ///Resibir daño.
-void MOB::restar_vida(){
-    if(vida_actual > 1){
-        vida_actual--;
+void ENEMIGO_1::restar_vida(int dano){
+    if((vida_actual - dano) > 0){
+        vida_actual-= dano;
     }
     else{
         muerte();
     }
 }
 
-void MOB::muerte(){
+void ENEMIGO_1::muerte(){
     estado_vivo = false;
     sprite_personaje = PISO;
 }
@@ -361,25 +361,25 @@ void MOB::muerte(){
 
 ///Gets
 
-int MOB::gets_pocicion_x_guia(){
+int ENEMIGO_1::gets_pocicion_x_guia(){
     return PERSONAJE::gets_pocicion_x_guia();
 }
 
-int MOB::gets_pocicion_y_guia(){
+int ENEMIGO_1::gets_pocicion_y_guia(){
     return PERSONAJE::gets_pocicion_y_guia();
 }
 
-int MOB::gets_pocicion_x_juego(){
+int ENEMIGO_1::gets_pocicion_x_juego(){
     return PERSONAJE::gets_pocicion_x_juego();
 }
 
-int MOB::gets_pocicion_y_juego(){
+int ENEMIGO_1::gets_pocicion_y_juego(){
     return PERSONAJE::gets_pocicion_y_juego();
 }
 
 ///Sets:
 
-void MOB::sets_pocicion_completa(int x_guia, int y_guia, int x_juego, int y_juego){
+void ENEMIGO_1::sets_pocicion_completa(int x_guia, int y_guia, int x_juego, int y_juego){
 
     PERSONAJE::sets_pocicion_x_guia(x_guia);
     PERSONAJE::sets_pocicion_y_guia(y_guia);
@@ -388,19 +388,19 @@ void MOB::sets_pocicion_completa(int x_guia, int y_guia, int x_juego, int y_jueg
 
 }
 
-void MOB::sets_pocicion_x_guia(int x_guia){
+void ENEMIGO_1::sets_pocicion_x_guia(int x_guia){
     PERSONAJE::sets_pocicion_x_guia(x_guia);
 }
 
-void MOB::sets_pocicion_y_guia(int y_guia){
+void ENEMIGO_1::sets_pocicion_y_guia(int y_guia){
     PERSONAJE::sets_pocicion_y_guia(y_guia);
 }
 
-void MOB::sets_pocicion_x_juego(int x_juego){
+void ENEMIGO_1::sets_pocicion_x_juego(int x_juego){
     PERSONAJE::sets_pocicion_x_juego(x_juego);
 }
 
-void MOB::sets_pocicion_y_juego(int y_juego){
+void ENEMIGO_1::sets_pocicion_y_juego(int y_juego){
     PERSONAJE::sets_pocicion_y_juego(y_juego);
 }
 

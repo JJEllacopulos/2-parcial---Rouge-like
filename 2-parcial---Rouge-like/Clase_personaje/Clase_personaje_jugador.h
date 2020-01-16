@@ -34,6 +34,10 @@ class JUGADOR: public PERSONAJE{
         int runa_actual;
         int runa_maxima;
 
+        ///Ataque 1:
+        bool ataque_1;
+        //int zona_atacada[3][4];
+
     public:
 
         ///---------------------Propio del padre---------------------
@@ -56,7 +60,7 @@ class JUGADOR: public PERSONAJE{
         JUGADOR(/*MAPA &mapa*/);
 
         ///---Acciones:
-        void rutinas_de_acciones(MAPA &mapa, MOB esqueleto[]);
+        void rutinas_de_acciones(MAPA &mapa/*, ENEMIGO_1 esqueleto[]*/);
 
         ///Moviniento
         void mover_en_mapa_guia();
@@ -64,8 +68,8 @@ class JUGADOR: public PERSONAJE{
         void rutina_de_movimiento(MAPA &mapa);
 
         ///Ataque 1 (Z);
-        void realizar_ataque(MOB esqueleto[]);
-        void atacar(int x_guia, int y_guia, int x_juego, int y_juego, MOB esqueleto[]);
+        int realizar_ataque(int x_guia, int y_guia, int x_juego, int y_juego /*ENEMIGO_1 esqueleto[]*/);
+        int ataque(int x_jugador, int y_jugador, int x_enemigo, int y_enemigo /*, ENEMIGO_1 esqueleto[]*/);
 
         ///---Animaciones:
         void graficar_jugador();
@@ -74,6 +78,9 @@ class JUGADOR: public PERSONAJE{
         void graficar_jugador_ataque_1();
         void graficar_jugador_ataque_2();
         void graficar_jugador_barras();
+
+        ///---Ataques:
+        bool gets_ataque_1(){return ataque_1;}
 
         ///Iniciar y reiniciar las estadisticas;
         void Reiniciar_jugador(MAPA &mapa);
@@ -114,7 +121,9 @@ void JUGADOR::Reiniciar_jugador(MAPA &mapa){
 }
 
 ///-------------------------------------------Rutinas de acciones:
-void JUGADOR::rutinas_de_acciones(MAPA &mapa, MOB esqueleto[]){
+void JUGADOR::rutinas_de_acciones(MAPA &mapa/*, ENEMIGO_1 esqueleto[]*/){
+
+    ataque_1 = false;
 
     if(!inavilitar_acciones.gets_cont_bool()){
 
@@ -137,7 +146,8 @@ void JUGADOR::rutinas_de_acciones(MAPA &mapa, MOB esqueleto[]){
 
                 frames_animacion_ataque_1.sets_cont(1);
                 inavilitar_acciones.sets_tiempo(7);
-                realizar_ataque(esqueleto);
+                ataque_1 = true;
+                //realizar_ataque(/*esqueleto*/);
 
             }
             return;
@@ -150,7 +160,8 @@ void JUGADOR::rutinas_de_acciones(MAPA &mapa, MOB esqueleto[]){
 
                 frames_animacion_ataque_2.sets_cont(1);
                 inavilitar_acciones.sets_tiempo(8);
-                realizar_ataque(esqueleto);
+                ataque_1 = true;
+                //realizar_ataque(/*esqueleto*/);
 
             }
             return;
@@ -284,31 +295,39 @@ void JUGADOR::mover_en_mapa_guia(){
 
 ///---Rutina de ataque 1
 
-void JUGADOR::realizar_ataque(MOB esqueleto[]){
+int JUGADOR::realizar_ataque(int x_guia, int y_guia, int x_juego, int y_juego /*ENEMIGO_1 esqueleto[]*/){
 
+    int dano = 0;
     //if(frames_animacion_ataque_1.control_bool()){
         //if(key[KEY_Z]){
-            if(frente == 0){
-                atacar(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego()+1, gets_pocicion_y_juego(), esqueleto);
-            }
-            else if(frente == 1){
-                atacar(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego()-1, esqueleto);
-            }
-            else if(frente == 2){
-                atacar(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego()-1, gets_pocicion_y_juego(), esqueleto);
-            }
-            else if(frente == 3){
-                atacar(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego()+1, esqueleto);
-            }
+    if(gets_pocicion_x_guia() == x_guia && gets_pocicion_y_guia() == y_guia ){
+        if(frente == 0){
+            dano += ataque(gets_pocicion_x_juego()+1, gets_pocicion_y_juego(), x_juego, y_juego);
+        }
+        else if(frente == 1){
+            dano += ataque(gets_pocicion_x_juego(), gets_pocicion_y_juego()-1, x_juego, y_juego);
+        }
+        else if(frente == 2){
+            dano += ataque(gets_pocicion_x_juego()-1, gets_pocicion_y_juego(),x_juego, y_juego);
+        }
+        else if(frente == 3){
+            dano += ataque(gets_pocicion_x_juego(), gets_pocicion_y_juego()+1, x_juego, y_juego);
+        }
+    }
         //}
     //}
-
+    return dano;
 }
 
-void JUGADOR::atacar(int x_guia, int y_guia, int x_juego, int y_juego, MOB esqueleto[]){
+int JUGADOR::ataque(int x_jugador, int y_jugador, int x_enemigo, int y_enemigo/*, ENEMIGO_1 esqueleto[]*/){
 
-    int x;
+    if(x_jugador == x_enemigo && y_jugador == y_enemigo){
+        return 1;
+    }
 
+    return 0;
+
+    /*int x;
     for(x=0 ; x<CANTIDAD_MODS ; x++){
 
         if(esqueleto[x].gets_pocicion_x_guia() == x_guia){
@@ -316,14 +335,14 @@ void JUGADOR::atacar(int x_guia, int y_guia, int x_juego, int y_juego, MOB esque
                 if(esqueleto[x].gets_pocicion_x_juego() == x_juego){
                     if(esqueleto[x].gets_pocicion_y_juego() == y_juego){
 
-                        esqueleto[x].restar_vida();
+                        esqueleto[x].restar_vida(2);
 
                     }
                 }
             }
         }
 
-    }
+    }*/
 
 }
 

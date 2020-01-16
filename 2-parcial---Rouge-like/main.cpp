@@ -6,29 +6,40 @@
 #include <cstdio>
 using namespace std;
 
-///Control de tiempo:
+///---Control de tiempo:
 #include "Cronometro.h"
 
-///Configuracion del mapa:
+///---Configuracion del mapa:
 #include "Clase_mapa.h"
 #include "Clase_mapa_grafico.h"
 
-///Cofiguracion del los elemoentos de audio y graficos:
+///---Cofiguracion del los elemoentos de audio y graficos:
 #include "Controles_de_archivos/Imagenes.h";
 #include "Controles_de_archivos/Pistas_de_audio.h";
 #include "Controles_de_archivos/Control_grafico.h"
 #include "Controles_de_archivos/Control_audio.h"
 
 
-///Clase personaje:
-
+///---Clase personaje:
 #include "Clase_personaje/Clase_personaje.h"
-#include "Clase_personaje/Clase_personaje_MOBs.h"
-#include "Clase_personaje/Clase_personaje_MOBs_graficos.h"
+
+///Jugador:
 #include "Clase_personaje/Clase_personaje_jugador.h"
 #include "Clase_personaje/Clase_personaje_jugador_graficos.h"
+///Enemigos:
+#include "Clase_personaje/Clase_personaje_enemigo_1.h"
+#include "Clase_personaje/Clase_personaje_enemigo_1_graficos.h"
 
-///Guardado de progreso.
+///Otros
+#include "Clase_personaje/Otros/Clase_personaje_proyectil.h"
+///interacciones
+#include "Clase_personaje/Otros/Interacciones_entre_objetos.h"
+///Vectores dinamicos de enemigos:
+#include "Clase_personaje/Pila_de_enemigos.h"
+
+
+
+///---Guardado de progreso.
 #include "Controles_de_archivos/Control_partida.h"
 
 
@@ -77,7 +88,7 @@ int main(){
     ///Iniciar MOVs:
     ///int cantidad_de_MOBs = 15;
     int ciclo_MOBs;
-    MOB esqueleto[CANTIDAD_MODS];
+    ENEMIGO_1 esqueleto[CANTIDAD_MODS];
     ///MOB esqueleto[CANTIDAD_MODS](mapa);
 
     ///Inicicar conometro:
@@ -90,7 +101,6 @@ int main(){
     ARCHIVO_PARTIDA archivo_guardado;
 
     while(zona != 9){
-
 
         ///Iniciar y reiniciar el mapa.
         mapa.Reiniciar_mapa();
@@ -113,7 +123,7 @@ int main(){
         while(!key[KEY_ESC]){
 
             ///Mover personaje jugador:
-            per_jug.rutinas_de_acciones(mapa, esqueleto);
+            per_jug.rutinas_de_acciones(mapa/*, esqueleto*/);
 
             ///Mover MOVs:
             for(ciclo_MOBs = 0; ciclo_MOBs < CANTIDAD_MODS; ciclo_MOBs++){

@@ -1,7 +1,7 @@
 #ifndef CLASE_PERSONAJE_MOBS_GRAFICOS_H_INCLUDED
 #define CLASE_PERSONAJE_MOBS_GRAFICOS_H_INCLUDED
 
-void MOB::graficar_MOBs(int x_externo, int y_externo){
+void ENEMIGO_1::graficar_MOBs(int x_externo, int y_externo){
 
     if(estado_vivo){
         if(x_externo == gets_pocicion_x_guia()){
@@ -13,7 +13,7 @@ void MOB::graficar_MOBs(int x_externo, int y_externo){
 
 }
 
-void MOB::Graficar_accion_MOBs(){
+void ENEMIGO_1::Graficar_accion_MOBs(){
 
     if(direccion == 0){
 
@@ -31,7 +31,7 @@ void MOB::Graficar_accion_MOBs(){
 }
 
 
-void MOB::Graficar_accion_MOBs_pocicion_estatica(){
+void ENEMIGO_1::Graficar_accion_MOBs_pocicion_estatica(){
 
     ///Pocicion estatica.
     switch(frente){
@@ -56,7 +56,7 @@ void MOB::Graficar_accion_MOBs_pocicion_estatica(){
 
 }
 
-void MOB::Graficar_accion_MOBs_caminar(){
+void ENEMIGO_1::Graficar_accion_MOBs_caminar(){
 
     ///Animacion de movimiento.
 
@@ -117,7 +117,7 @@ void MOB::Graficar_accion_MOBs_caminar(){
 
 }
 
-void MOB::Graficar_accion_MOBs_estado(){
+void ENEMIGO_1::Graficar_accion_MOBs_estado(){
 
     int x;
 

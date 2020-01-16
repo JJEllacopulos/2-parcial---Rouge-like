@@ -33,7 +33,7 @@ using namespace std;
 ///Otros
 #include "Clase_personaje/Otros/Clase_personaje_proyectil.h"
 ///interacciones
-#include "Clase_personaje/Otros/Interacciones_entre_objetos.h"
+//#include "Clase_personaje/Otros/Interacciones_entre_objetos.h"
 ///Vectores dinamicos de enemigos:
 #include "Clase_personaje/Pila_de_enemigos.h"
 
@@ -91,7 +91,7 @@ int main(){
     int ciclo_MOBs;
     ENEMIGO_1 esqueleto[CANTIDAD_MODS];
     */
-    PILA_ENEMIGOS pila;
+    PILA_ENEMIGOS pila_enemigos;
 
     ///MOB esqueleto[CANTIDAD_MODS](mapa);
 
@@ -110,9 +110,11 @@ int main(){
         mapa.Reiniciar_mapa();
         mapa_grafico.Reiniciar_mapa_grefico(mapa);
         per_jug.Reiniciar_jugador(mapa);
-        for(ciclo_MOBs = 0; ciclo_MOBs < CANTIDAD_MODS; ciclo_MOBs++){
+        /*for(ciclo_MOBs = 0; ciclo_MOBs < CANTIDAD_MODS; ciclo_MOBs++){
             esqueleto[ciclo_MOBs].Reiniciar_MOBs(mapa);
-        }
+        }*/
+
+        pila_enemigos.Iniciar_vectores(zona, mapa);
 
         ///Guardar partida.
         //archivo_guardado.Guardar_partida(zona, mapa, mapa_grafico, per_jug);
@@ -128,11 +130,13 @@ int main(){
 
             ///Mover personaje jugador:
             per_jug.rutinas_de_acciones(mapa/*, esqueleto*/);
+            pila_enemigos.Jugador_ataca(per_jug);
 
             ///Mover MOVs:
-            for(ciclo_MOBs = 0; ciclo_MOBs < CANTIDAD_MODS; ciclo_MOBs++){
+            /*for(ciclo_MOBs = 0; ciclo_MOBs < CANTIDAD_MODS; ciclo_MOBs++){
                 esqueleto[ciclo_MOBs].rutina_de_movimiento(mapa);
-            }
+            }*/
+            pila_enemigos.Rutina_de_enemigos(mapa);
 
             ///Atacar personaje jugador:
             //per_jug.realizar_ataque(esqueleto);
@@ -155,9 +159,10 @@ int main(){
             per_jug.graficar_jugador();
 
             ///Graficar MOVs:
-            for(ciclo_MOBs = 0; ciclo_MOBs < CANTIDAD_MODS; ciclo_MOBs++){
+            /*for(ciclo_MOBs = 0; ciclo_MOBs < CANTIDAD_MODS; ciclo_MOBs++){
                 esqueleto[ciclo_MOBs].graficar_MOBs(per_jug.gets_pocicion_x_guia(), per_jug.gets_pocicion_y_guia());
-            }
+            }*/
+            pila_enemigos.Graficar_enemigos(per_jug);
 
             ///Imprime en la ventana lo que se cargo en el buffer.
             pantallaso();
@@ -169,6 +174,8 @@ int main(){
         while(key[KEY_ESC]){}
 
         zona++;
+
+        pila_enemigos.Cerrar_vectores();
 
         ///Cargar partida.
         //archivo_guardado.Cargar_partida(zona, mapa, mapa_grafico, per_jug);

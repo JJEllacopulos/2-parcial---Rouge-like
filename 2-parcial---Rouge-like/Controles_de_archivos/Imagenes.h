@@ -10,6 +10,9 @@ BITMAP *JUGADOR_attack_spr;
 BITMAP *ENEMIGO_1_spr;
 BITMAP *ENEMIGO_1_mov_spr;
 
+BITMAP *PROYECTILES_spr;
+BITMAP *PROYECTIL_spr;
+
 ///--------------
 BITMAP *FONDOS_spr;
 BITMAP *MURO_spr;

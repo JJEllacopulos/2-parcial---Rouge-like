@@ -146,7 +146,7 @@ void PILA_ENEMIGOS::Jugador_ataca(JUGADOR jugador){
     if(jugador.gets_ataque_1()){
         for(x = 0 ; x < tam_enemigo_1 ; x++){
 
-            enemigo_1[x].restar_vida(jugador.realizar_ataque(enemigo_1[x].gets_pocicion_x_guia(), enemigo_1[x].gets_pocicion_y_guia(), enemigo_1[x].gets_pocicion_x_juego(), enemigo_1[x].gets_pocicion_y_juego()));
+            enemigo_1[x].restar_vida(jugador.realizar_ataque_1(enemigo_1[x].gets_pocicion_x_guia(), enemigo_1[x].gets_pocicion_y_guia(), enemigo_1[x].gets_pocicion_x_juego(), enemigo_1[x].gets_pocicion_y_juego()));
 
         }
     }

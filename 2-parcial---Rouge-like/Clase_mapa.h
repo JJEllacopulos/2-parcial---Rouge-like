@@ -13,7 +13,7 @@
 #define POSICION_PUERTA_Y 9
 
     ///Cantidades en el armado de los mapas
-#define BLOQUES_GUIA_HABILITADOS 10 ///Candidad de minimapas habilitados.
+#define BLOQUES_GUIA_HABILITADOS 1 ///Candidad de minimapas habilitados.
 #define BLOQUES_JUEGOS_PISO 46 ///Cantidad de bloques que se dispondran como piso.
 
 ///Contenido de matriz de juego:

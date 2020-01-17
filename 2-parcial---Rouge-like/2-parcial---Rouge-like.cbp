@@ -36,11 +36,13 @@
 		<Unit filename="Clase_mapa_grafico.h" />
 		<Unit filename="Clase_personaje/Clase_personaje.h" />
 		<Unit filename="Clase_personaje/Clase_personaje_enemigo_1.h" />
+		<Unit filename="Clase_personaje/Clase_personaje_enemigo_1_combate.h" />
 		<Unit filename="Clase_personaje/Clase_personaje_enemigo_1_graficos.h" />
 		<Unit filename="Clase_personaje/Clase_personaje_jugador.h" />
+		<Unit filename="Clase_personaje/Clase_personaje_jugador_combate.h" />
 		<Unit filename="Clase_personaje/Clase_personaje_jugador_graficos.h" />
 		<Unit filename="Clase_personaje/Otros/Clase_personaje_proyectil.h" />
-		<Unit filename="Clase_personaje/Otros/Interacciones_entre_objetos.h" />
+		<Unit filename="Clase_personaje/Otros/Proyectil_flecha.h" />
 		<Unit filename="Clase_personaje/Pila_de_enemigos.h" />
 		<Unit filename="Controles_de_archivos/Control_audio.h" />
 		<Unit filename="Controles_de_archivos/Control_grafico.h" />

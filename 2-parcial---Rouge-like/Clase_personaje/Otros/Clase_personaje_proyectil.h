@@ -4,21 +4,11 @@
 class PROYECTIL: public PERSONAJE{
     protected:
 
-    //Indica si el proyectil esta activo.
-    //bool activo;
-
-    //Indica quien lanzo el proyectil y quien puede recivirlo.
-    //bool lanzador;
-
     ///Indica en que direccion fue lanzado;
-    int direccion_movimiento;
-    //Indica su recorrido maximo antes de desactivarce.
-    //int duracion;
+    int frente;
 
     ///Animaciones:
-    int tipo_proyectil;
-    //CRONO desplazamineto;
-    //CRONO frames_animacion_movimiento;
+    int sprite;
 
     public:
         ///---------------------Propio del padre---------------------
@@ -44,81 +34,118 @@ class PROYECTIL: public PERSONAJE{
 
         ///---Iniciar proyectil;
         void Iniciar_proyectil(int direccion, int tipo, int x_guia, int y_guia, int x_juego, int y_juego);
-        void Mover_proyectil();
-        void Animar_proyectil(int espacio, int desplazar, int animacion);
+
+        ///---Rutinas de proyectil:
+        bool Mover_proyectil(MAPA &mapa);
+        void Animar_proyectil(int espacio, int desplazar);
+
+        ///---Gets:
+
+        int gets_frente();
+        int gets_sprite();
+
+        ///---Sets:
+
+        void sets_frente(int x);
+        void sets_sprite(int x);
 
 };
 
 ///---------------------Propio del hijo------------------
 
-PROYECTIL::PROYECTIL(){
-    //inavilitar_acciones.sets_tiempo(3);
-    //frames_animacion_movimiento.sets_tiempo(3);
-}
+PROYECTIL::PROYECTIL(){}
 
 ///---Iniciar proyectil:
 void PROYECTIL::Iniciar_proyectil(int direccion, int tipo, int x_guia, int y_guia, int x_juego, int y_juego){
 
     sets_pocicion_completa(x_guia, y_guia, x_juego, y_juego);
-    //desplazamineto.sets_tiempo(tiempo);
-    direccion_movimiento = direccion;
-    tipo_proyectil = tipo;
+    frente = direccion;
+    sprite = tipo;
 
 }
 
 ///---Mover proyectil:
-void PROYECTIL::Mover_proyectil(){
+bool PROYECTIL::Mover_proyectil(MAPA &mapa){
 
     int x = 0, y = 0;
 
-    switch(direccion_movimiento){
-        case 1: ///Derecha;
+    switch(frente){
+        case 0: ///ABAJO
             x ++;
         break;
 
-        case 2: ///Izquierda;
+        case 1: ///IZQUIERDA
+            y--;
+        break;
+
+        case 2: ///ARRIBA
             x--;
         break;
 
-        case 3: ///Arriba;
+        case 3: ///DERECHA
             y++;
         break;
 
-        case 4: ///Abajo;
-            y--;
-        break;
     }
 
-    sets_pocicion_x_juego(gets_pocicion_x_juego() + x);
-    sets_pocicion_y_juego(gets_pocicion_y_juego() + y);
+    if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego() + x, gets_pocicion_y_juego() +y) == PISO){
+        sets_pocicion_x_juego(gets_pocicion_x_juego() + x);
+        sets_pocicion_y_juego(gets_pocicion_y_juego() + y);
 
+        return true;
+    }
+
+    return false;
 }
 
 ///---Graficar proyectil:
-void PROYECTIL::Animar_proyectil(int espacio, int desplazar, int animacion){
+void PROYECTIL::Animar_proyectil(int espacio, int desplazar){
 
 
-    switch(direccion_movimiento){
-        case 1: ///Derecha;
-            blit(JUGADOR_spr, JUGADOR_mov_spr, animacion * DESPLAZAR_Y_PIXEL, 2 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-            draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE - desplazar * espacio + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X);
+    switch(frente){
+
+        case 0: ///Abajo;
+            blit(PROYECTILES_spr, PROYECTIL_mov_spr, 0 * DESPLAZAR_Y_PIXEL, sprite * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+            draw_sprite_v_flip(buffer, PROYECTIL_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE - desplazar * espacio + ESPACIO_SUPERIOR_X);
         break;
 
-        case 2: ///Izquierda;
-            blit(JUGADOR_spr, JUGADOR_mov_spr, animacion * DESPLAZAR_Y_PIXEL, 1 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-            draw_sprite_h_flip(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + desplazar * espacio + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X);
+        case 1: ///Izquierda;
+            blit(PROYECTILES_spr, PROYECTIL_mov_spr,  1 * DESPLAZAR_Y_PIXEL, sprite * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+            draw_sprite_h_flip(buffer, PROYECTIL_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + desplazar * espacio + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X);
         break;
 
-        case 3: ///Arriba;
-            blit(JUGADOR_spr, JUGADOR_mov_spr, animacion * DESPLAZAR_Y_PIXEL, 1 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-            draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + desplazar * espacio + ESPACIO_SUPERIOR_X);
+        case 2: ///Arriba;
+            blit(PROYECTILES_spr, PROYECTIL_mov_spr,  0 * DESPLAZAR_Y_PIXEL, sprite * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+            draw_sprite(buffer, PROYECTIL_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + desplazar * espacio + ESPACIO_SUPERIOR_X);
         break;
 
-        case 4: ///Abajo;
-            blit(JUGADOR_spr, JUGADOR_mov_spr, animacion * DESPLAZAR_Y_PIXEL, 1 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-            draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE - desplazar * espacio + ESPACIO_SUPERIOR_X);
+        case 3: ///Derecha;
+            blit(PROYECTILES_spr, PROYECTIL_mov_spr,  1 * DESPLAZAR_Y_PIXEL, sprite * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+            draw_sprite(buffer, PROYECTIL_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE - desplazar * espacio + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X);
         break;
+
     }
+}
+
+
+///---Gets:
+
+int PROYECTIL::gets_frente(){
+    return frente;
+}
+
+int PROYECTIL::gets_sprite(){
+    return sprite;
+}
+
+///---Sets:
+
+void PROYECTIL::sets_frente(int x){
+    frente = x;
+}
+
+void PROYECTIL::sets_sprite(int x){
+    sprite = x;
 }
 
 ///---------------------Propio del padre---------------------

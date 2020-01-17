@@ -23,15 +23,20 @@ using namespace std;
 ///---Clase personaje:
 #include "Clase_personaje/Clase_personaje.h"
 
+///Otros
+#include "Clase_personaje/Otros/Clase_personaje_proyectil.h"
+#include "Clase_personaje/Otros/Proyectil_flecha.h"
+
 ///Jugador:
 #include "Clase_personaje/Clase_personaje_jugador.h"
 #include "Clase_personaje/Clase_personaje_jugador_graficos.h"
+#include "Clase_personaje/Clase_personaje_jugador_combate.h"
 ///Enemigos:
 #include "Clase_personaje/Clase_personaje_enemigo_1.h"
 #include "Clase_personaje/Clase_personaje_enemigo_1_graficos.h"
+#include "Clase_personaje/Clase_personaje_enemigo_1_combate.h"
 
-///Otros
-#include "Clase_personaje/Otros/Clase_personaje_proyectil.h"
+
 ///interacciones
 //#include "Clase_personaje/Otros/Interacciones_entre_objetos.h"
 ///Vectores dinamicos de enemigos:

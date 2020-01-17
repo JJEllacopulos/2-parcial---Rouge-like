@@ -62,7 +62,7 @@ void asignar_sprites(){
     ENEMIGO_1_mov_spr = create_bitmap(TAMANO_X_SPRITE, TAMANO_Y_SPRITE);
 
     PROYECTILES_spr = load_bitmap("Imagenes/Proyectiles.bmp", NULL);
-    PROYECTIL_spr = create_bitmap(TAMANO_X_SPRITE, TAMANO_Y_SPRITE);
+    PROYECTIL_mov_spr = create_bitmap(TAMANO_X_SPRITE, TAMANO_Y_SPRITE);
 
     ///------------------------------------------
 

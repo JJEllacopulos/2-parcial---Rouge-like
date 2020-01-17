@@ -7,11 +7,11 @@ void JUGADOR::graficar_jugador(){
 
     graficar_jugador_barras();
 
+    Graficar_flechas();
+
     if(frames_animacion_ataque_1.gets_cont_bool() != 0){
         graficar_jugador_ataque_1();
         return;
-        ///frames_animacion_ataque_1.control_bool_invertido_sin_reinicio();
-
     }
 
     if(frames_animacion_ataque_2.gets_cont_bool() != 0){
@@ -126,46 +126,31 @@ void JUGADOR::graficar_jugador_ataque_1(){
     inavilitar_acciones.control_int_invertido();
     switch(frente){
 
-        /*case 0: ///Estatico.
-            blit(JUGADOR_spr, JUGADOR_mov_spr, 0 * DESPLAZAR_Y_PIXEL, 0 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-            draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X);
-        break;*/
-
         case 0: ///Abajo;
             blit(JUGADOR_spr, JUGADOR_attack_spr, (frames_animacion_ataque_1.gets_cont() - 1) * DESPLAZAR_Y_SPRITE_ATTACK, (0 * DESPLAZAR_X_SPRITE_ATTACK) + ANIMACION_ATAQUE_1, 0, 0,  TAMANO_Y_SPRITE_ATTACK, TAMANO_X_SPRITE_ATTACK);
-            draw_sprite(buffer, JUGADOR_attack_spr, (gets_pocicion_y_juego() * TAMANO_Y_SPRITE) - CENTRAR_Y_SPRITE_ATTACK + ESPACIO_SUPERIOR_Y, (gets_pocicion_x_juego() * TAMANO_X_SPRITE /*- inavilitar_acciones.gets_cont() * TAMANO_X_SPRITE_INT*/) - CENTRAR_X_SPRITE_ATTACK + ESPACIO_SUPERIOR_X);
+            draw_sprite(buffer, JUGADOR_attack_spr, (gets_pocicion_y_juego() * TAMANO_Y_SPRITE) - CENTRAR_Y_SPRITE_ATTACK + ESPACIO_SUPERIOR_Y, (gets_pocicion_x_juego() * TAMANO_X_SPRITE) - CENTRAR_X_SPRITE_ATTACK + ESPACIO_SUPERIOR_X);
         break;
 
         case 1: ///Izquierda;
             blit(JUGADOR_spr, JUGADOR_attack_spr, (frames_animacion_ataque_1.gets_cont() - 1) * DESPLAZAR_Y_SPRITE_ATTACK, (1 * DESPLAZAR_X_SPRITE_ATTACK) + ANIMACION_ATAQUE_1, 0, 0,  TAMANO_Y_SPRITE_ATTACK, TAMANO_X_SPRITE_ATTACK);
-            draw_sprite_h_flip(buffer, JUGADOR_attack_spr, (gets_pocicion_y_juego() * TAMANO_Y_SPRITE) - CENTRAR_Y_SPRITE_ATTACK + ESPACIO_SUPERIOR_Y, (gets_pocicion_x_juego() * TAMANO_X_SPRITE /*- inavilitar_acciones.gets_cont() * TAMANO_X_SPRITE_INT*/) - CENTRAR_X_SPRITE_ATTACK + ESPACIO_SUPERIOR_X);
-
-            //blit(JUGADOR_spr, JUGADOR_attack_spr, frames_animacion_ataque_1.gets_cont() * DESPLAZAR_Y_SPRITE_ATTACK, 1 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE_ATTACK, TAMANO_X_SPRITE_ATTACK);
-            //draw_sprite_h_flip(buffer, JUGADOR_attack_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + inavilitar_acciones.gets_cont() * TAMANO_Y_SPRITE_INT + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X);
+            draw_sprite_h_flip(buffer, JUGADOR_attack_spr, (gets_pocicion_y_juego() * TAMANO_Y_SPRITE) - CENTRAR_Y_SPRITE_ATTACK + ESPACIO_SUPERIOR_Y, (gets_pocicion_x_juego() * TAMANO_X_SPRITE) - CENTRAR_X_SPRITE_ATTACK + ESPACIO_SUPERIOR_X);
         break;
 
         case 2: ///Arriba;
             blit(JUGADOR_spr, JUGADOR_attack_spr, (frames_animacion_ataque_1.gets_cont() - 1) * DESPLAZAR_Y_SPRITE_ATTACK, (2 * DESPLAZAR_X_SPRITE_ATTACK) + ANIMACION_ATAQUE_1, 0, 0,  TAMANO_Y_SPRITE_ATTACK, TAMANO_X_SPRITE_ATTACK);
-            draw_sprite(buffer, JUGADOR_attack_spr, (gets_pocicion_y_juego() * TAMANO_Y_SPRITE) - CENTRAR_Y_SPRITE_ATTACK + ESPACIO_SUPERIOR_Y, (gets_pocicion_x_juego() * TAMANO_X_SPRITE /*- inavilitar_acciones.gets_cont() * TAMANO_X_SPRITE_INT*/) - CENTRAR_X_SPRITE_ATTACK + ESPACIO_SUPERIOR_X);
-
-            //blit(JUGADOR_spr, JUGADOR_attack_spr, frames_animacion_ataque_1.gets_cont() * DESPLAZAR_Y_SPRITE_ATTACK, 2 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE_ATTACK, TAMANO_X_SPRITE_ATTACK);
-            //draw_sprite(buffer, JUGADOR_attack_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + inavilitar_acciones.gets_cont() * TAMANO_X_SPRITE_INT + ESPACIO_SUPERIOR_X);
+            draw_sprite(buffer, JUGADOR_attack_spr, (gets_pocicion_y_juego() * TAMANO_Y_SPRITE) - CENTRAR_Y_SPRITE_ATTACK + ESPACIO_SUPERIOR_Y, (gets_pocicion_x_juego() * TAMANO_X_SPRITE) - CENTRAR_X_SPRITE_ATTACK + ESPACIO_SUPERIOR_X);
         break;
 
         case 3: ///Derecha;
             blit(JUGADOR_spr, JUGADOR_attack_spr, (frames_animacion_ataque_1.gets_cont() - 1) * DESPLAZAR_Y_SPRITE_ATTACK, (1 * DESPLAZAR_X_SPRITE_ATTACK) + ANIMACION_ATAQUE_1, 0, 0,  TAMANO_Y_SPRITE_ATTACK, TAMANO_X_SPRITE_ATTACK);
-            draw_sprite(buffer, JUGADOR_attack_spr, (gets_pocicion_y_juego() * TAMANO_Y_SPRITE) - CENTRAR_Y_SPRITE_ATTACK + ESPACIO_SUPERIOR_Y, (gets_pocicion_x_juego() * TAMANO_X_SPRITE /*- inavilitar_acciones.gets_cont() * TAMANO_X_SPRITE_INT*/) - CENTRAR_X_SPRITE_ATTACK + ESPACIO_SUPERIOR_X);
-
-            //blit(JUGADOR_spr, JUGADOR_attack_spr, frames_animacion_ataque_1.gets_cont() * DESPLAZAR_Y_SPRITE_ATTACK, 1 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE_ATTACK, TAMANO_X_SPRITE_ATTACK);
-            //draw_sprite(buffer, JUGADOR_attack_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE - inavilitar_acciones.gets_cont() * TAMANO_Y_SPRITE_INT + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X);
+            draw_sprite(buffer, JUGADOR_attack_spr, (gets_pocicion_y_juego() * TAMANO_Y_SPRITE) - CENTRAR_Y_SPRITE_ATTACK + ESPACIO_SUPERIOR_Y, (gets_pocicion_x_juego() * TAMANO_X_SPRITE) - CENTRAR_X_SPRITE_ATTACK + ESPACIO_SUPERIOR_X);
         break;
 
     }
 
-        ///return;
-
 }
 
+///Animacion de ataque 2:
 void JUGADOR::graficar_jugador_ataque_2(){
 
     frames_animacion_ataque_2.control_int();
@@ -191,6 +176,21 @@ void JUGADOR::graficar_jugador_ataque_2(){
             blit(JUGADOR_spr, JUGADOR_attack_spr, (frames_animacion_ataque_2.gets_cont() - 1) * DESPLAZAR_Y_SPRITE_ATTACK, (1 * DESPLAZAR_X_SPRITE_ATTACK) + ANIMACION_ATAQUE_2, 0, 0,  TAMANO_Y_SPRITE_ATTACK, TAMANO_X_SPRITE_ATTACK);
             draw_sprite(buffer, JUGADOR_attack_spr, (gets_pocicion_y_juego() * TAMANO_Y_SPRITE) - CENTRAR_Y_SPRITE_ATTACK + ESPACIO_SUPERIOR_Y, (gets_pocicion_x_juego() * TAMANO_X_SPRITE) - CENTRAR_X_SPRITE_ATTACK + ESPACIO_SUPERIOR_X);
         break;
+
+    }
+
+}
+
+///Amimacion de las barras:
+void JUGADOR::Graficar_flechas(){
+
+    int x;
+
+    for(x=0 ; x<3 ; x++){
+
+        if(carcaj[x].gets_activo()){
+            carcaj[x].Animar_flecha();
+        }
 
     }
 

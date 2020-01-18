@@ -133,15 +133,17 @@ int main(){
         ///Bucle del juego (game loop).
         while(!key[KEY_ESC]){
 
-            ///Mover personaje jugador:
-            per_jug.rutinas_de_acciones(mapa/*, esqueleto*/);
-            pila_enemigos.Jugador_ataca(per_jug);
-
             ///Mover MOVs:
             /*for(ciclo_MOBs = 0; ciclo_MOBs < CANTIDAD_MODS; ciclo_MOBs++){
                 esqueleto[ciclo_MOBs].rutina_de_movimiento(mapa);
             }*/
             pila_enemigos.Rutina_de_enemigos(mapa);
+
+            ///Mover personaje jugador:
+            per_jug.rutinas_de_acciones(mapa/*, esqueleto*/);
+            pila_enemigos.Jugador_ataca(per_jug);
+
+
 
             ///Atacar personaje jugador:
             //per_jug.realizar_ataque(esqueleto);

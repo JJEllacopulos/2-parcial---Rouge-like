@@ -189,7 +189,11 @@ void JUGADOR::Graficar_flechas(){
     for(x=0 ; x<3 ; x++){
 
         if(carcaj[x].gets_activo()){
-            carcaj[x].Animar_flecha();
+
+            if(gets_pocicion_x_guia() == carcaj[x].gets_pocicion_x_guia() && gets_pocicion_y_guia() == carcaj[x].gets_pocicion_y_guia()){
+                carcaj[x].Animar_flecha();
+            }
+
         }
 
     }
@@ -279,5 +283,6 @@ void JUGADOR::graficar_jugador_barras(){
 
     }
 }
+
 
 #endif // CLASE_PERSONAJE_JUGADOR_GRAFICOS_H_INCLUDED

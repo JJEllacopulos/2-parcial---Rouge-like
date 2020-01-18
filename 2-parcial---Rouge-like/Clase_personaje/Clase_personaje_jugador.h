@@ -75,6 +75,7 @@ class JUGADOR: public PERSONAJE{
         ///Ataque 2 (X):
         bool Lanzar_flecha();
         void Mover_flechas(MAPA &mapa);
+        int realizar_ataque_2(int x_guia, int y_guia, int x_juego, int y_juego);
 
 
         ///---Animaciones:
@@ -171,7 +172,6 @@ void JUGADOR::rutinas_de_acciones(MAPA &mapa){
                 if(Lanzar_flecha()){
                     frames_animacion_ataque_2.sets_cont(1);
                     inavilitar_acciones.sets_tiempo(8);
-                    ataque_1 = true;
                 }
 
             }

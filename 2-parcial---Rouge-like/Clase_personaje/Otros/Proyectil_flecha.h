@@ -52,7 +52,7 @@ class FLECHA: public PROYECTIL{
         ///---Mover flecha:
         void Rutinas_flecha(MAPA &mapa);
         void Mover_flecha(MAPA &mapa);
-        int verificar_inpacto(int x_jugador, int y_jugador, int x_enemigo, int y_enemigo);
+        bool verificar_inpacto(int x_jugador, int y_jugador, int x_enemigo, int y_enemigo);
         int Realizar_ataque_flecha(int x_jugador, int y_jugador, int x_enemigo, int y_enemigo);
 
         ///---Animacion:
@@ -87,7 +87,7 @@ void FLECHA::Iniciar_flecha(int direccion, int tipo, int dano, int x_guia, int y
     activo = true;
     PROYECTIL::Iniciar_proyectil(direccion, tipo, x_guia, y_guia, x_juego, y_juego);
     dano_flecha = dano;
-    inavilitar_acciones.sets_cont(1);
+    inavilitar_acciones.sets_cont(0);
 
 }
 
@@ -99,8 +99,9 @@ void FLECHA::Desactivar_flecha(){
 ///---Mover flecha:
 void FLECHA::Rutinas_flecha(MAPA &mapa){
 
+    if(activo){
         Mover_flecha(mapa);
-
+    }
 }
 
 void FLECHA::Mover_flecha(MAPA &mapa){
@@ -113,31 +114,48 @@ void FLECHA::Mover_flecha(MAPA &mapa){
 int FLECHA::Realizar_ataque_flecha(int x_guia, int y_guia, int x_juego, int y_juego){
     int dano = 0;
 
-    if(gets_pocicion_x_guia() == x_guia && gets_pocicion_y_guia() == y_guia ){
-        if(frente == 0){
-            dano += verificar_inpacto(gets_pocicion_x_juego()+1, gets_pocicion_y_juego(), x_juego, y_juego) * 1;
-        }
-        else if(frente == 1){
-            dano += verificar_inpacto(gets_pocicion_x_juego(), gets_pocicion_y_juego()-1, x_juego, y_juego) * 1;
-        }
-        else if(frente == 2){
-            dano += verificar_inpacto(gets_pocicion_x_juego()-1, gets_pocicion_y_juego(),x_juego, y_juego) * 1;
-        }
-        else if(frente == 3){
-            dano += verificar_inpacto(gets_pocicion_x_juego(), gets_pocicion_y_juego()+1, x_juego, y_juego) * 1;
+    if(!inavilitar_acciones.gets_cont_bool()){
+        if(gets_pocicion_x_guia() == x_guia && gets_pocicion_y_guia() == y_guia ){
+            if(frente == 0){
+                if(verificar_inpacto(gets_pocicion_x_juego()+1, gets_pocicion_y_juego(), x_juego, y_juego)){
+                    dano += dano_flecha;
+                    activo = false;
+                    //Desactivar_flecha();
+                }
+            }
+            else if(frente == 1){
+                if(verificar_inpacto(gets_pocicion_x_juego(), gets_pocicion_y_juego()-1, x_juego, y_juego)){
+                    dano += dano_flecha;
+                    activo = false;
+                    //Desactivar_flecha();
+                }
+            }
+            else if(frente == 2){
+                if(verificar_inpacto(gets_pocicion_x_juego()-1, gets_pocicion_y_juego(),x_juego, y_juego)){
+                    dano += dano_flecha;
+                    activo = false;
+                    //Desactivar_flecha();
+                }
+            }
+            else if(frente == 3){
+                if(verificar_inpacto(gets_pocicion_x_juego(), gets_pocicion_y_juego()+1, x_juego, y_juego)){
+                    dano += dano_flecha;
+                    activo = false;
+                    //Desactivar_flecha();
+                }
+            }
         }
     }
-
     return dano;
 }
 
-int FLECHA::verificar_inpacto(int x_jugador, int y_jugador, int x_enemigo, int y_enemigo){
+bool FLECHA::verificar_inpacto(int x_jugador, int y_jugador, int x_enemigo, int y_enemigo){
 
     if(x_jugador == x_enemigo && y_jugador == y_enemigo){
-        return 1;
+        return true;
     }
 
-    return 0;
+    return false;
 
 }
 

@@ -7,30 +7,32 @@ int JUGADOR::realizar_ataque_1(int x_guia, int y_guia, int x_juego, int y_juego)
 
     int dano = 0;
 
-    if(gets_pocicion_x_guia() == x_guia && gets_pocicion_y_guia() == y_guia ){
-        if(frente == 0){
-            dano += verificar_ataque(gets_pocicion_x_juego()+1, gets_pocicion_y_juego(), x_juego, y_juego) * 2;
-            dano += verificar_ataque(gets_pocicion_x_juego()+1, gets_pocicion_y_juego()+1, x_juego, y_juego);
-            dano += verificar_ataque(gets_pocicion_x_juego()+1, gets_pocicion_y_juego()-1, x_juego, y_juego);
-        }
-        else if(frente == 1){
-            dano += verificar_ataque(gets_pocicion_x_juego(), gets_pocicion_y_juego()-1, x_juego, y_juego) * 2;
-            dano += verificar_ataque(gets_pocicion_x_juego()+1, gets_pocicion_y_juego()-1, x_juego, y_juego);
-            dano += verificar_ataque(gets_pocicion_x_juego()-1, gets_pocicion_y_juego()-1, x_juego, y_juego);
-        }
-        else if(frente == 2){
-            dano += verificar_ataque(gets_pocicion_x_juego()-1, gets_pocicion_y_juego(),x_juego, y_juego) * 2;
-            dano += verificar_ataque(gets_pocicion_x_juego()-1, gets_pocicion_y_juego()+1,x_juego, y_juego);
-            dano += verificar_ataque(gets_pocicion_x_juego()-1, gets_pocicion_y_juego()-1,x_juego, y_juego);
-        }
-        else if(frente == 3){
-            dano += verificar_ataque(gets_pocicion_x_juego(), gets_pocicion_y_juego()+1, x_juego, y_juego) * 2;
-            dano += verificar_ataque(gets_pocicion_x_juego()+1, gets_pocicion_y_juego()+1, x_juego, y_juego);
-            dano += verificar_ataque(gets_pocicion_x_juego()-1, gets_pocicion_y_juego()+1, x_juego, y_juego);
+    if(ataque_1){
+
+        if(gets_pocicion_x_guia() == x_guia && gets_pocicion_y_guia() == y_guia ){
+            if(frente == 0){
+                dano += verificar_ataque(gets_pocicion_x_juego()+1, gets_pocicion_y_juego(), x_juego, y_juego) * 2;
+                dano += verificar_ataque(gets_pocicion_x_juego()+1, gets_pocicion_y_juego()+1, x_juego, y_juego);
+                dano += verificar_ataque(gets_pocicion_x_juego()+1, gets_pocicion_y_juego()-1, x_juego, y_juego);
+            }
+            else if(frente == 1){
+                dano += verificar_ataque(gets_pocicion_x_juego(), gets_pocicion_y_juego()-1, x_juego, y_juego) * 2;
+                dano += verificar_ataque(gets_pocicion_x_juego()+1, gets_pocicion_y_juego()-1, x_juego, y_juego);
+                dano += verificar_ataque(gets_pocicion_x_juego()-1, gets_pocicion_y_juego()-1, x_juego, y_juego);
+            }
+            else if(frente == 2){
+                dano += verificar_ataque(gets_pocicion_x_juego()-1, gets_pocicion_y_juego(),x_juego, y_juego) * 2;
+                dano += verificar_ataque(gets_pocicion_x_juego()-1, gets_pocicion_y_juego()+1,x_juego, y_juego);
+                dano += verificar_ataque(gets_pocicion_x_juego()-1, gets_pocicion_y_juego()-1,x_juego, y_juego);
+            }
+            else if(frente == 3){
+                dano += verificar_ataque(gets_pocicion_x_juego(), gets_pocicion_y_juego()+1, x_juego, y_juego) * 2;
+                dano += verificar_ataque(gets_pocicion_x_juego()+1, gets_pocicion_y_juego()+1, x_juego, y_juego);
+                dano += verificar_ataque(gets_pocicion_x_juego()-1, gets_pocicion_y_juego()+1, x_juego, y_juego);
+            }
         }
     }
-        //}
-    //}
+
     return dano;
 }
 
@@ -43,7 +45,7 @@ bool JUGADOR::Lanzar_flecha(){
     for(x=0 ; x<3 ; x++){
 
         if(!carcaj[x].gets_activo()){
-            carcaj[x].Iniciar_flecha(frente, 0, 0, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego());
+            carcaj[x].Iniciar_flecha(frente, 0, 1, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego());
             return true;
         }
 
@@ -64,6 +66,22 @@ void JUGADOR::Mover_flechas(MAPA &mapa){
 
     }
 
+}
+
+int JUGADOR::realizar_ataque_2(int x_guia, int y_guia, int x_juego, int y_juego){
+
+    int dano = 0;
+    int x;
+
+    for(x=0 ; x<3 ; x++){
+
+        if(carcaj[x].gets_activo()){
+            dano += carcaj[x].Realizar_ataque_flecha(x_guia, y_guia, x_juego, y_juego);
+        }
+
+    }
+
+    return dano;
 }
 
 ///---Confirmar ataque:

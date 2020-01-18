@@ -94,6 +94,10 @@ bool PROYECTIL::Mover_proyectil(MAPA &mapa){
 
         return true;
     }
+    /*if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego() + x, gets_pocicion_y_juego() +y) == ENEMIGO){
+
+        return true;
+    }*/
 
     return false;
 }
@@ -106,22 +110,22 @@ void PROYECTIL::Animar_proyectil(int espacio, int desplazar){
 
         case 0: ///Abajo;
             blit(PROYECTILES_spr, PROYECTIL_mov_spr, 0 * DESPLAZAR_Y_PIXEL, sprite * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-            draw_sprite_v_flip(buffer, PROYECTIL_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE - desplazar * espacio + ESPACIO_SUPERIOR_X);
+            draw_sprite_v_flip(buffer, PROYECTIL_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE - desplazar * espacio + ESPACIO_SUPERIOR_X + 16);
         break;
 
         case 1: ///Izquierda;
             blit(PROYECTILES_spr, PROYECTIL_mov_spr,  1 * DESPLAZAR_Y_PIXEL, sprite * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-            draw_sprite_h_flip(buffer, PROYECTIL_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + desplazar * espacio + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X);
+            draw_sprite_h_flip(buffer, PROYECTIL_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + desplazar * espacio + ESPACIO_SUPERIOR_Y - 16, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X);
         break;
 
         case 2: ///Arriba;
             blit(PROYECTILES_spr, PROYECTIL_mov_spr,  0 * DESPLAZAR_Y_PIXEL, sprite * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-            draw_sprite(buffer, PROYECTIL_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + desplazar * espacio + ESPACIO_SUPERIOR_X);
+            draw_sprite(buffer, PROYECTIL_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + desplazar * espacio + ESPACIO_SUPERIOR_X - 16);
         break;
 
         case 3: ///Derecha;
             blit(PROYECTILES_spr, PROYECTIL_mov_spr,  1 * DESPLAZAR_Y_PIXEL, sprite * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
-            draw_sprite(buffer, PROYECTIL_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE - desplazar * espacio + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X);
+            draw_sprite(buffer, PROYECTIL_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE - desplazar * espacio + ESPACIO_SUPERIOR_Y + 16, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X);
         break;
 
     }

@@ -32,6 +32,7 @@ class ENEMIGO_1: public PERSONAJE{
 
         int frente;
         CRONO frames_ataque;
+        CRONO inavilitar_acciones;
 
     public:
 
@@ -57,6 +58,7 @@ class ENEMIGO_1: public PERSONAJE{
         int gets_sprite(){return sprite_personaje;}
         int gets_vision(){return vision;}
         int gets_vida(){return vida_actual;}
+        bool gets_estado_vivo(){return estado_vivo;}
 
         ///Sets:
         void set_sprite( char c){sprite_personaje=c;}
@@ -68,6 +70,9 @@ class ENEMIGO_1: public PERSONAJE{
         ///Constructor.
         ENEMIGO_1(/*MAPA &mapa*/);
 
+        ///--- Rutinas del enemigo 1:
+        void Rutinas(MAPA &mapa);
+
         ///Rutina de movimiento.
         void rutina_de_movimiento(MAPA &mapa);
 
@@ -75,6 +80,10 @@ class ENEMIGO_1: public PERSONAJE{
         void realisar_movimiento(MAPA &mapa, int x_guia, int y_guia, int x_mapa, int y_mapa);
         int asechar(MAPA &mapa);
         int buscar_cuadrante(int x, int y, int i, int j);
+
+        ///Rutina de ataque:
+        int realizar_ataque(int x_guia, int y_guia, int x_juego, int y_juego);
+        bool verificar_ataque(int x_jugador, int y_jugador, int x_enemigo, int y_enemigo);
 
         ///Graficar MOB:
         void graficar_MOBs(int x_externo, int y_externo);
@@ -103,12 +112,7 @@ ENEMIGO_1::ENEMIGO_1(/*MAPA &mapa*/){
 
     frame_estatico.sets_tiempo(3);
     frames_ataque.sets_tiempo(5);
-
-    ///PERSONAJE::iniciar_personaje(mapa, sprite_personaje);
-
-    //vida = 3;
-    //vivo = true;
-    //frente = 0;
+    inavilitar_acciones.sets_tiempo(3);
 
 }
 
@@ -125,7 +129,20 @@ void ENEMIGO_1::Reiniciar_MOBs(MAPA &mapa){
 
 }
 
-///Rutina de MOBimiento del jugador:
+///--- Rutinas del enemigo 1:
+void ENEMIGO_1::Rutinas(MAPA &mapa){
+
+    if(!inavilitar_acciones.gets_cont_bool()){
+        rutina_de_movimiento(mapa);
+        inavilitar_acciones.sets_tiempo(3);
+    }
+    else{
+        inavilitar_acciones.control_int_invertido();
+    }
+}
+
+
+///Rutina de MOBimiento del enemigo:
 void ENEMIGO_1::rutina_de_movimiento(MAPA &mapa){
 
     if(estado_vivo){
@@ -226,6 +243,7 @@ void ENEMIGO_1::rutina_de_movimiento(MAPA &mapa){
                 direcion_anima = 0;
                 direccion = 0;
             }
+
 
         }
     }

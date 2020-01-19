@@ -4,6 +4,9 @@
 #define MAXIMA_VIDA 30
 #define MAXIMA_RUNA 30
 
+#define MAXIMA_FLECHAS 3
+#define MAXIMA_ESPECIAL_1 1
+
 class JUGADOR: public PERSONAJE{
     protected:
         int direccion;
@@ -19,10 +22,12 @@ class JUGADOR: public PERSONAJE{
         CRONO inavilitar_acciones;
         CRONO frames_animacion_ataque_1;
         CRONO frames_animacion_ataque_2;
+        CRONO frames_animacion_ataque_esp_1;
         CRONO frames_animacion_desplasamiento;
         CRONO frames_animacion_caminar;
 
         ///Estadisticas del jugador:
+        bool estado_vivo;
         int vida_actual;
         int vida_maxima;
         int runa_actual;
@@ -34,7 +39,11 @@ class JUGADOR: public PERSONAJE{
 
         ///Ataque 2:
         bool ataque_2;
-        FLECHA carcaj[3];
+        FLECHA carcaj[MAXIMA_FLECHAS];
+
+        ///Ataque especial 1;
+        bool ataque_esp_1;
+        FLECHA especial_1[MAXIMA_ESPECIAL_1];
 
     public:
 
@@ -77,6 +86,16 @@ class JUGADOR: public PERSONAJE{
         void Mover_flechas(MAPA &mapa);
         int realizar_ataque_2(int x_guia, int y_guia, int x_juego, int y_juego);
 
+        ///Ataque especial 1 (A):
+        bool Lanzar_ataque_esp_1();
+        void Mover_ataque_esp_1(MAPA &mapa);
+        int realizar_ataque_esp_1(int x_guia, int y_guia, int x_juego, int y_juego);
+
+        ///---Restar vida y runa;
+        bool Restar_runa(int gasto);
+        bool verificar_runa(int gasto);
+        void restar_vida(int dano);
+        void muerte();
 
         ///---Animaciones:
         void graficar_jugador();
@@ -87,6 +106,9 @@ class JUGADOR: public PERSONAJE{
 
         void graficar_jugador_ataque_2();
         void Graficar_flechas();
+
+        void graficar_jugador_ataque_esp_1();
+        void Graficar_ataque_esp_1();
 
         void graficar_jugador_barras();
 
@@ -104,6 +126,7 @@ JUGADOR::JUGADOR(){
     frames_animacion_caminar.sets_tiempo(9);
     frames_animacion_ataque_1.sets_tiempo(7);
     frames_animacion_ataque_2.sets_tiempo(8);
+    frames_animacion_ataque_esp_1.sets_tiempo(9);
 
 }
 
@@ -121,10 +144,18 @@ void JUGADOR::Reiniciar_jugador(MAPA &mapa){
     runa_actual = 30;
     runa_maxima = MAXIMA_RUNA;
 
-    for(x=0 ; x<3 ; x++){
+    for(x=0 ; x<MAXIMA_FLECHAS ; x++){
 
         if(carcaj[x].gets_activo()){
             carcaj[x].Desactivar_flecha();
+        }
+
+    }
+
+    for(x=0 ; x<MAXIMA_ESPECIAL_1 ; x++){
+
+        if(especial_1[x].gets_activo()){
+            especial_1[x].Desactivar_flecha();
         }
 
     }
@@ -135,6 +166,7 @@ void JUGADOR::Reiniciar_jugador(MAPA &mapa){
 void JUGADOR::rutinas_de_acciones(MAPA &mapa){
 
     Mover_flechas(mapa);
+    Mover_ataque_esp_1(mapa);
 
     ataque_1 = false;
 
@@ -174,6 +206,22 @@ void JUGADOR::rutinas_de_acciones(MAPA &mapa){
                     inavilitar_acciones.sets_tiempo(8);
                 }
 
+            }
+            return;
+        }
+
+        if(key[KEY_A]){
+
+            if(!frames_animacion_ataque_esp_1.gets_cont_bool()){
+                if(verificar_runa(1)){
+
+                    if(Lanzar_ataque_esp_1()){
+                        Restar_runa(1);
+                        frames_animacion_ataque_esp_1.sets_cont(1);
+                        inavilitar_acciones.sets_tiempo(9);
+                    }
+
+                }
             }
             return;
         }
@@ -300,6 +348,38 @@ void JUGADOR::mover_en_mapa_guia(){
 
 }
 
+
+///---Restar vida y runa;
+bool JUGADOR::verificar_runa(int gasto){
+
+    if((runa_actual - gasto) >= 0){
+        ///runa_actual-= gasto;
+        return true;
+    }
+    else{
+        return false;
+    }
+
+}
+
+bool JUGADOR::Restar_runa(int gasto){
+
+    runa_actual-= gasto;
+
+}
+
+void JUGADOR::restar_vida(int dano){
+    if((vida_actual - dano) > 0){
+        vida_actual-= dano;
+    }
+    else{
+        muerte();
+    }
+}
+
+void JUGADOR::muerte(){
+    estado_vivo = false;
+}
 
 
 ///---------------------Propio del padre---------------------

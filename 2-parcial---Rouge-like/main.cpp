@@ -137,7 +137,7 @@ int main(){
             /*for(ciclo_MOBs = 0; ciclo_MOBs < CANTIDAD_MODS; ciclo_MOBs++){
                 esqueleto[ciclo_MOBs].rutina_de_movimiento(mapa);
             }*/
-            pila_enemigos.Rutina_de_enemigos(mapa);
+            pila_enemigos.Rutina_de_enemigos(mapa, per_jug);
 
             ///Mover personaje jugador:
             per_jug.rutinas_de_acciones(mapa/*, esqueleto*/);

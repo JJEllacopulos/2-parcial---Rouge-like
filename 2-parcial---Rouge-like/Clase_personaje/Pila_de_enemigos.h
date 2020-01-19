@@ -32,7 +32,8 @@ class PILA_ENEMIGOS{
         ///-------Pendiente:
 
         ///---Rutinas de los enemigos;
-        void Rutina_de_enemigos(MAPA &mapa);
+        void Rutina_de_enemigos(MAPA &mapa, JUGADOR &jugador);
+        void Enemigo_ataca(JUGADOR &jugador);
 
         ///---Graficar a los enemigos;
         void Graficar_enemigos(JUGADOR jugador);
@@ -147,21 +148,37 @@ void PILA_ENEMIGOS::Jugador_ataca(JUGADOR jugador){
 
         enemigo_1[x].restar_vida(jugador.realizar_ataque_1(enemigo_1[x].gets_pocicion_x_guia(), enemigo_1[x].gets_pocicion_y_guia(), enemigo_1[x].gets_pocicion_x_juego(), enemigo_1[x].gets_pocicion_y_juego()));
         enemigo_1[x].restar_vida(jugador.realizar_ataque_2(enemigo_1[x].gets_pocicion_x_guia(), enemigo_1[x].gets_pocicion_y_guia(), enemigo_1[x].gets_pocicion_x_juego(), enemigo_1[x].gets_pocicion_y_juego()));
+        enemigo_1[x].restar_vida(jugador.realizar_ataque_esp_1(enemigo_1[x].gets_pocicion_x_guia(), enemigo_1[x].gets_pocicion_y_guia(), enemigo_1[x].gets_pocicion_x_juego(), enemigo_1[x].gets_pocicion_y_juego()));
 
     }
 
 }
 
+///---Interacciones enemigo a jugador:
+void PILA_ENEMIGOS::Enemigo_ataca(JUGADOR &jugador){
+
+    int x;
+
+    for(x = 0 ; x < tam_enemigo_1 ; x++){
+        if(enemigo_1[x].gets_estado_vivo()){
+            jugador.restar_vida(enemigo_1[x].realizar_ataque(jugador.gets_pocicion_x_guia(), jugador.gets_pocicion_y_guia(), jugador.gets_pocicion_x_juego(), jugador.gets_pocicion_y_juego()));
+        }
+    }
+
+}
+
 ///---Rutinas de los enemigos;
-void PILA_ENEMIGOS::Rutina_de_enemigos(MAPA &mapa){
+void PILA_ENEMIGOS::Rutina_de_enemigos(MAPA &mapa, JUGADOR &jugador){
 
     int x;
 
     for(x = 0 ; x < tam_enemigo_1 ; x++){
 
-        enemigo_1[x].rutina_de_movimiento(mapa);
+        enemigo_1[x].Rutinas(mapa);
 
     }
+
+    Enemigo_ataca(jugador);
 
 }
 

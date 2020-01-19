@@ -15,18 +15,27 @@ void ENEMIGO_1::graficar_MOBs(int x_externo, int y_externo){
 
 void ENEMIGO_1::Graficar_accion_MOBs(){
 
-    if(direccion == 0){
-
-        Graficar_accion_MOBs_pocicion_estatica();
-
-    }
-    else{
-
-        Graficar_accion_MOBs_caminar();
-
-    }
-
     Graficar_accion_MOBs_estado();
+
+    if(!inavilitar_acciones.gets_cont_bool()){
+        if(direccion == 0){
+
+            Graficar_accion_MOBs_pocicion_estatica();
+            return;
+
+        }
+        else{
+
+            Graficar_accion_MOBs_caminar();
+            return;
+        }
+
+    }else{
+        Graficar_accion_MOBs_pocicion_estatica();
+        return;
+    }
+
+
 
 }
 

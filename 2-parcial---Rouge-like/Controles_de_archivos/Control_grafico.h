@@ -40,8 +40,9 @@
 
 #define ANIMACION_ATAQUE_1 265 ///Pocicion inicial de la animacion del ataque 1.
 #define ANIMACION_ATAQUE_2 529 ///Pocicion inicial de la animacion del ataque 2.
+#define ANIMACION_ATAQUE_ESP_1 925 ///Pocicion inicial de la animacion del ataque 2.
 
-///Propios de los MOBs:
+///Propios de los enemigos:
 #define TAMANO_X_CORAZON 8 ///Tamaño de las barras en el eje x.
 #define TAMANO_Y_CORAZON 8 ///Tamaño de las barras en el eje y.
 

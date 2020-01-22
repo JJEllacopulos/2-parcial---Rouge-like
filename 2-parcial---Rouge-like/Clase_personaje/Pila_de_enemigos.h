@@ -5,8 +5,10 @@ class PILA_ENEMIGOS{
     private:
 
         ENEMIGO_1 *enemigo_1;
+        ENEMIGO_2 *enemigo_2;
 
         int tam_enemigo_1;
+        int tam_enemigo_2;
 
 
     public:
@@ -25,6 +27,10 @@ class PILA_ENEMIGOS{
         ///Enemigo 1:
         void Enemigo_1_asignacion_dinamica();
         void Iniciar_enemigo_1(MAPA &mapa);
+
+        ///Enemigo 2:
+        void Enemigo_2_asignacion_dinamica();
+        void Iniciar_enemigo_2(MAPA &mapa);
 
         ///---Interacciones jugador a enemigo:
         void Jugador_ataca(JUGADOR jugador);
@@ -55,6 +61,10 @@ void PILA_ENEMIGOS::Iniciar_vectores(int zona, MAPA &mapa){
         Enemigo_1_asignacion_dinamica();
         Iniciar_enemigo_1(mapa);
     }
+    if(tam_enemigo_2 != 0){
+        Enemigo_1_asignacion_dinamica();
+        Iniciar_enemigo_1(mapa);
+    }
 
 }
 
@@ -63,42 +73,52 @@ void PILA_ENEMIGOS::Asignar_tamanos(int zona){
     switch(zona){
         case 0:
             tam_enemigo_1 = 1;
+            tam_enemigo_2 = 1;
         break;
 
         case 1:
             tam_enemigo_1 = 2;
+            tam_enemigo_2 = 2;
         break;
 
         case 2:
             tam_enemigo_1 = 3;
+            tam_enemigo_2 = 3;
         break;
 
         case 3:
             tam_enemigo_1 = 4;
+            tam_enemigo_2 = 4;
         break;
 
         case 4:
             tam_enemigo_1 = 5;
+            tam_enemigo_2 = 5;
         break;
 
         case 5:
             tam_enemigo_1 = 6;
+            tam_enemigo_2 = 6;
         break;
 
         case 6:
             tam_enemigo_1 = 7;
+            tam_enemigo_2 = 7;
         break;
 
         case 7:
             tam_enemigo_1 = 8;
+            tam_enemigo_2 = 8;
         break;
 
         case 8:
             tam_enemigo_1 = 9;
+            tam_enemigo_2 = 9;
         break;
 
         default:
             tam_enemigo_1 = 0;
+            tam_enemigo_2 = 0;
         break;
 
     }
@@ -128,10 +148,36 @@ void PILA_ENEMIGOS::Iniciar_enemigo_1(MAPA &mapa){
 
 }
 
+void PILA_ENEMIGOS::Enemigo_2_asignacion_dinamica(){
+
+    enemigo_2 = new ENEMIGO_2[tam_enemigo_2];
+    if(enemigo_2 == NULL){
+        exit(1);
+    }
+
+}
+
+void PILA_ENEMIGOS::Iniciar_enemigo_2(MAPA &mapa){
+
+    int x;
+
+    if(tam_enemigo_2 != 0){
+
+        for(x = 0 ; x < tam_enemigo_2 ; x++){
+            enemigo_2[x].Reiniciar_MOBs(mapa);
+        }
+
+    }
+
+}
+
 void PILA_ENEMIGOS::Cerrar_vectores(){
 
     if(tam_enemigo_1 != 0){
         delete enemigo_1;
+    }
+    if(tam_enemigo_2 != 0){
+        delete enemigo_2;
     }
 
 }
@@ -149,6 +195,13 @@ void PILA_ENEMIGOS::Jugador_ataca(JUGADOR jugador){
         enemigo_1[x].restar_vida(jugador.realizar_ataque_1(enemigo_1[x].gets_pocicion_x_guia(), enemigo_1[x].gets_pocicion_y_guia(), enemigo_1[x].gets_pocicion_x_juego(), enemigo_1[x].gets_pocicion_y_juego()));
         enemigo_1[x].restar_vida(jugador.realizar_ataque_2(enemigo_1[x].gets_pocicion_x_guia(), enemigo_1[x].gets_pocicion_y_guia(), enemigo_1[x].gets_pocicion_x_juego(), enemigo_1[x].gets_pocicion_y_juego()));
         enemigo_1[x].restar_vida(jugador.realizar_ataque_esp_1(enemigo_1[x].gets_pocicion_x_guia(), enemigo_1[x].gets_pocicion_y_guia(), enemigo_1[x].gets_pocicion_x_juego(), enemigo_1[x].gets_pocicion_y_juego()));
+
+    }
+    for(x = 0 ; x < tam_enemigo_2 ; x++){
+
+        enemigo_2[x].restar_vida(jugador.realizar_ataque_1(enemigo_1[x].gets_pocicion_x_guia(), enemigo_1[x].gets_pocicion_y_guia(), enemigo_1[x].gets_pocicion_x_juego(), enemigo_1[x].gets_pocicion_y_juego()));
+        enemigo_2[x].restar_vida(jugador.realizar_ataque_2(enemigo_1[x].gets_pocicion_x_guia(), enemigo_1[x].gets_pocicion_y_guia(), enemigo_1[x].gets_pocicion_x_juego(), enemigo_1[x].gets_pocicion_y_juego()));
+        enemigo_2[x].restar_vida(jugador.realizar_ataque_esp_1(enemigo_1[x].gets_pocicion_x_guia(), enemigo_1[x].gets_pocicion_y_guia(), enemigo_1[x].gets_pocicion_x_juego(), enemigo_1[x].gets_pocicion_y_juego()));
 
     }
 
@@ -177,6 +230,11 @@ void PILA_ENEMIGOS::Rutina_de_enemigos(MAPA &mapa, JUGADOR &jugador){
         enemigo_1[x].Rutinas(mapa);
 
     }
+    for(x = 0 ; x < tam_enemigo_2 ; x++){
+
+        enemigo_2[x].Rutinas(mapa);
+
+    }
 
     Enemigo_ataca(jugador);
 
@@ -190,6 +248,11 @@ void PILA_ENEMIGOS::Graficar_enemigos(JUGADOR jugador){
     for(x = 0 ; x < tam_enemigo_1 ; x++){
 
         enemigo_1[x].graficar_MOBs(jugador.gets_pocicion_x_guia(), jugador.gets_pocicion_y_guia());
+
+    }
+    for(x = 0 ; x < tam_enemigo_2 ; x++){
+
+        enemigo_2[x].graficar_MOBs(jugador.gets_pocicion_x_guia(), jugador.gets_pocicion_y_guia());
 
     }
 

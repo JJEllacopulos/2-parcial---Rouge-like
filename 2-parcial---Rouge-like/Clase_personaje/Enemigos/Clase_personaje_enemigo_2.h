@@ -5,7 +5,7 @@
 #define CANTIDAD_MODS 15
 
 
-class ENEMIGO_1: public PERSONAJE{
+class ENEMIGO_2: public PERSONAJE{
     protected:
         int direccion;
 
@@ -24,10 +24,12 @@ class ENEMIGO_1: public PERSONAJE{
 
         CRONO retraso_movimiento;
 
-        CRONO animacion;
+        CRONO animacion_caminar;
         CRONO animacion_int;
-
         CRONO frame_estatico;
+
+        CRONO frames_animacion_ataque;
+
         int direcion_anima;
 
         int frente;
@@ -68,7 +70,7 @@ class ENEMIGO_1: public PERSONAJE{
 
 
         ///Constructor.
-        ENEMIGO_1(/*MAPA &mapa*/);
+        ENEMIGO_2(/*MAPA &mapa*/);
 
         ///--- Rutinas del enemigo 1:
         void Rutinas(MAPA &mapa);
@@ -90,6 +92,7 @@ class ENEMIGO_1: public PERSONAJE{
         void Graficar_accion_MOBs();
         void Graficar_accion_MOBs_pocicion_estatica();
         void Graficar_accion_MOBs_caminar();
+        void graficar_jugador_ataque();
         void Graficar_accion_MOBs_estado();
 
         ///Iniciar y reiniciar las estadisticas del MOBs:
@@ -97,7 +100,7 @@ class ENEMIGO_1: public PERSONAJE{
 
 };
 
-ENEMIGO_1::ENEMIGO_1(/*MAPA &mapa*/){
+ENEMIGO_2::ENEMIGO_2(){
 
     sprite_personaje = ENEMIGO;
     retraso_movimiento.sets_tiempo(10);
@@ -107,8 +110,9 @@ ENEMIGO_1::ENEMIGO_1(/*MAPA &mapa*/){
 
     retraso_movimiento.sets_tiempo(5);
 
-    animacion.sets_tiempo(2);
+    animacion_caminar.sets_tiempo(2);
     animacion_int.sets_tiempo(1);
+    frames_animacion_ataque.sets_tiempo(2);
 
     frame_estatico.sets_tiempo(3);
     frames_ataque.sets_tiempo(5);
@@ -117,7 +121,7 @@ ENEMIGO_1::ENEMIGO_1(/*MAPA &mapa*/){
 }
 
 ///Reiniciar MOBs:
-void ENEMIGO_1::Reiniciar_MOBs(MAPA &mapa){
+void ENEMIGO_2::Reiniciar_MOBs(MAPA &mapa){
 
     vida_actual = 3;
     vida_maxima = 3;
@@ -129,8 +133,8 @@ void ENEMIGO_1::Reiniciar_MOBs(MAPA &mapa){
 
 }
 
-///--- Rutinas del enemigo 1:
-void ENEMIGO_1::Rutinas(MAPA &mapa){
+///--- Rutinas del enemigo 2:
+void ENEMIGO_2::Rutinas(MAPA &mapa){
 
     if(!inavilitar_acciones.gets_cont_bool()){
         rutina_de_movimiento(mapa);
@@ -142,8 +146,8 @@ void ENEMIGO_1::Rutinas(MAPA &mapa){
 }
 
 
-///Rutina de MOBimiento del enemigo:
-void ENEMIGO_1::rutina_de_movimiento(MAPA &mapa){
+///Rutina de movimiento del enemigo:
+void ENEMIGO_2::rutina_de_movimiento(MAPA &mapa){
 
     if(estado_vivo){
 
@@ -255,14 +259,14 @@ void ENEMIGO_1::rutina_de_movimiento(MAPA &mapa){
 
 }
 
-void ENEMIGO_1::realisar_movimiento(MAPA &mapa,  int x_guia, int y_guia, int x_mapa, int y_mapa){
+void ENEMIGO_2::realisar_movimiento(MAPA &mapa,  int x_guia, int y_guia, int x_mapa, int y_mapa){
 
     PERSONAJE::sets_pocicion_completa(x_guia, y_guia, x_mapa, y_mapa);        ///ACTUALIZA LA UBICACION DEL ENEMIGO EN EL OBJETO
     mapa.sets_mapa_general(x_guia, y_guia, x_mapa, y_mapa, sprite_personaje);  ///ACTUALIZA LA UBICACION DEL ENEMIGO EN EL MAPA
 
 }
 
-int ENEMIGO_1::asechar(MAPA &mapa){
+int ENEMIGO_2::asechar(MAPA &mapa){
 
     int contador=0;
 
@@ -295,7 +299,7 @@ int ENEMIGO_1::asechar(MAPA &mapa){
     return cuadrante;
 }
 
-void ENEMIGO_1::mover_MOB(MAPA &mapa){
+void ENEMIGO_2::mover_MOB(MAPA &mapa){
 
     mapa.sets_mapa_general(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego(), PISO);
 
@@ -338,7 +342,7 @@ void ENEMIGO_1::mover_MOB(MAPA &mapa){
 }
 
 /// IDENTIFICACION DE CUADRANTES
-int ENEMIGO_1:: buscar_cuadrante(int x, int y, int i, int j){   ///"*" SIGNIFICA QUE ESTA CHEQUEADA LA LOGICA
+int ENEMIGO_2:: buscar_cuadrante(int x, int y, int i, int j){   ///"*" SIGNIFICA QUE ESTA CHEQUEADA LA LOGICA
 
 
     if(y<j&&x<i){       /// PRIMER * derecha abajo
@@ -361,7 +365,7 @@ int ENEMIGO_1:: buscar_cuadrante(int x, int y, int i, int j){   ///"*" SIGNIFICA
 }
 
 ///Resibir daño.
-void ENEMIGO_1::restar_vida(int dano){
+void ENEMIGO_2::restar_vida(int dano){
     if((vida_actual - dano) > 0){
         vida_actual-= dano;
     }
@@ -370,7 +374,7 @@ void ENEMIGO_1::restar_vida(int dano){
     }
 }
 
-void ENEMIGO_1::muerte(){
+void ENEMIGO_2::muerte(){
     estado_vivo = false;
     sprite_personaje = PISO;
 }
@@ -379,25 +383,25 @@ void ENEMIGO_1::muerte(){
 
 ///Gets
 
-int ENEMIGO_1::gets_pocicion_x_guia(){
+int ENEMIGO_2::gets_pocicion_x_guia(){
     return PERSONAJE::gets_pocicion_x_guia();
 }
 
-int ENEMIGO_1::gets_pocicion_y_guia(){
+int ENEMIGO_2::gets_pocicion_y_guia(){
     return PERSONAJE::gets_pocicion_y_guia();
 }
 
-int ENEMIGO_1::gets_pocicion_x_juego(){
+int ENEMIGO_2::gets_pocicion_x_juego(){
     return PERSONAJE::gets_pocicion_x_juego();
 }
 
-int ENEMIGO_1::gets_pocicion_y_juego(){
+int ENEMIGO_2::gets_pocicion_y_juego(){
     return PERSONAJE::gets_pocicion_y_juego();
 }
 
 ///Sets:
 
-void ENEMIGO_1::sets_pocicion_completa(int x_guia, int y_guia, int x_juego, int y_juego){
+void ENEMIGO_2::sets_pocicion_completa(int x_guia, int y_guia, int x_juego, int y_juego){
 
     PERSONAJE::sets_pocicion_x_guia(x_guia);
     PERSONAJE::sets_pocicion_y_guia(y_guia);
@@ -406,19 +410,19 @@ void ENEMIGO_1::sets_pocicion_completa(int x_guia, int y_guia, int x_juego, int 
 
 }
 
-void ENEMIGO_1::sets_pocicion_x_guia(int x_guia){
+void ENEMIGO_2::sets_pocicion_x_guia(int x_guia){
     PERSONAJE::sets_pocicion_x_guia(x_guia);
 }
 
-void ENEMIGO_1::sets_pocicion_y_guia(int y_guia){
+void ENEMIGO_2::sets_pocicion_y_guia(int y_guia){
     PERSONAJE::sets_pocicion_y_guia(y_guia);
 }
 
-void ENEMIGO_1::sets_pocicion_x_juego(int x_juego){
+void ENEMIGO_2::sets_pocicion_x_juego(int x_juego){
     PERSONAJE::sets_pocicion_x_juego(x_juego);
 }
 
-void ENEMIGO_1::sets_pocicion_y_juego(int y_juego){
+void ENEMIGO_2::sets_pocicion_y_juego(int y_juego){
     PERSONAJE::sets_pocicion_y_juego(y_juego);
 }
 

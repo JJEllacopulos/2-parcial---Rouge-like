@@ -17,6 +17,7 @@ int ENEMIGO_1::realizar_ataque(int x_guia, int y_guia, int x_juego, int y_juego)
                         dano += 1;
                         inavilitar_acciones.sets_tiempo(12);
                         inavilitar_acciones.sets_cont(12);
+                        frames_animacion_ataque.sets_cont(1);
                     }
 
                 }
@@ -25,6 +26,7 @@ int ENEMIGO_1::realizar_ataque(int x_guia, int y_guia, int x_juego, int y_juego)
                         dano += 1;
                         inavilitar_acciones.sets_tiempo(12);
                         inavilitar_acciones.sets_cont(12);
+                        frames_animacion_ataque.sets_cont(1);
                     }
 
                 }
@@ -33,6 +35,7 @@ int ENEMIGO_1::realizar_ataque(int x_guia, int y_guia, int x_juego, int y_juego)
                         dano += 1;
                         inavilitar_acciones.sets_tiempo(12);
                         inavilitar_acciones.sets_cont(12);
+                        frames_animacion_ataque.sets_cont(1);
                     }
 
                 }
@@ -41,6 +44,7 @@ int ENEMIGO_1::realizar_ataque(int x_guia, int y_guia, int x_juego, int y_juego)
                         dano += 1;
                         inavilitar_acciones.sets_tiempo(12);
                         inavilitar_acciones.sets_cont(12);
+                        frames_animacion_ataque.sets_cont(1);
                     }
 
                 }

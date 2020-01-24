@@ -2,19 +2,9 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="Cronometro.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Game_loop.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="701" topLine="9" />
-		</Cursor>
-	</File>
-	<File name="Controles_de_archivos\Control_partida.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1959" topLine="55" />
-		</Cursor>
-	</File>
-	<File name="Clase_personaje\Clase_personaje_jugador.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4985" topLine="178" />
+			<Cursor1 position="921" topLine="13" />
 		</Cursor>
 	</File>
 	<File name="Clase_mapa.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -22,24 +12,14 @@
 			<Cursor1 position="346" topLine="10" />
 		</Cursor>
 	</File>
-	<File name="Clase_personaje\Enemigos\Clase_personaje_enemigo_2_graficos.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Clase_personaje\Clase_personaje_jugador.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2600" topLine="47" />
+			<Cursor1 position="6623" topLine="247" />
 		</Cursor>
 	</File>
-	<File name="main.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Clase_personaje\Pila_de_enemigos.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="987" topLine="25" />
-		</Cursor>
-	</File>
-	<File name="Controles_de_archivos\Imagenes.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="205" topLine="1" />
-		</Cursor>
-	</File>
-	<File name="Clase_personaje\Otros\Clase_personaje_proyectil.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4274" topLine="105" />
+			<Cursor1 position="1225" topLine="55" />
 		</Cursor>
 	</File>
 	<File name="Clase_mapa_grafico.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -47,29 +27,74 @@
 			<Cursor1 position="1334" topLine="49" />
 		</Cursor>
 	</File>
-	<File name="Clase_personaje\Clase_personaje_jugador_combate.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Controles_de_archivos\Control_audio.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3118" topLine="32" />
+			<Cursor1 position="0" topLine="28" />
 		</Cursor>
 	</File>
-	<File name="Clase_personaje\Pila_de_enemigos.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Clase_personaje\Clase_personaje_jugador_combate.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="174" topLine="0" />
+			<Cursor1 position="2884" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="Clase_personaje\Clase_personaje_jugador_graficos.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="463" topLine="0" />
+			<Cursor1 position="11636" topLine="189" />
 		</Cursor>
 	</File>
-	<File name="Clase_personaje\Enemigos\Clase_personaje_enemigo_2.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Controles_de_archivos\Control_partida.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3940" topLine="133" />
+			<Cursor1 position="631" topLine="43" />
 		</Cursor>
 	</File>
-	<File name="Controles_de_archivos\Control_audio.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Clase_personaje\Clase_personaje_enemigo_2_combate.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="0" topLine="28" />
+			<Cursor1 position="555" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="Clase_personaje\Clase_personaje_enemigo_2_graficos.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="8691" topLine="141" />
+		</Cursor>
+	</File>
+	<File name="main.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2997" topLine="89" />
+		</Cursor>
+	</File>
+	<File name="Clase_personaje\Otros\Clase_personaje_proyectil.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4274" topLine="105" />
+		</Cursor>
+	</File>
+	<File name="Controles_de_archivos\Control_grafico.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="280" topLine="95" />
+		</Cursor>
+	</File>
+	<File name="Controles_de_archivos\Imagenes.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="74" topLine="1" />
+		</Cursor>
+	</File>
+	<File name="Cronometro.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="701" topLine="9" />
+		</Cursor>
+	</File>
+	<File name="Clase_personaje\Clase_personaje_enemigo_1_graficos.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1397" topLine="47" />
+		</Cursor>
+	</File>
+	<File name="Clase_personaje\Clase_personaje_enemigo_2.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1790" topLine="377" />
+		</Cursor>
+	</File>
+	<File name="Menu.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2381" topLine="110" />
 		</Cursor>
 	</File>
 	<File name="Clase_personaje\Clase_personaje.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -82,10 +107,10 @@
 			<Cursor1 position="4727" topLine="157" />
 		</Cursor>
 	</File>
-	<File name="Controles_de_archivos\Control_grafico.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2968" topLine="52" />
-		</Cursor>
-	</File>
-	<Target name="Debug" top="" />
+	<Target name="Debug" top="main.cpp">
+		<File name="main.cpp" />
+		<File name="Menu.h" />
+		<File name="Game_loop.h" />
+		<File name="Controles_de_archivos\Control_partida.h" />
+	</Target>
 </CodeBlocks_layout_file>

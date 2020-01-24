@@ -32,13 +32,13 @@ using namespace std;
 #include "Clase_personaje/Clase_personaje_jugador_graficos.h"
 #include "Clase_personaje/Clase_personaje_jugador_combate.h"
 ///Enemigos:
-#include "Clase_personaje/Enemigos/Clase_personaje_enemigo_1.h"
-#include "Clase_personaje/Enemigos/Clase_personaje_enemigo_1_graficos.h"
-#include "Clase_personaje/Enemigos/Clase_personaje_enemigo_1_combate.h"
+#include "Clase_personaje/Clase_personaje_enemigo_1.h"
+#include "Clase_personaje/Clase_personaje_enemigo_1_graficos.h"
+#include "Clase_personaje/Clase_personaje_enemigo_1_combate.h"
 
-#include "Clase_personaje/Enemigos/Clase_personaje_enemigo_2.h"
-#include "Clase_personaje/Enemigos/Clase_personaje_enemigo_2_graficos.h"
-#include "Clase_personaje/Enemigos/Clase_personaje_enemigo_2_combate.h"
+#include "Clase_personaje/Clase_personaje_enemigo_2.h"
+#include "Clase_personaje/Clase_personaje_enemigo_2_graficos.h"
+#include "Clase_personaje/Clase_personaje_enemigo_2_combate.h"
 
 
 ///interacciones
@@ -51,7 +51,11 @@ using namespace std;
 ///---Guardado de progreso.
 #include "Controles_de_archivos/Control_partida.h"
 
+///---Game loop:
+#include "Game_loop.h"
 
+///---Menu
+#include "Menu.h"
 
 int main(){
 
@@ -91,107 +95,17 @@ int main(){
 
     ///Inicia y arma el personaje.
     JUGADOR per_jug;
-    ///JUGADOR per_jug(mapa);
     cout<< "Personaje jugador iniciado."<< endl;
 
     ///Iniciar MOVs:
-    /*
-    int cantidad_de_MOBs = 15;
-    int ciclo_MOBs;
-    ENEMIGO_1 esqueleto[CANTIDAD_MODS];
-    */
     PILA_ENEMIGOS pila_enemigos;
-
-    ///MOB esqueleto[CANTIDAD_MODS](mapa);
-
-    ///Inicicar conometro:
-    CRONO cronometro;
-    CRONO cronometro_int;
-    cronometro.sets_tiempo(2);
-    cronometro_int.sets_tiempo(0);
 
     ///Archivo de guardado:
     ARCHIVO_PARTIDA archivo_guardado;
 
-    while(zona != 9){
+    Menu_control( per_jug, pila_enemigos, mapa, mapa_grafico, zona, archivo_guardado);
 
-        ///Iniciar y reiniciar el mapa.
-        mapa.Reiniciar_mapa();
-        mapa_grafico.Reiniciar_mapa_grefico(mapa);
-        per_jug.Reiniciar_jugador(mapa);
-        /*for(ciclo_MOBs = 0; ciclo_MOBs < CANTIDAD_MODS; ciclo_MOBs++){
-            esqueleto[ciclo_MOBs].Reiniciar_MOBs(mapa);
-        }*/
-
-        pila_enemigos.Iniciar_vectores(zona, mapa);
-
-        ///Guardar partida.
-        //archivo_guardado.Guardar_partida(zona, mapa, mapa_grafico, per_jug);
-
-        ///Carga las pistas de audio.
-        asignar_audio(zona);
-
-        ///Reproducion en bucle del tema de fondo:
-        play_midi(Fondo, 1);
-
-        ///Bucle del juego (game loop).
-        while(!key[KEY_ESC]){
-
-            ///Mover MOVs:
-            /*for(ciclo_MOBs = 0; ciclo_MOBs < CANTIDAD_MODS; ciclo_MOBs++){
-                esqueleto[ciclo_MOBs].rutina_de_movimiento(mapa);
-            }*/
-            pila_enemigos.Rutina_de_enemigos(mapa, per_jug);
-
-            ///Mover personaje jugador:
-            per_jug.rutinas_de_acciones(mapa/*, esqueleto*/);
-            pila_enemigos.Jugador_ataca(per_jug);
-
-
-
-            ///Atacar personaje jugador:
-            //per_jug.realizar_ataque(esqueleto);
-
-            ///Limpia el mapa de bits.
-            clear(buffer);
-
-            ///Carga en el buffer los elementos de entorno (Piso, muros, etc).
-            Graficar_fondo(mapa_grafico, per_jug.gets_pocicion_x_guia(), per_jug.gets_pocicion_y_guia(), zona);
-
-            ///Carga en el buffer los elementos de la superpocicion 1(decorados, efectos, animaciones, etc).
-
-            if(cronometro_int.control_bool()){
-                cronometro.control_int();
-            }
-
-            Graficar_superpocicion_1(mapa_grafico, per_jug.gets_pocicion_x_guia(), per_jug.gets_pocicion_y_guia(), cronometro.gets_cont(), zona);
-
-            ///Carga en el buffer el sprite del jugador.
-            per_jug.graficar_jugador();
-
-            ///Graficar MOVs:
-            /*for(ciclo_MOBs = 0; ciclo_MOBs < CANTIDAD_MODS; ciclo_MOBs++){
-                esqueleto[ciclo_MOBs].graficar_MOBs(per_jug.gets_pocicion_x_guia(), per_jug.gets_pocicion_y_guia());
-            }*/
-            pila_enemigos.Graficar_enemigos(per_jug);
-
-            ///Imprime en la ventana lo que se cargo en el buffer.
-            pantallaso();
-
-            ///Retraso de actividades en nanosegundos.
-            rest(60);
-        }
-
-        while(key[KEY_ESC]){}
-
-        zona++;
-
-        pila_enemigos.Cerrar_vectores();
-
-        ///Cargar partida.
-        //archivo_guardado.Cargar_partida(zona, mapa, mapa_grafico, per_jug);
-
-    }
+    ///Game_loop( per_jug, pila_enemigos, mapa, mapa_grafico, zona);
 
 }
 ///Equivalente a el return 0 para el main.

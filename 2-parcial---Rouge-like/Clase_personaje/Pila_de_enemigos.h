@@ -62,8 +62,8 @@ void PILA_ENEMIGOS::Iniciar_vectores(int zona, MAPA &mapa){
         Iniciar_enemigo_1(mapa);
     }
     if(tam_enemigo_2 != 0){
-        Enemigo_1_asignacion_dinamica();
-        Iniciar_enemigo_1(mapa);
+        Enemigo_2_asignacion_dinamica();
+        Iniciar_enemigo_2(mapa);
     }
 
 }
@@ -190,20 +190,22 @@ void PILA_ENEMIGOS::Jugador_ataca(JUGADOR jugador){
 
     int x;
 
-    for(x = 0 ; x < tam_enemigo_1 ; x++){
-
-        enemigo_1[x].restar_vida(jugador.realizar_ataque_1(enemigo_1[x].gets_pocicion_x_guia(), enemigo_1[x].gets_pocicion_y_guia(), enemigo_1[x].gets_pocicion_x_juego(), enemigo_1[x].gets_pocicion_y_juego()));
-        enemigo_1[x].restar_vida(jugador.realizar_ataque_2(enemigo_1[x].gets_pocicion_x_guia(), enemigo_1[x].gets_pocicion_y_guia(), enemigo_1[x].gets_pocicion_x_juego(), enemigo_1[x].gets_pocicion_y_juego()));
-        enemigo_1[x].restar_vida(jugador.realizar_ataque_esp_1(enemigo_1[x].gets_pocicion_x_guia(), enemigo_1[x].gets_pocicion_y_guia(), enemigo_1[x].gets_pocicion_x_juego(), enemigo_1[x].gets_pocicion_y_juego()));
-
-    }
     for(x = 0 ; x < tam_enemigo_2 ; x++){
-
-        enemigo_2[x].restar_vida(jugador.realizar_ataque_1(enemigo_1[x].gets_pocicion_x_guia(), enemigo_1[x].gets_pocicion_y_guia(), enemigo_1[x].gets_pocicion_x_juego(), enemigo_1[x].gets_pocicion_y_juego()));
-        enemigo_2[x].restar_vida(jugador.realizar_ataque_2(enemigo_1[x].gets_pocicion_x_guia(), enemigo_1[x].gets_pocicion_y_guia(), enemigo_1[x].gets_pocicion_x_juego(), enemigo_1[x].gets_pocicion_y_juego()));
-        enemigo_2[x].restar_vida(jugador.realizar_ataque_esp_1(enemigo_1[x].gets_pocicion_x_guia(), enemigo_1[x].gets_pocicion_y_guia(), enemigo_1[x].gets_pocicion_x_juego(), enemigo_1[x].gets_pocicion_y_juego()));
-
+        if(enemigo_2[x].gets_estado_vivo()){
+            enemigo_2[x].restar_vida(jugador.realizar_ataque_1(enemigo_2[x].gets_pocicion_x_guia(), enemigo_2[x].gets_pocicion_y_guia(), enemigo_2[x].gets_pocicion_x_juego(), enemigo_2[x].gets_pocicion_y_juego()));
+            enemigo_2[x].restar_vida(jugador.realizar_ataque_2(enemigo_2[x].gets_pocicion_x_guia(), enemigo_2[x].gets_pocicion_y_guia(), enemigo_2[x].gets_pocicion_x_juego(), enemigo_2[x].gets_pocicion_y_juego()));
+            enemigo_2[x].restar_vida(jugador.realizar_ataque_esp_1(enemigo_2[x].gets_pocicion_x_guia(), enemigo_2[x].gets_pocicion_y_guia(), enemigo_2[x].gets_pocicion_x_juego(), enemigo_2[x].gets_pocicion_y_juego()));
+        }
     }
+
+    for(x = 0 ; x < tam_enemigo_1 ; x++){
+        if(enemigo_1[x].gets_estado_vivo()){
+            enemigo_1[x].restar_vida(jugador.realizar_ataque_1(enemigo_1[x].gets_pocicion_x_guia(), enemigo_1[x].gets_pocicion_y_guia(), enemigo_1[x].gets_pocicion_x_juego(), enemigo_1[x].gets_pocicion_y_juego()));
+            enemigo_1[x].restar_vida(jugador.realizar_ataque_2(enemigo_1[x].gets_pocicion_x_guia(), enemigo_1[x].gets_pocicion_y_guia(), enemigo_1[x].gets_pocicion_x_juego(), enemigo_1[x].gets_pocicion_y_juego()));
+            enemigo_1[x].restar_vida(jugador.realizar_ataque_esp_1(enemigo_1[x].gets_pocicion_x_guia(), enemigo_1[x].gets_pocicion_y_guia(), enemigo_1[x].gets_pocicion_x_juego(), enemigo_1[x].gets_pocicion_y_juego()));
+        }
+    }
+
 
 }
 
@@ -215,6 +217,12 @@ void PILA_ENEMIGOS::Enemigo_ataca(JUGADOR &jugador){
     for(x = 0 ; x < tam_enemigo_1 ; x++){
         if(enemigo_1[x].gets_estado_vivo()){
             jugador.restar_vida(enemigo_1[x].realizar_ataque(jugador.gets_pocicion_x_guia(), jugador.gets_pocicion_y_guia(), jugador.gets_pocicion_x_juego(), jugador.gets_pocicion_y_juego()));
+        }
+    }
+
+    for(x = 0 ; x < tam_enemigo_2 ; x++){
+        if(enemigo_2[x].gets_estado_vivo()){
+            jugador.restar_vida(enemigo_2[x].realizar_ataque(jugador.gets_pocicion_x_guia(), jugador.gets_pocicion_y_guia(), jugador.gets_pocicion_x_juego(), jugador.gets_pocicion_y_juego()));
         }
     }
 

@@ -114,7 +114,11 @@ class JUGADOR: public PERSONAJE{
 
 
         ///Iniciar y reiniciar las estadisticas;
-        void Reiniciar_jugador(MAPA &mapa);
+        void Reiniciar_jugador_total(MAPA &mapa);
+        void Reiniciar_jugador_parcial(MAPA &mapa);
+
+        bool gets_estado_vivo(){return estado_vivo;}
+        void sets_estado_vivo(bool x){estado_vivo = x;}
 };
 
 JUGADOR::JUGADOR(){
@@ -128,10 +132,15 @@ JUGADOR::JUGADOR(){
     frames_animacion_ataque_2.sets_tiempo(8);
     frames_animacion_ataque_esp_1.sets_tiempo(9);
 
+    vida_maxima = MAXIMA_VIDA;
+    runa_maxima = MAXIMA_RUNA;
+
+    estado_vivo = true;
+
 }
 
 ///Reiniciar JUGADOR:
-void JUGADOR::Reiniciar_jugador(MAPA &mapa){
+void JUGADOR::Reiniciar_jugador_total(MAPA &mapa){
 
     int x;
 
@@ -139,10 +148,36 @@ void JUGADOR::Reiniciar_jugador(MAPA &mapa){
 
     PERSONAJE::iniciar_personaje(mapa, sprite_personaje);
 
-    vida_actual = 30;
-    vida_maxima = MAXIMA_VIDA;
-    runa_actual = 30;
-    runa_maxima = MAXIMA_RUNA;
+    vida_actual = MAXIMA_VIDA;
+    runa_actual = MAXIMA_RUNA;
+
+    estado_vivo = true;
+
+    for(x=0 ; x<MAXIMA_FLECHAS ; x++){
+
+        if(carcaj[x].gets_activo()){
+            carcaj[x].Desactivar_flecha();
+        }
+
+    }
+
+    for(x=0 ; x<MAXIMA_ESPECIAL_1 ; x++){
+
+        if(especial_1[x].gets_activo()){
+            especial_1[x].Desactivar_flecha();
+        }
+
+    }
+
+}
+
+void JUGADOR::Reiniciar_jugador_parcial(MAPA &mapa){
+
+    int x;
+
+    frente = 0;
+
+    PERSONAJE::iniciar_personaje(mapa, sprite_personaje);
 
     for(x=0 ; x<MAXIMA_FLECHAS ; x++){
 

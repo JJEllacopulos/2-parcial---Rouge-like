@@ -17,7 +17,7 @@ void Game_loop(JUGADOR &per_jug, PILA_ENEMIGOS &pila_enemigos, MAPA &mapa, MAPA_
     pila_enemigos.Iniciar_vectores(zona, mapa);
     */
 
-    while(zona != 9){
+    while(!key[KEY_ESC] && zona != 9 && per_jug.gets_estado_vivo()){
 
         /*
         ///Iniciar y reiniciar el mapa.
@@ -39,7 +39,7 @@ void Game_loop(JUGADOR &per_jug, PILA_ENEMIGOS &pila_enemigos, MAPA &mapa, MAPA_
         play_midi(Fondo, 1);
 
         ///Bucle del juego (game loop).
-        while(!key[KEY_ESC]){
+        while(!key[KEY_ESC] && per_jug.gets_estado_vivo() && pila_enemigos.Enemigos_vivos()){
 
             ///Rutinas de enemigos:
             pila_enemigos.Rutina_de_enemigos(mapa, per_jug);
@@ -74,7 +74,7 @@ void Game_loop(JUGADOR &per_jug, PILA_ENEMIGOS &pila_enemigos, MAPA &mapa, MAPA_
             rest(60);
         }
 
-        while(key[KEY_ESC]){}
+        //while(key[KEY_ESC]){}
 
         zona++;
 
@@ -85,10 +85,12 @@ void Game_loop(JUGADOR &per_jug, PILA_ENEMIGOS &pila_enemigos, MAPA &mapa, MAPA_
         ///Iniciar y reiniciar el mapa.
         mapa.Reiniciar_mapa();
         mapa_grafico.Reiniciar_mapa_grefico(mapa);
-        per_jug.Reiniciar_jugador(mapa);
+        per_jug.Reiniciar_jugador_parcial(mapa);
         ///pila_enemigos.Iniciar_vectores(zona, mapa);
 
     }
+
+    while(key[KEY_ESC]){}
 
     zona = 9;
     ///Carga las pistas de audio.

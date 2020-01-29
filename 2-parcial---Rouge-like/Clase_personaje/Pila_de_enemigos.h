@@ -35,14 +35,15 @@ class PILA_ENEMIGOS{
         ///---Interacciones jugador a enemigo:
         void Jugador_ataca(JUGADOR &jugador);
 
-        ///-------Pendiente:
-
         ///---Rutinas de los enemigos;
         void Rutina_de_enemigos(MAPA &mapa, JUGADOR &jugador);
         void Enemigo_ataca(JUGADOR &jugador);
 
         ///---Graficar a los enemigos;
         void Graficar_enemigos(JUGADOR &jugador);
+
+        ///---Verificar si hay enemigos vivos:
+        bool Enemigos_vivos();
 
         ///---Destructor:
         ~PILA_ENEMIGOS(){
@@ -245,6 +246,30 @@ void PILA_ENEMIGOS::Rutina_de_enemigos(MAPA &mapa, JUGADOR &jugador){
     }
 
     Enemigo_ataca(jugador);
+
+}
+
+///---Verificar si hay enemigos vivos:
+bool PILA_ENEMIGOS::Enemigos_vivos(){
+
+    int x;
+
+    for(x = 0 ; x < tam_enemigo_1 ; x++){
+
+        if(enemigo_1[x].gets_estado_vivo()){
+            return true;
+        }
+
+    }
+    for(x = 0 ; x < tam_enemigo_2 ; x++){
+
+        if(enemigo_2[x].gets_estado_vivo()){
+            return true;
+        }
+
+    }
+
+    return false;
 
 }
 

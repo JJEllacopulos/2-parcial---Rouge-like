@@ -41,6 +41,10 @@ void asignar_audio(int zona){
             Fondo = load_midi("Musica/9 - (Touhou) - septette_for_the_dead_princess.mid");
         break;
 
+        case 9:
+            Fondo = load_midi("Musica/Menu - (Berserk) - Guts Theme.mid");
+        break;
+
         default:
         break;
 

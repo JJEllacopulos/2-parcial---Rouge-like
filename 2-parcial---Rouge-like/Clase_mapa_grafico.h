@@ -10,11 +10,6 @@
 #define MURO_3 12
 #define MURO_4 13
 
-#define PARED_1 20
-#define PARED_2 21
-#define PARED_3 22
-#define PARED_4 23
-
 #define PISO_1 30
 #define PISO_2 31
 #define PISO_3 32
@@ -24,14 +19,31 @@
 #define PISO_7 36
 #define PISO_8 37
 
+#define PARED_1 20
+#define PARED_2 21
+#define PARED_3 22
+#define PARED_4 23
+
+#define PARED_ESQUINA_1 40
+#define PARED_ESQUINA_2 41
+#define PARED_ESQUINA_3 42
+#define PARED_ESQUINA_4 43
+#define PARED_ESQUINA_5 44
+#define PARED_ESQUINA_6 45
+#define PARED_ESQUINA_7 46
+#define PARED_ESQUINA_8 47
+#define PARED_ESQUINA_9 48
+#define PARED_ESQUINA_10 49
+
+
 ///Contenido de la 1° superpocicion:
 #define ELEMENTO_1 10
 #define ELEMENTO_2 11
 #define ELEMENTO_3 12
 #define ELEMENTO_4 13
 
-#define ANIMACION_1 20
-#define ANIMACION_2 21
+#define ANIMACION_1 14
+#define ANIMACION_2 15
 
 #define PUERTA_1 30
 #define PUERTA_2 31
@@ -48,6 +60,8 @@ class MAPA_GRAFICO{
     public:
         ///Constructor:
             void armar_mapa_grafico_fondo(MAPA &mapa);
+            int armar_mapa_grafico_fondo_esquinas(MAPA &mapa, int w, int x, int y, int z);
+
             void armar_mapa_grafico_1_sup(MAPA &mapa);
             void iniciar_mapas();
             MAPA_GRAFICO(/*MAPA &mapa*/);
@@ -125,7 +139,7 @@ void MAPA_GRAFICO::armar_mapa_grafico_fondo(MAPA &mapa){
                         break;
 
                         case MURO_ROMPIBLE:
-                            mapa_grafico_fondo[w][x][y][z] = ((rand()) % 4) + 20;
+                            mapa_grafico_fondo[w][x][y][z] = armar_mapa_grafico_fondo_esquinas(mapa, w, x, y, z);
                         break;
 
                         case PISO:
@@ -143,6 +157,102 @@ void MAPA_GRAFICO::armar_mapa_grafico_fondo(MAPA &mapa){
 
 }
 
+int MAPA_GRAFICO::armar_mapa_grafico_fondo_esquinas(MAPA &mapa, int w, int x, int y, int z){
+
+    if(mapa.gets_mapa_juego(w, x, y+1, z) == PISO){
+        if(mapa.gets_mapa_juego(w, x, y-1, z) == PISO){
+            if(mapa.gets_mapa_juego(w, x, y, z+1) == PISO){
+                if(mapa.gets_mapa_juego(w, x, y, z-1) == PISO){
+                    return PARED_ESQUINA_9;
+                }
+            }
+        }
+    }
+
+    if(mapa.gets_mapa_juego(w, x, y+1, z) == PISO){
+        if(mapa.gets_mapa_juego(w, x, y-1, z) == PISO){
+            if(mapa.gets_mapa_juego(w, x, y, z+1) == PISO){
+                //if(mapa.gets_mapa_juego(w, x, y, z-1) == PISO){
+                    return PARED_ESQUINA_8;
+                //}
+            }
+        }
+    }
+
+    //if(mapa.gets_mapa_juego(w, x, y+1, z) == PISO){
+        if(mapa.gets_mapa_juego(w, x, y-1, z) == PISO){
+            if(mapa.gets_mapa_juego(w, x, y, z+1) == PISO){
+                if(mapa.gets_mapa_juego(w, x, y, z-1) == PISO){
+                    return PARED_ESQUINA_7;
+                }
+            }
+        }
+    //}
+
+    if(mapa.gets_mapa_juego(w, x, y+1, z) == PISO){
+        if(mapa.gets_mapa_juego(w, x, y-1, z) == PISO){
+            //if(mapa.gets_mapa_juego(w, x, y, z+1) == PISO){
+                if(mapa.gets_mapa_juego(w, x, y, z-1) == PISO){
+                    return PARED_ESQUINA_6;
+                }
+            //}
+        }
+    }
+
+    if(mapa.gets_mapa_juego(w, x, y+1, z) == PISO){
+        //if(mapa.gets_mapa_juego(w, x, y-1, z) == PISO){
+            if(mapa.gets_mapa_juego(w, x, y, z+1) == PISO){
+                if(mapa.gets_mapa_juego(w, x, y, z-1) == PISO){
+                    return PARED_ESQUINA_5;
+                }
+            }
+        //}
+    }
+
+    if(mapa.gets_mapa_juego(w, x, y+1, z) == PISO){
+        //if(mapa.gets_mapa_juego(w, x, y-1, z) == PISO){
+            //if(mapa.gets_mapa_juego(w, x, y, z+1) == PISO){
+                if(mapa.gets_mapa_juego(w, x, y, z-1) == PISO){
+                    return PARED_ESQUINA_4;
+                }
+            //}
+        //}
+    }
+
+    //if(mapa.gets_mapa_juego(w, x, y+1, z) == PISO){
+        if(mapa.gets_mapa_juego(w, x, y-1, z) == PISO){
+            //if(mapa.gets_mapa_juego(w, x, y, z+1) == PISO){
+                if(mapa.gets_mapa_juego(w, x, y, z-1) == PISO){
+                    return PARED_ESQUINA_3;
+                }
+            //}
+        }
+    //}
+
+    //if(mapa.gets_mapa_juego(w, x, y+1, z) == PISO){
+        if(mapa.gets_mapa_juego(w, x, y-1, z) == PISO){
+            if(mapa.gets_mapa_juego(w, x, y, z+1) == PISO){
+                //if(mapa.gets_mapa_juego(w, x, y, z-1) == PISO){
+                    return PARED_ESQUINA_2;
+                //}
+            }
+        }
+    //}
+
+    if(mapa.gets_mapa_juego(w, x, y+1, z) == PISO){
+        //if(mapa.gets_mapa_juego(w, x, y-1, z) == PISO){
+            if(mapa.gets_mapa_juego(w, x, y, z+1) == PISO){
+                //if(mapa.gets_mapa_juego(w, x, y, z-1) == PISO){
+                    return PARED_ESQUINA_1;
+                //}
+            }
+        //}
+    }
+
+    return ((rand()) % 4) + 20;
+
+}
+
 void MAPA_GRAFICO::armar_mapa_grafico_1_sup(MAPA &mapa){
 
     int w,x,y,z, num;
@@ -152,7 +262,7 @@ void MAPA_GRAFICO::armar_mapa_grafico_1_sup(MAPA &mapa){
             for(y=0 ; y < MAX_FILAS_JUEGO ; y++){
                 for(z=0 ; z < MAX_COLUMNAS_JUEGO ; z++){
 
-                    num = ((rand()) % 5);
+                    num = ((rand()) % 2);
 
                     if(num == 0){
                         if(mapa.gets_mapa_juego(w, x, y, z) == MURO_ROMPIBLE){
@@ -160,12 +270,10 @@ void MAPA_GRAFICO::armar_mapa_grafico_1_sup(MAPA &mapa){
 
                                 if(mapa.gets_mapa_juego(w, x, y, z+1) == MURO_ROMPIBLE && mapa.gets_mapa_juego(w, x, y, z-1) == MURO_ROMPIBLE){
 
-                                        mapa_grafico_1_sup[w][x][y][z] = ((rand()) % 2) + 20;
+                                    //mapa_grafico_1_sup[w][x][y][z] = ((rand()) % 2) + 20;
 
-                                }
-                                else{
 
-                                    mapa_grafico_1_sup[w][x][y][z] = ((rand()) % 4) + 10;
+                                    mapa_grafico_1_sup[w][x][y][z] = ((rand()) % 6) + 10;
 
                                 }
 

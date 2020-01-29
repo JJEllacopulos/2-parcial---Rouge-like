@@ -14,7 +14,7 @@
 
     ///Cantidades en el armado de los mapas
 #define BLOQUES_GUIA_HABILITADOS 3 ///Candidad de minimapas habilitados.
-#define BLOQUES_JUEGOS_PISO 46 ///Cantidad de bloques que se dispondran como piso.
+#define BLOQUES_JUEGOS_PISO 43 ///Cantidad de bloques que se dispondran como piso.
 
 ///Contenido de matriz de juego:
 #define MURO_IRROMPIBLE 88 ///X
@@ -236,6 +236,7 @@ void MAPA::armar_mapa_general_marco(int x_externo, int y_externo){
 ///Asigna las puertas.
 void MAPA::armar_mapa_general_puertas(int x_externo, int y_externo){
 
+    int x = 0;
 
     ///Puerta arriba
     if(x_externo != 0){
@@ -243,7 +244,13 @@ void MAPA::armar_mapa_general_puertas(int x_externo, int y_externo){
         if(mapa_guia[x_externo-1][y_externo] == BLOQUE_HABILITADO){
             mapa_juego[x_externo][y_externo][0][POSICION_PUERTA_Y] = PUERTA;
             armar_mapa_general_caminos(x_externo, y_externo, 1, POSICION_PUERTA_Y);
-            mapa_juego[x_externo][y_externo][1][POSICION_PUERTA_Y] = PISO;
+
+            while(x + 1 != POSICION_PUERTA_X){
+                mapa_juego[x_externo][y_externo][1 + x][POSICION_PUERTA_Y] = PISO;
+                x++;
+            }
+
+            x = 0;
         }
     }
 
@@ -253,9 +260,17 @@ void MAPA::armar_mapa_general_puertas(int x_externo, int y_externo){
         if(mapa_guia[x_externo+1][y_externo] == BLOQUE_HABILITADO){
             mapa_juego[x_externo][y_externo][MAX_FILAS_JUEGO-1][POSICION_PUERTA_Y] = PUERTA;
             armar_mapa_general_caminos(x_externo, y_externo, MAX_FILAS_JUEGO-2, POSICION_PUERTA_Y);
-            mapa_juego[x_externo][y_externo][MAX_FILAS_JUEGO-2][POSICION_PUERTA_Y] = PISO;
+
+            while(x + MAX_FILAS_JUEGO-1 != POSICION_PUERTA_X){
+                mapa_juego[x_externo][y_externo][MAX_FILAS_JUEGO-2 + x][POSICION_PUERTA_Y] = PISO;
+                x--;
+            }
+
+            x = 0;
+
         }
     }
+
 
     ///Puerta izquierda
     if(y_externo != 0){
@@ -263,9 +278,18 @@ void MAPA::armar_mapa_general_puertas(int x_externo, int y_externo){
         if(mapa_guia[x_externo][y_externo-1] == BLOQUE_HABILITADO){
             mapa_juego[x_externo][y_externo][POSICION_PUERTA_X][0] = PUERTA;
             armar_mapa_general_caminos(x_externo, y_externo, POSICION_PUERTA_X, 1);
-            mapa_juego[x_externo][y_externo][POSICION_PUERTA_X][1] = PISO;
+
+            while(x + 1 != POSICION_PUERTA_Y){
+                mapa_juego[x_externo][y_externo][POSICION_PUERTA_X][1 + x] = PISO;
+                x++;
+            }
+
+            x = 0;
+
+
         }
     }
+
 
     ///Puerta deracha
     if(y_externo != MAX_COLUMNAS_GUIA-1){
@@ -273,7 +297,15 @@ void MAPA::armar_mapa_general_puertas(int x_externo, int y_externo){
         if(mapa_guia[x_externo][y_externo+1] == BLOQUE_HABILITADO){
             mapa_juego[x_externo][y_externo][POSICION_PUERTA_X][MAX_COLUMNAS_JUEGO-1] = PUERTA;
             armar_mapa_general_caminos(x_externo, y_externo, POSICION_PUERTA_X, MAX_COLUMNAS_JUEGO-2);
-            mapa_juego[x_externo][y_externo][POSICION_PUERTA_X][MAX_COLUMNAS_JUEGO-2] = PISO;
+
+            while(x + MAX_COLUMNAS_JUEGO-1 != POSICION_PUERTA_Y){
+                mapa_juego[x_externo][y_externo][POSICION_PUERTA_X][MAX_COLUMNAS_JUEGO-2 + x] = PISO;
+                x--;
+            }
+
+            x = 0;
+
+
         }
     }
 

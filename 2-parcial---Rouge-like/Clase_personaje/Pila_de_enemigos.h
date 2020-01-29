@@ -33,7 +33,7 @@ class PILA_ENEMIGOS{
         void Iniciar_enemigo_2(MAPA &mapa);
 
         ///---Interacciones jugador a enemigo:
-        void Jugador_ataca(JUGADOR jugador);
+        void Jugador_ataca(JUGADOR &jugador);
 
         ///-------Pendiente:
 
@@ -42,7 +42,7 @@ class PILA_ENEMIGOS{
         void Enemigo_ataca(JUGADOR &jugador);
 
         ///---Graficar a los enemigos;
-        void Graficar_enemigos(JUGADOR jugador);
+        void Graficar_enemigos(JUGADOR &jugador);
 
         ///---Destructor:
         ~PILA_ENEMIGOS(){
@@ -186,7 +186,7 @@ void PILA_ENEMIGOS::Cerrar_vectores(){
 ///-----------------------Rutinas:
 
 ///---Interacciones jugador a enemigo:
-void PILA_ENEMIGOS::Jugador_ataca(JUGADOR jugador){
+void PILA_ENEMIGOS::Jugador_ataca(JUGADOR &jugador){
 
     int x;
 
@@ -249,7 +249,7 @@ void PILA_ENEMIGOS::Rutina_de_enemigos(MAPA &mapa, JUGADOR &jugador){
 }
 
 ///---Graficar a los enemigos;
-void PILA_ENEMIGOS::Graficar_enemigos(JUGADOR jugador){
+void PILA_ENEMIGOS::Graficar_enemigos(JUGADOR &jugador){
 
     int x;
 

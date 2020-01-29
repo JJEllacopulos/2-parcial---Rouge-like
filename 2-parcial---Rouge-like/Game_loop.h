@@ -45,7 +45,7 @@ void Game_loop(JUGADOR &per_jug, PILA_ENEMIGOS &pila_enemigos, MAPA &mapa, MAPA_
             pila_enemigos.Rutina_de_enemigos(mapa, per_jug);
 
             ///Rutinas del jugador:
-            per_jug.rutinas_de_acciones(mapa/*, esqueleto*/);
+            per_jug.rutinas_de_acciones(mapa);
             pila_enemigos.Jugador_ataca(per_jug);
 
             ///Limpia el mapa de bits.
@@ -89,6 +89,12 @@ void Game_loop(JUGADOR &per_jug, PILA_ENEMIGOS &pila_enemigos, MAPA &mapa, MAPA_
         ///pila_enemigos.Iniciar_vectores(zona, mapa);
 
     }
+
+    zona = 9;
+    ///Carga las pistas de audio.
+    asignar_audio(zona);
+    ///Reproducion en bucle del tema de fondo:
+    play_midi(Fondo, 1);
 
 }
 

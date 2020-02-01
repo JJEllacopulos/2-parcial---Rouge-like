@@ -44,6 +44,7 @@
 		<Unit filename="Clase_personaje/Clase_personaje_jugador.h" />
 		<Unit filename="Clase_personaje/Clase_personaje_jugador_combate.h" />
 		<Unit filename="Clase_personaje/Clase_personaje_jugador_graficos.h" />
+		<Unit filename="Clase_personaje/Otros/Clase_personaje_altar.h" />
 		<Unit filename="Clase_personaje/Otros/Clase_personaje_proyectil.h" />
 		<Unit filename="Clase_personaje/Otros/Proyectil_flecha.h" />
 		<Unit filename="Clase_personaje/Pila_de_enemigos.h" />

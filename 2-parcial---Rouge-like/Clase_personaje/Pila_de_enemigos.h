@@ -7,8 +7,12 @@ class PILA_ENEMIGOS{
         ENEMIGO_1 *enemigo_1;
         ENEMIGO_2 *enemigo_2;
 
+        ALTAR *altar;
+
         int tam_enemigo_1;
         int tam_enemigo_2;
+
+        int tam_altar;
 
 
     public:
@@ -31,6 +35,11 @@ class PILA_ENEMIGOS{
         ///Enemigo 2:
         void Enemigo_2_asignacion_dinamica();
         void Iniciar_enemigo_2(MAPA &mapa);
+
+        ///Altar:
+        void altar_asignacion_dinamica();
+        void Iniciar_altar(MAPA &mapa, int zona);
+
 
         ///---Interacciones jugador a enemigo:
         void Jugador_ataca(JUGADOR &jugador);
@@ -66,60 +75,78 @@ void PILA_ENEMIGOS::Iniciar_vectores(int zona, MAPA &mapa){
         Enemigo_2_asignacion_dinamica();
         Iniciar_enemigo_2(mapa);
     }
+    if(tam_altar != 0){
+        altar_asignacion_dinamica();
+        Iniciar_altar(mapa, zona);
+    }
 
 }
 
 void PILA_ENEMIGOS::Asignar_tamanos(int zona){
 
+    tam_enemigo_1 = 0;
+    tam_enemigo_2 = 0;
+    tam_altar = 0;
+
     switch(zona){
         case 0:
             tam_enemigo_1 = 1;
             tam_enemigo_2 = 1;
+            tam_altar = 1;
         break;
 
         case 1:
             tam_enemigo_1 = 2;
             tam_enemigo_2 = 2;
+            tam_altar = 1;
         break;
 
         case 2:
             tam_enemigo_1 = 3;
             tam_enemigo_2 = 3;
+            tam_altar = 1;
         break;
 
         case 3:
             tam_enemigo_1 = 4;
             tam_enemigo_2 = 4;
+            tam_altar = 1;
         break;
 
         case 4:
             tam_enemigo_1 = 5;
             tam_enemigo_2 = 5;
+            tam_altar = 1;
         break;
 
         case 5:
             tam_enemigo_1 = 6;
             tam_enemigo_2 = 6;
+            tam_altar = 1;
         break;
 
         case 6:
             tam_enemigo_1 = 7;
             tam_enemigo_2 = 7;
+            tam_altar = 1;
         break;
 
         case 7:
             tam_enemigo_1 = 8;
             tam_enemigo_2 = 8;
+            tam_altar = 1;
         break;
 
         case 8:
             tam_enemigo_1 = 9;
             tam_enemigo_2 = 9;
+            tam_altar = 1;
         break;
 
         default:
             tam_enemigo_1 = 0;
             tam_enemigo_2 = 0;
+            tam_altar = 0;
         break;
 
     }
@@ -172,6 +199,29 @@ void PILA_ENEMIGOS::Iniciar_enemigo_2(MAPA &mapa){
 
 }
 
+void PILA_ENEMIGOS::altar_asignacion_dinamica(){
+
+    altar = new ALTAR[tam_altar];
+    if(altar == NULL){
+        exit(1);
+    }
+
+}
+
+void PILA_ENEMIGOS::Iniciar_altar(MAPA &mapa, int zona){
+
+    int x;
+
+    if(tam_altar != 0){
+
+        for(x = 0 ; x < tam_altar ; x++){
+            altar[x].Reiniciar_altar(mapa, zona);
+        }
+
+    }
+
+}
+
 void PILA_ENEMIGOS::Cerrar_vectores(){
 
     if(tam_enemigo_1 != 0){
@@ -208,6 +258,8 @@ void PILA_ENEMIGOS::Jugador_ataca(JUGADOR &jugador){
     }
 
 
+
+
 }
 
 ///---Interacciones enemigo a jugador:
@@ -217,13 +269,30 @@ void PILA_ENEMIGOS::Enemigo_ataca(JUGADOR &jugador){
 
     for(x = 0 ; x < tam_enemigo_1 ; x++){
         if(enemigo_1[x].gets_estado_vivo()){
-            jugador.restar_vida(enemigo_1[x].realizar_ataque(jugador.gets_pocicion_x_guia(), jugador.gets_pocicion_y_guia(), jugador.gets_pocicion_x_juego(), jugador.gets_pocicion_y_juego()));
+            jugador.restar_vida(enemigo_1[x].realizar_ataque(jugador.gets_pocicion_x_guia(), jugador.gets_pocicion_y_guia(), jugador.gets_pocicion_x_juego(), jugador.gets_pocicion_y_juego(), jugador.gets_frente_escudo()));
         }
     }
 
     for(x = 0 ; x < tam_enemigo_2 ; x++){
         if(enemigo_2[x].gets_estado_vivo()){
-            jugador.restar_vida(enemigo_2[x].realizar_ataque(jugador.gets_pocicion_x_guia(), jugador.gets_pocicion_y_guia(), jugador.gets_pocicion_x_juego(), jugador.gets_pocicion_y_juego()));
+            jugador.restar_vida(enemigo_2[x].realizar_ataque(jugador.gets_pocicion_x_guia(), jugador.gets_pocicion_y_guia(), jugador.gets_pocicion_x_juego(), jugador.gets_pocicion_y_juego(), jugador.gets_frente_escudo()));
+        }
+    }
+
+    if(jugador.gets_rezar()){
+        for(x = 0 ; x < tam_altar ; x++){
+
+            if(jugador.verificar_runa(altar[x].gets_costo_runa())){
+                if(jugador.verificar_vida(altar[x].gets_vida_recuperada())){
+                    if(!altar[x].Altar_cargado()){
+
+                    jugador.realizar_rezo( altar[x].gets_pocicion_x_guia(), altar[x].gets_pocicion_y_guia(), altar[x].gets_pocicion_x_juego(), altar[x].gets_pocicion_y_juego(),altar[x].gets_costo_runa(), altar[x].gets_vida_recuperada());
+
+                    }
+                    //jugador.restar_vida(altar[x].realizar_ataque(jugador.gets_pocicion_x_guia(), jugador.gets_pocicion_y_guia(), jugador.gets_pocicion_x_juego(), jugador.gets_pocicion_y_juego(), jugador.gets_frente_escudo()));
+                }
+            }
+
         }
     }
 
@@ -286,6 +355,11 @@ void PILA_ENEMIGOS::Graficar_enemigos(JUGADOR &jugador){
     for(x = 0 ; x < tam_enemigo_2 ; x++){
 
         enemigo_2[x].graficar_MOBs(jugador.gets_pocicion_x_guia(), jugador.gets_pocicion_y_guia());
+
+    }
+    for(x = 0 ; x < tam_altar ; x++){
+
+        altar[x].graficar_altar(jugador.gets_pocicion_x_guia(), jugador.gets_pocicion_y_guia());
 
     }
 

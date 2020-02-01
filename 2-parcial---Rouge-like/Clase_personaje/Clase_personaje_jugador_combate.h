@@ -76,13 +76,78 @@ int JUGADOR::realizar_ataque_2(int x_guia, int y_guia, int x_juego, int y_juego)
     for(x=0 ; x<MAXIMA_FLECHAS ; x++){
 
         if(carcaj[x].gets_activo()){
-            dano += carcaj[x].Realizar_ataque_flecha(x_guia, y_guia, x_juego, y_juego);
+            dano += carcaj[x].Realizar_ataque_flecha(x_guia, y_guia, x_juego, y_juego, -1);
         }
 
     }
 
     return dano;
 }
+
+///Escudo:
+void JUGADOR::Levantar_escudo(){
+
+    switch(frente){
+        case 0:
+            frente_escudo = 2;
+        break;
+        case 2:
+            frente_escudo = 0;
+        break;
+        case 3:
+            frente_escudo = 1;
+        break;
+        case 1:
+            frente_escudo = 3;
+        break;
+    }
+
+    escudo = true;
+}
+
+///Rezar:
+
+void JUGADOR::realizar_rezo(int x_guia, int y_guia, int x_juego, int y_juego, int costo_runa, int recuperacion){
+
+    //if(rezar){
+
+        if(gets_pocicion_x_guia() == x_guia && gets_pocicion_y_guia() == y_guia ){
+            if(frente == 0){
+                if(verificar_ataque(gets_pocicion_x_juego()+1, gets_pocicion_y_juego(), x_juego, y_juego)){
+                    vida_actual += recuperacion;
+                    runa_actual -= costo_runa;
+                }
+
+            }
+            else if(frente == 1){
+
+                if(verificar_ataque(gets_pocicion_x_juego(), gets_pocicion_y_juego()-1, x_juego, y_juego)){
+                    vida_actual += recuperacion;
+                    runa_actual -= costo_runa;
+                }
+
+            }
+            else if(frente == 2){
+
+                if(verificar_ataque(gets_pocicion_x_juego()-1, gets_pocicion_y_juego(),x_juego, y_juego)){
+                    vida_actual += recuperacion;
+                    runa_actual -= costo_runa;
+                }
+
+            }
+            else if(frente == 3){
+
+                if(verificar_ataque(gets_pocicion_x_juego(), gets_pocicion_y_juego()+1, x_juego, y_juego)){
+                    vida_actual += recuperacion;
+                    runa_actual -= costo_runa;
+                }
+
+            }
+        }
+    //}
+
+}
+
 
 ///---Rutina de ataque especial 1:
 
@@ -117,6 +182,8 @@ void JUGADOR::Mover_ataque_esp_1(MAPA &mapa){
 
 }
 
+
+
 int JUGADOR::realizar_ataque_esp_1(int x_guia, int y_guia, int x_juego, int y_juego){
 
     int dano = 0;
@@ -125,7 +192,7 @@ int JUGADOR::realizar_ataque_esp_1(int x_guia, int y_guia, int x_juego, int y_ju
     for(x=0 ; x<MAXIMA_ESPECIAL_1 ; x++){
 
         if(especial_1[x].gets_activo()){
-            dano += especial_1[x].Realizar_ataque_flecha(x_guia, y_guia, x_juego, y_juego);
+            dano += especial_1[x].Realizar_ataque_flecha(x_guia, y_guia, x_juego, y_juego, -1);
         }
 
     }

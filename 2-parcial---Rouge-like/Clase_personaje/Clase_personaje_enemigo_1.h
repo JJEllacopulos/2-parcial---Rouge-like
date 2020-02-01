@@ -84,8 +84,8 @@ class ENEMIGO_1: public PERSONAJE{
         int buscar_cuadrante(int x, int y, int i, int j);
 
         ///Rutina de ataque:
-        int realizar_ataque(int x_guia, int y_guia, int x_juego, int y_juego);
-        bool verificar_ataque(int x_jugador, int y_jugador, int x_enemigo, int y_enemigo);
+        int realizar_ataque(int x_guia, int y_guia, int x_juego, int y_juego, int escudo);
+        bool verificar_ataque(int x_jugador, int y_jugador, int x_enemigo, int y_enemigo, int escudo);
 
         ///Graficar MOB:
         void graficar_MOBs(int x_externo, int y_externo);

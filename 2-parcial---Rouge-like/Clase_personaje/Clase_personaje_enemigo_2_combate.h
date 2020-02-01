@@ -3,13 +3,13 @@
 
 ///---Realizar ataque;
 
-int ENEMIGO_2::realizar_ataque(int x_guia, int y_guia, int x_juego, int y_juego){
+int ENEMIGO_2::realizar_ataque(int x_guia, int y_guia, int x_juego, int y_juego, int escudo){
 
     int dano = 0;
 
     Lanzar_flechas(x_guia, y_guia, x_juego, y_juego);
 
-    dano += realizar_ataque_flecha(x_guia, y_guia, x_juego, y_juego);
+    dano += realizar_ataque_flecha(x_guia, y_guia, x_juego, y_juego, escudo);
 
     return dano;
 }
@@ -102,7 +102,7 @@ void ENEMIGO_2::Mover_flechas(MAPA &mapa){
 
 }
 
-int ENEMIGO_2::realizar_ataque_flecha(int x_guia, int y_guia, int x_juego, int y_juego){
+int ENEMIGO_2::realizar_ataque_flecha(int x_guia, int y_guia, int x_juego, int y_juego, int escudo){
 
     int dano = 0;
     int x;
@@ -110,7 +110,7 @@ int ENEMIGO_2::realizar_ataque_flecha(int x_guia, int y_guia, int x_juego, int y
     for(x=0 ; x<2 ; x++){
 
         if(carcaj[x].gets_activo()){
-            dano += carcaj[x].Realizar_ataque_flecha(x_guia, y_guia, x_juego, y_juego);
+            dano += carcaj[x].Realizar_ataque_flecha(x_guia, y_guia, x_juego, y_juego, escudo);
         }
 
     }

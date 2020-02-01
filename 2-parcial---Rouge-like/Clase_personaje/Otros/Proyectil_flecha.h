@@ -53,7 +53,7 @@ class FLECHA: public PROYECTIL{
         void Rutinas_flecha(MAPA &mapa);
         void Mover_flecha(MAPA &mapa);
         bool verificar_inpacto(int x_jugador, int y_jugador, int x_enemigo, int y_enemigo);
-        int Realizar_ataque_flecha(int x_jugador, int y_jugador, int x_enemigo, int y_enemigo);
+        int Realizar_ataque_flecha(int x_jugador, int y_jugador, int x_enemigo, int y_enemigo, int escudo);
 
         ///---Animacion:
         void Animar_flecha();
@@ -111,35 +111,43 @@ void FLECHA::Mover_flecha(MAPA &mapa){
     }
 }
 
-int FLECHA::Realizar_ataque_flecha(int x_guia, int y_guia, int x_juego, int y_juego){
+int FLECHA::Realizar_ataque_flecha(int x_guia, int y_guia, int x_juego, int y_juego, int escudo){
     int dano = 0;
 
     if(!inavilitar_acciones.gets_cont_bool()){
         if(gets_pocicion_x_guia() == x_guia && gets_pocicion_y_guia() == y_guia ){
             if(frente == 0){
                 if(verificar_inpacto(gets_pocicion_x_juego()+1, gets_pocicion_y_juego(), x_juego, y_juego)){
-                    dano += dano_flecha;
+                    if(frente != escudo){
+                        dano += dano_flecha;
+                    }
                     activo = false;
                     //Desactivar_flecha();
                 }
             }
             else if(frente == 1){
                 if(verificar_inpacto(gets_pocicion_x_juego(), gets_pocicion_y_juego()-1, x_juego, y_juego)){
-                    dano += dano_flecha;
+                    if(frente != escudo){
+                        dano += dano_flecha;
+                    }
                     activo = false;
                     //Desactivar_flecha();
                 }
             }
             else if(frente == 2){
                 if(verificar_inpacto(gets_pocicion_x_juego()-1, gets_pocicion_y_juego(),x_juego, y_juego)){
-                    dano += dano_flecha;
+                    if(frente != escudo){
+                        dano += dano_flecha;
+                    }
                     activo = false;
                     //Desactivar_flecha();
                 }
             }
             else if(frente == 3){
                 if(verificar_inpacto(gets_pocicion_x_juego(), gets_pocicion_y_juego()+1, x_juego, y_juego)){
-                    dano += dano_flecha;
+                    if(frente != escudo){
+                        dano += dano_flecha;
+                    }
                     activo = false;
                     //Desactivar_flecha();
                 }

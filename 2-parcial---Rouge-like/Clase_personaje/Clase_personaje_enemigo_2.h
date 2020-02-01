@@ -82,12 +82,12 @@ class ENEMIGO_2: public PERSONAJE{
         int buscar_cuadrante(int x, int y, int i, int j);
 
         ///Rutina de ataque:
-        int realizar_ataque(int x_guia, int y_guia, int x_juego, int y_juego);
+        int realizar_ataque(int x_guia, int y_guia, int x_juego, int y_juego, int escudo);
         bool verificar_ataque(int x_jugador, int y_jugador, int x_enemigo, int y_enemigo);
         void Lanzar_flechas(int x_guia, int y_guia, int x_juego, int y_juego);
         bool Lanzar_flecha();
         void Mover_flechas(MAPA &mapa);
-        int realizar_ataque_flecha(int x_guia, int y_guia, int x_juego, int y_juego);
+        int realizar_ataque_flecha(int x_guia, int y_guia, int x_juego, int y_juego, int escudo);
 
 
         ///Graficar MOB:

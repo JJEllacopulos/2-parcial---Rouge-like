@@ -40,6 +40,7 @@
 
 #define ANIMACION_ATAQUE_1 265 ///Pocicion inicial de la animacion del ataque 1.
 #define ANIMACION_ATAQUE_2 529 ///Pocicion inicial de la animacion del ataque 2.
+#define ANIMACION_ESCUDO 792 ///Pocicion inicial de la animacion del ataque 2.
 #define ANIMACION_ATAQUE_ESP_1 925 ///Pocicion inicial de la animacion del ataque 2.
 
 ///Propios de los enemigos:

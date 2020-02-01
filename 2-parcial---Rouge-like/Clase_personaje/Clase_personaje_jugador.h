@@ -22,6 +22,7 @@ class JUGADOR: public PERSONAJE{
         CRONO inavilitar_acciones;
         CRONO frames_animacion_ataque_1;
         CRONO frames_animacion_ataque_2;
+        CRONO frames_animacion_escudo;
         CRONO frames_animacion_ataque_esp_1;
         CRONO frames_animacion_desplasamiento;
         CRONO frames_animacion_caminar;
@@ -40,6 +41,13 @@ class JUGADOR: public PERSONAJE{
         ///Ataque 2:
         bool ataque_2;
         FLECHA carcaj[MAXIMA_FLECHAS];
+
+        ///Escudo:
+        bool escudo;
+        int frente_escudo;
+
+        ///Rezar:
+        bool rezar;
 
         ///Ataque especial 1;
         bool ataque_esp_1;
@@ -86,6 +94,16 @@ class JUGADOR: public PERSONAJE{
         void Mover_flechas(MAPA &mapa);
         int realizar_ataque_2(int x_guia, int y_guia, int x_juego, int y_juego);
 
+        ///Escudo:
+        void Levantar_escudo();
+        void graficar_jugador_levantar_escudo();
+        void graficar_jugador_escudo_estatico();
+        int gets_frente_escudo(){return frente_escudo;}
+
+        ///Rezar:
+        bool gets_rezar(){return rezar;}
+        void realizar_rezo(int x_guia, int y_guia, int x_juego, int y_juego, int costo_runa, int recuperacion);
+
         ///Ataque especial 1 (A):
         bool Lanzar_ataque_esp_1();
         void Mover_ataque_esp_1(MAPA &mapa);
@@ -94,6 +112,7 @@ class JUGADOR: public PERSONAJE{
         ///---Restar vida y runa;
         bool Restar_runa(int gasto);
         bool verificar_runa(int gasto);
+        bool verificar_vida(int recuperacion);
         void restar_vida(int dano);
         void muerte();
 
@@ -130,6 +149,7 @@ JUGADOR::JUGADOR(){
     frames_animacion_caminar.sets_tiempo(9);
     frames_animacion_ataque_1.sets_tiempo(7);
     frames_animacion_ataque_2.sets_tiempo(8);
+    frames_animacion_escudo.sets_tiempo(4);
     frames_animacion_ataque_esp_1.sets_tiempo(9);
 
     vida_maxima = MAXIMA_VIDA;
@@ -152,6 +172,8 @@ void JUGADOR::Reiniciar_jugador_total(MAPA &mapa){
     runa_actual = MAXIMA_RUNA;
 
     estado_vivo = true;
+
+    escudo = false;
 
     for(x=0 ; x<MAXIMA_FLECHAS ; x++){
 
@@ -176,6 +198,8 @@ void JUGADOR::Reiniciar_jugador_parcial(MAPA &mapa){
     int x;
 
     frente = 0;
+
+    escudo = false;
 
     PERSONAJE::iniciar_personaje(mapa, sprite_personaje);
 
@@ -204,10 +228,28 @@ void JUGADOR::rutinas_de_acciones(MAPA &mapa){
     Mover_ataque_esp_1(mapa);
 
     ataque_1 = false;
+    rezar = false;
 
     if(!inavilitar_acciones.gets_cont_bool()){
 
         direccion = 0;
+
+        ///Escudo
+        if(key[KEY_C]){
+
+            if(!frames_animacion_escudo.gets_cont_bool()){
+                if(!escudo){
+                    Levantar_escudo();
+                    frames_animacion_escudo.sets_cont(1);
+                    inavilitar_acciones.sets_tiempo(4);
+                }
+
+            }
+            return;
+        }else{
+            escudo = false;
+            frente_escudo = -1;
+        }
 
         ///Mobimiento:
         if(key[KEY_RIGHT] ||key[KEY_LEFT] || key[KEY_DOWN] || key[KEY_UP]){
@@ -245,6 +287,17 @@ void JUGADOR::rutinas_de_acciones(MAPA &mapa){
             return;
         }
 
+        ///Rezar:
+        if(key[KEY_V]){
+
+            rezar = true;
+            inavilitar_acciones.sets_tiempo(3);
+
+            return;
+        }
+
+
+
         if(key[KEY_A]){
 
             if(!frames_animacion_ataque_esp_1.gets_cont_bool()){
@@ -260,6 +313,8 @@ void JUGADOR::rutinas_de_acciones(MAPA &mapa){
             }
             return;
         }
+
+
 
 
     }
@@ -287,19 +342,28 @@ void JUGADOR::rutina_de_movimiento(MAPA &mapa){
         frente = 0;
 
     }else if(key[KEY_RIGHT]){ ///DERECHA
-        direccion = 1;
+        if(frente == 3){
+            direccion = 1;
+        }
+
         frente = 3;
 
     }else if(key[KEY_LEFT]){ ///IZQUIERDA
-        direccion = 2;
+        if(frente == 1){
+            direccion = 2;
+        }
         frente = 1;
 
     }else if(key[KEY_UP]){  ///ARRIBA
-        direccion = 3;
+        if(frente == 2){
+            direccion = 3;
+        }
         frente = 2;
 
     }else if(key[KEY_DOWN]){  ///ABAJO
-        direccion = 4;
+        if(frente == 0){
+            direccion = 4;
+        }
         frente = 0;
     }
 
@@ -388,6 +452,18 @@ void JUGADOR::mover_en_mapa_guia(){
 bool JUGADOR::verificar_runa(int gasto){
 
     if((runa_actual - gasto) >= 0){
+        ///runa_actual-= gasto;
+        return true;
+    }
+    else{
+        return false;
+    }
+
+}
+
+bool JUGADOR::verificar_vida(int recuperacion){
+
+    if((vida_actual + recuperacion) <= MAXIMA_VIDA){
         ///runa_actual-= gasto;
         return true;
     }

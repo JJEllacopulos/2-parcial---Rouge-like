@@ -21,6 +21,15 @@ void JUGADOR::graficar_jugador(){
 
     }
 
+    if(frames_animacion_escudo.gets_cont_bool() != 0){
+        graficar_jugador_levantar_escudo();
+        return;
+    }
+    if(escudo){
+        graficar_jugador_escudo_estatico();
+        return;
+    }
+
     if(frames_animacion_ataque_esp_1.gets_cont_bool() != 0){
         graficar_jugador_ataque_esp_1();
         return;
@@ -209,6 +218,64 @@ void JUGADOR::Graficar_flechas(){
 
 }
 
+
+///Amimacion levantar el escudo:
+void JUGADOR::graficar_jugador_levantar_escudo(){
+
+    frames_animacion_escudo.control_int();
+    inavilitar_acciones.control_int_invertido();
+    switch(frente){
+
+        case 0: ///Abajo;
+            blit(JUGADOR_spr, JUGADOR_mov_spr, (frames_animacion_escudo.gets_cont() - 1) * DESPLAZAR_X_PIXEL, (0 * DESPLAZAR_X_PIXEL) + ANIMACION_ESCUDO, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+            draw_sprite(buffer, JUGADOR_mov_spr, (gets_pocicion_y_juego() * TAMANO_Y_SPRITE) + ESPACIO_SUPERIOR_Y, (gets_pocicion_x_juego() * TAMANO_X_SPRITE) + ESPACIO_SUPERIOR_X);
+        break;
+
+        case 1: ///Izquierda;
+            blit(JUGADOR_spr, JUGADOR_mov_spr, (frames_animacion_escudo.gets_cont() - 1) * DESPLAZAR_X_PIXEL, (1 * DESPLAZAR_X_PIXEL) + ANIMACION_ESCUDO, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+            draw_sprite_h_flip(buffer, JUGADOR_mov_spr, (gets_pocicion_y_juego() * TAMANO_Y_SPRITE) + ESPACIO_SUPERIOR_Y, (gets_pocicion_x_juego() * TAMANO_X_SPRITE) + ESPACIO_SUPERIOR_X);
+        break;
+
+        case 2: ///Arriba;
+            blit(JUGADOR_spr, JUGADOR_mov_spr, (frames_animacion_escudo.gets_cont() - 1) * DESPLAZAR_X_PIXEL, (2 * DESPLAZAR_X_PIXEL) + ANIMACION_ESCUDO, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+            draw_sprite(buffer, JUGADOR_mov_spr, (gets_pocicion_y_juego() * TAMANO_Y_SPRITE) + ESPACIO_SUPERIOR_Y, (gets_pocicion_x_juego() * TAMANO_X_SPRITE) + ESPACIO_SUPERIOR_X);
+        break;
+
+        case 3: ///Derecha;
+            blit(JUGADOR_spr, JUGADOR_mov_spr, (frames_animacion_escudo.gets_cont() - 1) * DESPLAZAR_X_PIXEL, (1 * DESPLAZAR_X_PIXEL) + ANIMACION_ESCUDO, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+            draw_sprite(buffer, JUGADOR_mov_spr, (gets_pocicion_y_juego() * TAMANO_Y_SPRITE) + ESPACIO_SUPERIOR_Y, (gets_pocicion_x_juego() * TAMANO_X_SPRITE) + ESPACIO_SUPERIOR_X);
+        break;
+
+    }
+
+}
+
+///Animacion de escudo:
+void JUGADOR::graficar_jugador_escudo_estatico(){
+
+    switch(frente){
+        case 0:
+            blit(JUGADOR_spr, JUGADOR_mov_spr, (0 * DESPLAZAR_Y_PIXEL) + 132, (0 * DESPLAZAR_X_PIXEL) + 792, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+            draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X);
+        break;
+        case 1:
+            blit(JUGADOR_spr, JUGADOR_mov_spr, (0 * DESPLAZAR_Y_PIXEL) + 132, (1 * DESPLAZAR_X_PIXEL) + 792, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+            draw_sprite_h_flip(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X);
+        break;
+        case 2:
+            blit(JUGADOR_spr, JUGADOR_mov_spr, (0 * DESPLAZAR_Y_PIXEL) + 132, (2 * DESPLAZAR_X_PIXEL) + 792, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+            draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X);
+        break;
+        case 3:
+            blit(JUGADOR_spr, JUGADOR_mov_spr, (0 * DESPLAZAR_Y_PIXEL) + 132, (1 * DESPLAZAR_X_PIXEL) + 792, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+            draw_sprite(buffer, JUGADOR_mov_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X);
+        break;
+
+    }
+
+}
+
+
 ///Animacion de ataque especial 2:
 void JUGADOR::graficar_jugador_ataque_esp_1(){
 
@@ -239,6 +306,7 @@ void JUGADOR::graficar_jugador_ataque_esp_1(){
     }
 
 }
+
 
 ///Amimacion del ataque especial 1:
 void JUGADOR::Graficar_ataque_esp_1(){

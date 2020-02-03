@@ -34,6 +34,9 @@
 #define CENTRAR_X_SPRITE_ATTACK 16 ///Tamaño del los sprites de attack en el eje x que se debe desplazar para centrar la imagen.
 #define CENTRAR_Y_SPRITE_ATTACK 16 ///Tamaño del los sprites de attack en el eje y que se debe desplazar para centrar la imagen.
 
+#define TAMANO_X_SPRITE_RAYO 16 ///Tamaño del los sprites del rayo en el eje x que se debe desplazar para cortar la imagen.
+#define TAMANO_Y_SPRITE_RAYO 48 ///Tamaño del los sprites del rayo en el eje y que se debe desplazar para cortar la imagen.
+
 ///Propios de los jugador:
 #define TAMANO_X_BARRA 32 ///Tamaño de las barras en el eje x.
 #define TAMANO_Y_BARRA 16 ///Tamaño de las barras en el eje y.
@@ -68,6 +71,9 @@ void asignar_sprites(){
 
     PROYECTILES_spr = load_bitmap("Imagenes/Proyectiles.bmp", NULL);
     PROYECTIL_mov_spr = create_bitmap(TAMANO_X_SPRITE, TAMANO_Y_SPRITE);
+
+    PILARES_spr = load_bitmap("Imagenes/Pilares.bmp", NULL);
+    RAYO_spr = create_bitmap(TAMANO_X_SPRITE_RAYO, TAMANO_Y_SPRITE_RAYO);
 
     ///------------------------------------------
 

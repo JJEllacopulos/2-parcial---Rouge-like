@@ -27,6 +27,7 @@ using namespace std;
 #include "Clase_personaje/Otros/Clase_personaje_proyectil.h"
 #include "Clase_personaje/Otros/Proyectil_flecha.h"
 #include "Clase_personaje/Otros/Clase_personaje_altar.h"
+#include "Clase_personaje/Otros/Clase_personaje_rayo.h"
 
 ///Jugador:
 #include "Clase_personaje/Clase_personaje_jugador.h"

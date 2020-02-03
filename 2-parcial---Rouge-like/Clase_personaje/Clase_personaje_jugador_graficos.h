@@ -9,6 +9,7 @@ void JUGADOR::graficar_jugador(){
 
     Graficar_flechas();
     Graficar_ataque_esp_1();
+    Graficar_ataque_esp_2();
 
     if(frames_animacion_ataque_1.gets_cont_bool() != 0){
         graficar_jugador_ataque_1();
@@ -319,6 +320,25 @@ void JUGADOR::Graficar_ataque_esp_1(){
 
             if(gets_pocicion_x_guia() == especial_1[x].gets_pocicion_x_guia() && gets_pocicion_y_guia() == especial_1[x].gets_pocicion_y_guia()){
                 especial_1[x].Animar_flecha();
+            }
+
+        }
+
+    }
+
+}
+
+///Amimacion del ataque especial 2:
+void JUGADOR::Graficar_ataque_esp_2(){
+
+    int x;
+
+    for(x=0 ; x<MAXIMA_ESPECIAL_2 ; x++){
+
+        if(especial_2[x].gets_activo()){
+
+            if(gets_pocicion_x_guia() == especial_2[x].gets_pocicion_x_guia() && gets_pocicion_y_guia() == especial_2[x].gets_pocicion_y_guia()){
+                especial_2[x].Animar_rayo();
             }
 
         }

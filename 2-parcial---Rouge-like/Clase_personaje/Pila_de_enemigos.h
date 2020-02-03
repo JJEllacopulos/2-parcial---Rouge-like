@@ -246,6 +246,12 @@ void PILA_ENEMIGOS::Jugador_ataca(JUGADOR &jugador){
             enemigo_2[x].restar_vida(jugador.realizar_ataque_1(enemigo_2[x].gets_pocicion_x_guia(), enemigo_2[x].gets_pocicion_y_guia(), enemigo_2[x].gets_pocicion_x_juego(), enemigo_2[x].gets_pocicion_y_juego()));
             enemigo_2[x].restar_vida(jugador.realizar_ataque_2(enemigo_2[x].gets_pocicion_x_guia(), enemigo_2[x].gets_pocicion_y_guia(), enemigo_2[x].gets_pocicion_x_juego(), enemigo_2[x].gets_pocicion_y_juego()));
             enemigo_2[x].restar_vida(jugador.realizar_ataque_esp_1(enemigo_2[x].gets_pocicion_x_guia(), enemigo_2[x].gets_pocicion_y_guia(), enemigo_2[x].gets_pocicion_x_juego(), enemigo_2[x].gets_pocicion_y_juego()));
+            enemigo_2[x].restar_vida(jugador.realizar_ataque_esp_2(enemigo_2[x].gets_pocicion_x_guia(), enemigo_2[x].gets_pocicion_y_guia(), enemigo_2[x].gets_pocicion_x_juego(), enemigo_2[x].gets_pocicion_y_juego()));
+
+            if(!enemigo_2[x].gets_estado_vivo()){
+                jugador.Restaurar_runa(1);
+            }
+
         }
     }
 
@@ -254,6 +260,12 @@ void PILA_ENEMIGOS::Jugador_ataca(JUGADOR &jugador){
             enemigo_1[x].restar_vida(jugador.realizar_ataque_1(enemigo_1[x].gets_pocicion_x_guia(), enemigo_1[x].gets_pocicion_y_guia(), enemigo_1[x].gets_pocicion_x_juego(), enemigo_1[x].gets_pocicion_y_juego()));
             enemigo_1[x].restar_vida(jugador.realizar_ataque_2(enemigo_1[x].gets_pocicion_x_guia(), enemigo_1[x].gets_pocicion_y_guia(), enemigo_1[x].gets_pocicion_x_juego(), enemigo_1[x].gets_pocicion_y_juego()));
             enemigo_1[x].restar_vida(jugador.realizar_ataque_esp_1(enemigo_1[x].gets_pocicion_x_guia(), enemigo_1[x].gets_pocicion_y_guia(), enemigo_1[x].gets_pocicion_x_juego(), enemigo_1[x].gets_pocicion_y_juego()));
+            enemigo_1[x].restar_vida(jugador.realizar_ataque_esp_2(enemigo_1[x].gets_pocicion_x_guia(), enemigo_1[x].gets_pocicion_y_guia(), enemigo_1[x].gets_pocicion_x_juego(), enemigo_1[x].gets_pocicion_y_juego()));
+
+            if(!enemigo_1[x].gets_estado_vivo()){
+                jugador.Restaurar_runa(1);
+            }
+
         }
     }
 

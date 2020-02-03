@@ -6,6 +6,7 @@
 
 #define MAXIMA_FLECHAS 3
 #define MAXIMA_ESPECIAL_1 1
+#define MAXIMA_ESPECIAL_2 3
 
 class JUGADOR: public PERSONAJE{
     protected:
@@ -53,6 +54,10 @@ class JUGADOR: public PERSONAJE{
         bool ataque_esp_1;
         FLECHA especial_1[MAXIMA_ESPECIAL_1];
 
+        ///Ataque especial 2;
+        bool ataque_esp_2;
+        RAYO especial_2[MAXIMA_ESPECIAL_2];
+
     public:
 
         ///---------------------Propio del padre---------------------
@@ -94,13 +99,13 @@ class JUGADOR: public PERSONAJE{
         void Mover_flechas(MAPA &mapa);
         int realizar_ataque_2(int x_guia, int y_guia, int x_juego, int y_juego);
 
-        ///Escudo:
+        ///Escudo (C):
         void Levantar_escudo();
         void graficar_jugador_levantar_escudo();
         void graficar_jugador_escudo_estatico();
         int gets_frente_escudo(){return frente_escudo;}
 
-        ///Rezar:
+        ///Rezar (V):
         bool gets_rezar(){return rezar;}
         void realizar_rezo(int x_guia, int y_guia, int x_juego, int y_juego, int costo_runa, int recuperacion);
 
@@ -109,9 +114,14 @@ class JUGADOR: public PERSONAJE{
         void Mover_ataque_esp_1(MAPA &mapa);
         int realizar_ataque_esp_1(int x_guia, int y_guia, int x_juego, int y_juego);
 
+        ///Ataque especial 2 (S):
+        bool Lanzar_ataque_esp_2(MAPA &mapa);
+        int realizar_ataque_esp_2(int x_guia, int y_guia, int x_juego, int y_juego);
+
         ///---Restar vida y runa;
         bool Restar_runa(int gasto);
         bool verificar_runa(int gasto);
+        void Restaurar_runa(int recuperacion);
         bool verificar_vida(int recuperacion);
         void restar_vida(int dano);
         void muerte();
@@ -128,6 +138,8 @@ class JUGADOR: public PERSONAJE{
 
         void graficar_jugador_ataque_esp_1();
         void Graficar_ataque_esp_1();
+
+        void Graficar_ataque_esp_2();
 
         void graficar_jugador_barras();
 
@@ -191,6 +203,14 @@ void JUGADOR::Reiniciar_jugador_total(MAPA &mapa){
 
     }
 
+    for(x=0 ; x<MAXIMA_ESPECIAL_2 ; x++){
+
+        if(especial_2[x].gets_activo()){
+            especial_2[x].Desactivar_rayo();
+        }
+
+    }
+
 }
 
 void JUGADOR::Reiniciar_jugador_parcial(MAPA &mapa){
@@ -215,6 +235,14 @@ void JUGADOR::Reiniciar_jugador_parcial(MAPA &mapa){
 
         if(especial_1[x].gets_activo()){
             especial_1[x].Desactivar_flecha();
+        }
+
+    }
+
+    for(x=0 ; x<MAXIMA_ESPECIAL_2 ; x++){
+
+        if(especial_2[x].gets_activo()){
+            especial_2[x].Desactivar_rayo();
         }
 
     }
@@ -297,7 +325,6 @@ void JUGADOR::rutinas_de_acciones(MAPA &mapa){
         }
 
 
-
         if(key[KEY_A]){
 
             if(!frames_animacion_ataque_esp_1.gets_cont_bool()){
@@ -314,8 +341,21 @@ void JUGADOR::rutinas_de_acciones(MAPA &mapa){
             return;
         }
 
+        if(key[KEY_S]){
 
+            if(!frames_animacion_ataque_esp_1.gets_cont_bool()){
+                if(verificar_runa(2)){
 
+                    if(Lanzar_ataque_esp_2(mapa)){
+                        Restar_runa(2);
+                        frames_animacion_ataque_esp_1.sets_cont(1);
+                        inavilitar_acciones.sets_tiempo(9);
+                    }
+
+                }
+            }
+            return;
+        }
 
     }
 
@@ -476,6 +516,14 @@ bool JUGADOR::verificar_vida(int recuperacion){
 bool JUGADOR::Restar_runa(int gasto){
 
     runa_actual-= gasto;
+
+}
+
+void JUGADOR::Restaurar_runa(int recuperacion){
+
+    if((vida_actual + recuperacion) <= MAXIMA_RUNA){
+        runa_actual+= recuperacion;
+    }
 
 }
 

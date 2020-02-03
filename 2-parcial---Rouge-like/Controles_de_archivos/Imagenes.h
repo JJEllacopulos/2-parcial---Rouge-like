@@ -16,6 +16,9 @@ BITMAP *ENEMIGO_2_mov_spr;
 BITMAP *PROYECTILES_spr;
 BITMAP *PROYECTIL_mov_spr;
 
+BITMAP *PILARES_spr;
+BITMAP *RAYO_spr;
+
 ///--------------
 BITMAP *FONDOS_spr;
 BITMAP *MURO_spr;

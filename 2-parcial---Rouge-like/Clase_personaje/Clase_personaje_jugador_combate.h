@@ -200,6 +200,171 @@ int JUGADOR::realizar_ataque_esp_1(int x_guia, int y_guia, int x_juego, int y_ju
     return dano;
 }
 
+///---Rutina de ataque especial 2:
+
+bool JUGADOR::Lanzar_ataque_esp_2(MAPA &mapa){
+
+    int x = 0;
+    int y = 0;
+    bool key = false;
+
+    while(x<MAXIMA_ESPECIAL_2){
+
+        if(!especial_2[x].gets_activo()){
+
+            switch(frente){
+                case 0:
+
+                    y = 1;
+
+                    while(y<4){
+
+                        if((gets_pocicion_x_juego()+y) <= 0 || (gets_pocicion_x_juego()+y) >= MAX_FILAS_JUEGO - 1 || gets_pocicion_y_juego() <= 0 || gets_pocicion_y_juego() >= MAX_COLUMNAS_JUEGO -1 || !(x < MAXIMA_ESPECIAL_2)){
+                                return key;
+                        }
+                        else{
+
+                            if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego()+y, gets_pocicion_y_juego()) == PISO){
+                                especial_2[x].Iniciar_rayo( 3, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego()+y, gets_pocicion_y_juego());
+                                key = true;
+                                x++;
+                            }else{
+                                if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego()+y, gets_pocicion_y_juego()) == ENEMIGO){
+                                    especial_2[x].Iniciar_rayo( 3, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego()+y, gets_pocicion_y_juego());
+                                    key = true;
+                                    x++;
+                                }
+                            }
+                        }
+                        y++;
+
+                    }
+
+                break;
+
+                case 1:
+
+                    y = 1;
+
+                    while(y<4){
+
+                        if((gets_pocicion_x_juego()) <= 0 || (gets_pocicion_x_juego()) >= MAX_FILAS_JUEGO - 1 || (gets_pocicion_y_juego()-y) <= 0 || (gets_pocicion_y_juego()-y) >= MAX_COLUMNAS_JUEGO -1 || !(x < MAXIMA_ESPECIAL_2)){
+                                return key;
+                        }
+                        else{
+
+                            if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego()-y) == PISO){
+                                especial_2[x].Iniciar_rayo( 3, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego()-y);
+                                key = true;
+                                x++;
+                            }else{
+                                if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego()-y) == ENEMIGO){
+                                    especial_2[x].Iniciar_rayo( 3, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego()-y);
+                                    key = true;
+                                    x++;
+                                }
+                            }
+                        }
+                        y++;
+
+                    }
+
+                    //especial_2[x].Iniciar_rayo( 2, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego()-1);
+                    //key = true;
+                break;
+
+                case 2:
+                    y = 1;
+
+                    while(y<4){
+
+                        if((gets_pocicion_x_juego()-y) <= 0 || (gets_pocicion_x_juego()-y) >= MAX_FILAS_JUEGO - 1 || gets_pocicion_y_juego() <= 0 || gets_pocicion_y_juego() >= MAX_COLUMNAS_JUEGO -1 || !(x < MAXIMA_ESPECIAL_2)){
+                                return key;
+                        }
+                        else{
+
+                            if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego()-y, gets_pocicion_y_juego()) == PISO){
+                                especial_2[x].Iniciar_rayo( 3, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego()-y, gets_pocicion_y_juego());
+                                key = true;
+                                x++;
+                            }else{
+                                if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego()-y, gets_pocicion_y_juego()) == ENEMIGO){
+                                    especial_2[x].Iniciar_rayo( 3, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego()-y, gets_pocicion_y_juego());
+                                    key = true;
+                                    x++;
+                                }
+                            }
+                        }
+                        y++;
+
+                    }
+
+                    ///especial_2[x].Iniciar_rayo( 2, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego()-1, gets_pocicion_y_juego());
+                    ///key = true;
+                break;
+
+                case 3:
+                    y = 1;
+
+                    while(y<4){
+
+                        if((gets_pocicion_x_juego()) <= 0 || (gets_pocicion_x_juego()) >= MAX_FILAS_JUEGO - 1 || (gets_pocicion_y_juego()+y) <= 0 || (gets_pocicion_y_juego()+y) >= MAX_COLUMNAS_JUEGO -1 || !(x < MAXIMA_ESPECIAL_2)){
+                                return key;
+                        }
+                        else{
+
+                            if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego()+y) == PISO){
+                                especial_2[x].Iniciar_rayo( 3, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego()+y);
+                                key = true;
+                                x++;
+                            }else{
+                                if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego()+y) == ENEMIGO){
+                                    especial_2[x].Iniciar_rayo( 3, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego()+y);
+                                    key = true;
+                                    x++;
+                                }
+                            }
+                        }
+                        y++;
+
+                    }
+
+                    ///especial_2[x].Iniciar_rayo( 2, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego()+1);
+                    ///key = true;
+                break;
+            }
+
+        }
+
+        x++;
+
+    }
+
+    if(key){
+        return true;
+    }
+
+    return false;
+
+}
+
+
+int JUGADOR::realizar_ataque_esp_2(int x_guia, int y_guia, int x_juego, int y_juego){
+
+    int dano = 0;
+    int x;
+
+    for(x=0 ; x<MAXIMA_ESPECIAL_2 ; x++){
+
+        if(especial_2[x].gets_ataque_activo()){
+            dano += especial_2[x].Realizar_ataque_rayo(x_guia, y_guia, x_juego, y_juego, false);
+        }
+
+    }
+
+    return dano;
+}
+
 ///---Confirmar ataque:
 
 int JUGADOR::verificar_ataque(int x_jugador, int y_jugador, int x_enemigo, int y_enemigo/*, ENEMIGO_1 esqueleto[]*/){

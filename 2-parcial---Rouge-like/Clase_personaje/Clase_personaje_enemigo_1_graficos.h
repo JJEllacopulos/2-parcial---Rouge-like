@@ -168,10 +168,29 @@ void ENEMIGO_1::graficar_jugador_ataque(){
 void ENEMIGO_1::Graficar_accion_MOBs_estado(){
 
     int x;
+    int sprite_corazon;
+    int descontar;
 
-    for(x=0 ; x<vida_maxima ; x++){
-        if(vida_actual > x){
-            blit(BARRAS_spr, CORAZON_spr, 0, 67, 0, 0,  TAMANO_Y_CORAZON, TAMANO_X_CORAZON);
+    if(vida_actual <= 4){
+        sprite_corazon = 0;
+        descontar = 0;
+    }else{
+        if(vida_actual <= 8){
+            sprite_corazon = 1;
+            descontar = 4;
+        }else{
+            if(vida_actual <= 12){
+                sprite_corazon = 2;
+                descontar = 8;
+            }
+        }
+    }
+
+
+
+    for(x=0 ; x<4 ; x++){
+        if(vida_actual - descontar > x){
+            blit(BARRAS_spr, CORAZON_spr, sprite_corazon * 9, 67, 0, 0,  TAMANO_Y_CORAZON, TAMANO_X_CORAZON);
             draw_sprite(buffer, CORAZON_spr, (gets_pocicion_y_juego() * TAMANO_Y_SPRITE) + (TAMANO_Y_CORAZON * x) + ESPACIO_SUPERIOR_Y, (gets_pocicion_x_juego() * TAMANO_X_SPRITE) - TAMANO_X_CORAZON + ESPACIO_SUPERIOR_X);
         }
     }

@@ -23,35 +23,123 @@ BITMAP *BOTON_LETRA;
 BITMAP *EJE_MOVIMIENTO;
 BITMAP *EJE_ATAQUE_1;
 BITMAP *EJE_ATAQUE_2;
+BITMAP *EJE_ESCUDO;
+BITMAP *EJE_RESAR;
 BITMAP *EJE_ATAQUE_ESP_1;
+BITMAP *EJE_ATAQUE_ESP_2;
 
 
 ///640x480
 
 void Instrucciones_controles(){
 
+    int x;
+
+    CRONO frames_animacion_caminar;
+    CRONO frames_animacion_ataque_1;
+    CRONO frames_animacion_ataque_proyectil;
+    CRONO frames_animacion_ataque_2;
+    CRONO frames_animacion_escudo;
+    CRONO frames_animacion_ataque_esp_1;
+    CRONO frames_animacion_rayo;
+
+    frames_animacion_caminar.sets_tiempo(9);
+    frames_animacion_ataque_1.sets_tiempo(7);
+    frames_animacion_ataque_proyectil.sets_tiempo(8);
+    frames_animacion_ataque_2.sets_tiempo(8);
+    frames_animacion_escudo.sets_tiempo(4);
+    frames_animacion_ataque_esp_1.sets_tiempo(9);
+    frames_animacion_rayo.sets_tiempo(6);
+
+
     while(!key[KEY_ESC]){
 
-        blit(MENU_spr, EJE_MOVIMIENTO, 428, 403, 0, 0, 32, 32);
-        draw_sprite(buffer, EJE_MOVIMIENTO, 170, 80);
-        blit(MENU_spr, EJE_ATAQUE_1, 428, 438, 0, 0, 46, 40);
-        draw_sprite(buffer, EJE_ATAQUE_1, 170, 130);
-        blit(MENU_spr, EJE_ATAQUE_2, 428, 481, 0, 0, 32, 30);
-        draw_sprite(buffer, EJE_ATAQUE_2, 170, 180);
-        blit(MENU_spr, EJE_ATAQUE_ESP_1, 428, 514, 0, 0, 44, 31);
-        draw_sprite(buffer, EJE_ATAQUE_ESP_1, 170, 230);
+        frames_animacion_caminar.control_int();
+        frames_animacion_ataque_1.control_int();
+        frames_animacion_ataque_proyectil.control_int_invertido();
+        frames_animacion_ataque_2.control_int();
+        frames_animacion_escudo.control_int();
+        frames_animacion_ataque_esp_1.control_int();
+        frames_animacion_rayo.control_int();
+
+        ///Ejemplo caminar:
+
+        blit(JUGADOR_spr, EJE_MOVIMIENTO, frames_animacion_caminar.gets_cont() * DESPLAZAR_Y_PIXEL, 1 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+        draw_sprite(buffer, EJE_MOVIMIENTO, 170, 30);
+
+        ///Ejemplo ataque 1:
+
+        blit(JUGADOR_spr, EJE_ATAQUE_1, (frames_animacion_ataque_1.gets_cont() - 1) * DESPLAZAR_Y_SPRITE_ATTACK, (1 * DESPLAZAR_X_SPRITE_ATTACK) + ANIMACION_ATAQUE_1, 0, 0,  TAMANO_Y_SPRITE_ATTACK, TAMANO_X_SPRITE_ATTACK);
+        draw_sprite(buffer, EJE_ATAQUE_1, 155, 85);
+
+        ///Ejemplo ataque 2:
+
+        blit(PROYECTILES_spr, PROYECTIL_mov_spr,  1 * DESPLAZAR_Y_PIXEL, 0 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+        draw_sprite(buffer, PROYECTIL_mov_spr, 233 - 8 * frames_animacion_ataque_proyectil.gets_cont() , 160);
+
+        blit(JUGADOR_spr, EJE_ATAQUE_2, (frames_animacion_ataque_2.gets_cont() - 1) * DESPLAZAR_Y_SPRITE_ATTACK, (1 * DESPLAZAR_X_SPRITE_ATTACK) + ANIMACION_ATAQUE_2, 0, 0,  TAMANO_Y_SPRITE_ATTACK, TAMANO_X_SPRITE_ATTACK);
+        draw_sprite(buffer, EJE_ATAQUE_2, 155, 140);
+
+        ///Ejemplo escudo:
+
+        blit(JUGADOR_spr, EJE_ESCUDO, (frames_animacion_escudo.gets_cont() - 1) * DESPLAZAR_X_PIXEL, (1 * DESPLAZAR_X_PIXEL) + ANIMACION_ESCUDO, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+        draw_sprite(buffer, EJE_ESCUDO, 170, 205);
+
+        ///Ejemplo altar:
+
+        blit(BARRAS_spr, CORAZON_spr, 0, 67, 0, 0,  TAMANO_Y_CORAZON, TAMANO_X_CORAZON);
+        draw_sprite(buffer, CORAZON_spr, 180, 245);
+
+        blit(MENU_spr, CORAZON_spr, 429, 553, 0, 0,  TAMANO_Y_CORAZON, TAMANO_X_CORAZON);
+        draw_sprite(buffer, CORAZON_spr, 187, 245);
+
+        blit(JUGADOR_spr, JUGADOR_mov_spr, 0 * DESPLAZAR_Y_PIXEL, 1 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+        draw_sprite(buffer, JUGADOR_mov_spr, 170, 255);
+
+        blit(ELEMENTOS_spr, ALTAR_spr, 0 * DESPLAZAR_Y_PIXEL, 0 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+        draw_sprite(buffer, ALTAR_spr, 200, 255);
+
+        ///Ejemplo ataque especial 1:
+
+        blit(PROYECTILES_spr, PROYECTIL_mov_spr,  1 * DESPLAZAR_Y_PIXEL, 5 * DESPLAZAR_X_PIXEL, 0, 0,  TAMANO_Y_SPRITE, TAMANO_X_SPRITE);
+        draw_sprite(buffer, PROYECTIL_mov_spr, 238 - 8 * frames_animacion_ataque_proyectil.gets_cont() , 300);
+
+        blit(JUGADOR_spr, EJE_ATAQUE_ESP_1, (frames_animacion_ataque_esp_1.gets_cont() - 1) * DESPLAZAR_Y_SPRITE_ATTACK, (1 * DESPLAZAR_X_SPRITE_ATTACK) + ANIMACION_ATAQUE_ESP_1, 0, 0,  TAMANO_Y_SPRITE_ATTACK, TAMANO_X_SPRITE_ATTACK);
+        draw_sprite(buffer, EJE_ATAQUE_ESP_1, 155, 280);
+
+        ///Ejemplo ataque especial 2:
+
+        for(x=0 ; x<3 ; x++){
+            blit(PILARES_spr, RAYO_spr, frames_animacion_rayo.gets_cont() * 17, 66, 0, 0,  TAMANO_X_SPRITE_RAYO, TAMANO_Y_SPRITE_RAYO);
+            draw_sprite_v_flip(buffer, RAYO_spr, 215 + (32 * x), 330);
+        }
+
+        blit(JUGADOR_spr, EJE_ATAQUE_ESP_1, (frames_animacion_ataque_esp_1.gets_cont() - 1) * DESPLAZAR_Y_SPRITE_ATTACK, (1 * DESPLAZAR_X_SPRITE_ATTACK) + ANIMACION_ATAQUE_ESP_1, 0, 0,  TAMANO_Y_SPRITE_ATTACK, TAMANO_X_SPRITE_ATTACK);
+        draw_sprite(buffer, EJE_ATAQUE_ESP_1, 155, 330);
+
 
         blit(MENU_spr, BOTON_FLECHA, 291, 402, 0, 0, 112, 78);
-        draw_sprite(buffer, BOTON_FLECHA, 290, 50);
+        draw_sprite(buffer, BOTON_FLECHA, 290, 10);
+
         blit(MENU_spr, BOTON_LETRA, 294, 573, 0, 0, 41, 44);
-        draw_sprite(buffer, BOTON_LETRA, 325, 130);
+        draw_sprite(buffer, BOTON_LETRA, 325, 90);
         blit(MENU_spr, BOTON_LETRA, 337, 573, 0, 0, 41, 44);
-        draw_sprite(buffer, BOTON_LETRA, 325, 180);
+        draw_sprite(buffer, BOTON_LETRA, 325, 140);
+        blit(MENU_spr, BOTON_LETRA, 337, 618, 0, 0, 41, 44);
+        draw_sprite(buffer, BOTON_LETRA, 325, 190);
+        blit(MENU_spr, BOTON_LETRA, 294, 663, 0, 0, 41, 44);
+        draw_sprite(buffer, BOTON_LETRA, 325, 240);
         blit(MENU_spr, BOTON_LETRA, 294, 618, 0, 0, 41, 44);
-        draw_sprite(buffer, BOTON_LETRA, 325, 230);
+        draw_sprite(buffer, BOTON_LETRA, 325, 290);
+        blit(MENU_spr, BOTON_LETRA, 337, 663, 0, 0, 41, 44);
+        draw_sprite(buffer, BOTON_LETRA, 325, 340);
+
 
         pantallaso();
         clear(buffer);
+
+        ///Retraso de actividades en nanosegundos.
+        rest(70);
 
     }
 
@@ -157,9 +245,14 @@ void Menu_control(JUGADOR &per_jug, PILA_ENEMIGOS &pila_enemigos, MAPA &mapa, MA
     BOTON_LETRA = create_bitmap(41, 44);
 
     EJE_MOVIMIENTO = create_bitmap(32, 32);
-    EJE_ATAQUE_1 = create_bitmap(46, 40);
-    EJE_ATAQUE_2 = create_bitmap(32, 30);
-    EJE_ATAQUE_ESP_1 = create_bitmap(44, 31);
+
+    EJE_ATAQUE_1 = create_bitmap(64, 64);
+    EJE_ATAQUE_2 = create_bitmap(64, 64);
+    EJE_ESCUDO = create_bitmap(32, 32);
+    EJE_RESAR = create_bitmap(32, 32);
+
+    EJE_ATAQUE_ESP_1 = create_bitmap(64, 64);
+    EJE_ATAQUE_ESP_2 = create_bitmap(64, 64);
 
     zona = 9;
     ///Carga las pistas de audio.

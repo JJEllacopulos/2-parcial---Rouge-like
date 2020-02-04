@@ -62,7 +62,7 @@ class RAYO: public PERSONAJE{
 
 RAYO::RAYO(){
 
-    animacion.sets_tiempo(7);
+    animacion.sets_tiempo(6);
 
 }
 
@@ -87,7 +87,7 @@ void RAYO::Iniciar_rayo(int dano_ing, int x_guia, int y_guia, int x_juego, int y
 ///---Graficar proyectil:
 void RAYO::Animar_rayo(){
 
-    blit(PILARES_spr, RAYO_spr, animacion.gets_cont() * 17, 66, 0, 0,  TAMANO_X_SPRITE_RAYO, TAMANO_Y_SPRITE_RAYO);
+    blit(PILARES_spr, RAYO_spr, (animacion.gets_cont() - 1) * 17, 66, 0, 0,  TAMANO_X_SPRITE_RAYO, TAMANO_Y_SPRITE_RAYO);
     draw_sprite_v_flip(buffer, RAYO_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y + 8, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X - 16);
 
     animacion.control_int();

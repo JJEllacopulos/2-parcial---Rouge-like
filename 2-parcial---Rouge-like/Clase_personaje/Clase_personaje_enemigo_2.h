@@ -127,8 +127,9 @@ ENEMIGO_2::ENEMIGO_2(){
 ///Reiniciar MOBs:
 void ENEMIGO_2::Reiniciar_MOBs(MAPA &mapa){
 
-    vida_actual = 3;
     vida_maxima = 3;
+    vida_actual = vida_maxima;
+
     estado_vivo = true;
     frente = 0;
     sprite_personaje = ENEMIGO;

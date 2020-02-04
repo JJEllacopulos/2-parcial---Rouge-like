@@ -521,7 +521,7 @@ bool JUGADOR::Restar_runa(int gasto){
 
 void JUGADOR::Restaurar_runa(int recuperacion){
 
-    if((vida_actual + recuperacion) <= MAXIMA_RUNA){
+    if((runa_actual + recuperacion) <= MAXIMA_RUNA){
         runa_actual+= recuperacion;
     }
 

@@ -158,7 +158,7 @@ bool JUGADOR::Lanzar_ataque_esp_1(){
     for(x=0 ; x<MAXIMA_ESPECIAL_1 ; x++){
 
         if(!especial_1[x].gets_activo()){
-            especial_1[x].Iniciar_flecha(frente, 5, 4, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego());
+            especial_1[x].Iniciar_flecha(frente, 5, 3, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego());
             return true;
         }
 

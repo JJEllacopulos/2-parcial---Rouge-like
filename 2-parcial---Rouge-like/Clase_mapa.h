@@ -3,8 +3,8 @@
 
 ///Definiciones:
     ///Matrices:
-#define MAX_FILAS_GUIA 14
-#define MAX_COLUMNAS_GUIA 14
+#define MAX_FILAS_GUIA 5
+#define MAX_COLUMNAS_GUIA 5
 
 #define MAX_FILAS_JUEGO 13
 #define MAX_COLUMNAS_JUEGO 19
@@ -42,6 +42,8 @@ class MAPA {
 
         int movimiento;
 
+        int habitaciones;
+
     public:
         ///Constructor:
             void armar_mapa_guia();
@@ -53,7 +55,8 @@ class MAPA {
             MAPA();
 
         ///Reiniciar mapa:
-            void Reiniciar_mapa();
+            void asignar_abitaciones(int zona);
+            void Reiniciar_mapa(int zona);
 
         ///Gets:
             int gets_mapa_guia(int posicion_en_x, int posicion_en_y);
@@ -79,11 +82,66 @@ MAPA::MAPA(){
 }
 
 ///Reiniciar mapa:
-void MAPA::Reiniciar_mapa(){
+void MAPA::Reiniciar_mapa(int zona){
+
+    asignar_abitaciones(zona);
 
     iniciar_mapas();
     armar_mapa_guia();
     armar_mapa_general();
+
+}
+
+void MAPA::asignar_abitaciones(int zona){
+
+    habitaciones = 1;
+
+    switch(zona){
+        case 0:
+            habitaciones = 1;
+        break;
+
+        case 1:
+            habitaciones = 2;
+        break;
+
+        case 2:
+            habitaciones = 3;
+        break;
+
+        case 3:
+            habitaciones = 4;
+        break;
+
+        case 4:
+            habitaciones = 5;
+        break;
+
+        case 5:
+            habitaciones = 6;
+        break;
+
+        case 6:
+            habitaciones = 7;
+        break;
+
+        case 7:
+            habitaciones = 8;
+        break;
+
+        case 8:
+            habitaciones = 9;
+        break;
+
+        case 9:
+            habitaciones = 10;
+        break;
+
+        default:
+            habitaciones = 2;
+        break;
+
+    }
 
 }
 
@@ -141,7 +199,7 @@ void MAPA::armar_mapa_guia(){
 
     mapa_guia[x][y] = BLOQUE_HABILITADO;
 
-    for(movimiento=0; movimiento<BLOQUES_GUIA_HABILITADOS; movimiento++){
+    for(movimiento=0; movimiento<habitaciones; movimiento++){
 
         while(key){
 

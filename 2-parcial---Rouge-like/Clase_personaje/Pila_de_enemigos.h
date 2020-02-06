@@ -20,7 +20,7 @@ class PILA_ENEMIGOS{
         ///---Iniciar, reiniciar y finalizar vectores:
 
         ///Iniciar vectores:
-        void Iniciar_vectores(int zona, MAPA &mapa);
+        void Iniciar_vectores(int zona, MAPA &mapa, JUGADOR &jugador);
 
         ///Asignar tamaños:
         void Asignar_tamanos(int zona);
@@ -30,11 +30,11 @@ class PILA_ENEMIGOS{
 
         ///Enemigo 1:
         void Enemigo_1_asignacion_dinamica();
-        void Iniciar_enemigo_1(MAPA &mapa);
+        void Iniciar_enemigo_1(MAPA &mapa, int pocicion_x_no_aseptable, int pocicion_y_no_aseptable);
 
         ///Enemigo 2:
         void Enemigo_2_asignacion_dinamica();
-        void Iniciar_enemigo_2(MAPA &mapa);
+        void Iniciar_enemigo_2(MAPA &mapa, int pocicion_x_no_aseptable, int pocicion_y_no_aseptable);
 
         ///Altar:
         void altar_asignacion_dinamica();
@@ -63,17 +63,17 @@ class PILA_ENEMIGOS{
 
 ///--------------------------Iniciar, reiniciar y finalizar vectores:
 
-void PILA_ENEMIGOS::Iniciar_vectores(int zona, MAPA &mapa){
+void PILA_ENEMIGOS::Iniciar_vectores(int zona, MAPA &mapa, JUGADOR &jugador){
 
     Asignar_tamanos(zona);
 
     if(tam_enemigo_1 != 0){
         Enemigo_1_asignacion_dinamica();
-        Iniciar_enemigo_1(mapa);
+        Iniciar_enemigo_1(mapa, jugador.gets_pocicion_x_guia(), jugador.gets_pocicion_y_guia());
     }
     if(tam_enemigo_2 != 0){
         Enemigo_2_asignacion_dinamica();
-        Iniciar_enemigo_2(mapa);
+        Iniciar_enemigo_2(mapa, jugador.gets_pocicion_x_guia(), jugador.gets_pocicion_y_guia());
     }
     if(tam_altar != 0){
         altar_asignacion_dinamica();
@@ -162,14 +162,14 @@ void PILA_ENEMIGOS::Enemigo_1_asignacion_dinamica(){
 
 }
 
-void PILA_ENEMIGOS::Iniciar_enemigo_1(MAPA &mapa){
+void PILA_ENEMIGOS::Iniciar_enemigo_1(MAPA &mapa, int pocicion_x_no_aseptable, int pocicion_y_no_aseptable){
 
     int x;
 
     if(tam_enemigo_1 != 0){
 
         for(x = 0 ; x < tam_enemigo_1 ; x++){
-            enemigo_1[x].Reiniciar_MOBs(mapa);
+            enemigo_1[x].Reiniciar_MOBs(mapa, pocicion_x_no_aseptable, pocicion_y_no_aseptable);
         }
 
     }
@@ -185,14 +185,14 @@ void PILA_ENEMIGOS::Enemigo_2_asignacion_dinamica(){
 
 }
 
-void PILA_ENEMIGOS::Iniciar_enemigo_2(MAPA &mapa){
+void PILA_ENEMIGOS::Iniciar_enemigo_2(MAPA &mapa, int pocicion_x_no_aseptable, int pocicion_y_no_aseptable){
 
     int x;
 
     if(tam_enemigo_2 != 0){
 
         for(x = 0 ; x < tam_enemigo_2 ; x++){
-            enemigo_2[x].Reiniciar_MOBs(mapa);
+            enemigo_2[x].Reiniciar_MOBs(mapa, pocicion_x_no_aseptable, pocicion_y_no_aseptable);
         }
 
     }
@@ -230,6 +230,13 @@ void PILA_ENEMIGOS::Cerrar_vectores(){
     if(tam_enemigo_2 != 0){
         delete enemigo_2;
     }
+    if(tam_altar != 0){
+        delete altar;
+    }
+
+    tam_enemigo_1=0;
+    tam_enemigo_2=0;
+    tam_altar=0;
 
 }
 

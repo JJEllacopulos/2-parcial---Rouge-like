@@ -284,11 +284,12 @@ void Menu_control(JUGADOR &per_jug, PILA_ENEMIGOS &pila_enemigos, MAPA &mapa, MA
 
             switch(opcion){
                 case 0:
-                    mapa.Reiniciar_mapa();
+                    zona = 0;
+                    mapa.Reiniciar_mapa(zona);
                     mapa_grafico.Reiniciar_mapa_grefico(mapa);
                     per_jug.Reiniciar_jugador_total(mapa);
                     //per_jug.sets_estado_vivo(true);
-                    zona = 0;
+
 
                     Game_loop( per_jug, pila_enemigos, mapa, mapa_grafico, zona, archivo_guardado);
                 break;

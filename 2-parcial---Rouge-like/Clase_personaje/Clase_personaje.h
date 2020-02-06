@@ -13,8 +13,8 @@ class PERSONAJE{
     public:
 
         ///Estabece la poccicion inicial del los personajes.
-        void pocicion_inicial(MAPA &mapa, int clave);
-        void iniciar_personaje(MAPA &mapa, int clave);
+        void pocicion_inicial(MAPA &mapa, int clave, int pocicion_x_no_aseptable, int pocicion_y_no_aseptable);
+        void iniciar_personaje(MAPA &mapa, int clave, int pocicion_x_no_aseptable, int pocicion_y_no_aseptable);
 
 
         ///void cargar_sprite(const char *direccion);
@@ -47,13 +47,13 @@ class PERSONAJE{
 
 };
 
-void PERSONAJE::iniciar_personaje(MAPA &mapa, int clave){
+void PERSONAJE::iniciar_personaje(MAPA &mapa, int clave, int pocicion_x_no_aseptable, int pocicion_y_no_aseptable){
 
-    pocicion_inicial(mapa, clave);
+    pocicion_inicial(mapa, clave, pocicion_x_no_aseptable, pocicion_y_no_aseptable);
 
 }
 
-void PERSONAJE::pocicion_inicial(MAPA &mapa, int clave){
+void PERSONAJE::pocicion_inicial(MAPA &mapa, int clave, int pocicion_x_no_aseptable, int pocicion_y_no_aseptable){
 
     int x_externo;
     int y_externo;
@@ -69,20 +69,24 @@ void PERSONAJE::pocicion_inicial(MAPA &mapa, int clave){
                 for(x_interno=0;x_interno<MAX_FILAS_JUEGO;x_interno++){
                     for(y_interno=0;y_interno<MAX_COLUMNAS_JUEGO;y_interno++){
 
-                        moneda = ((rand()) % 10000);
+                        if(!(x_externo == pocicion_x_no_aseptable && y_externo == pocicion_y_no_aseptable)){
 
-                        if(mapa.gets_mapa_juego(x_externo, y_externo, x_interno, y_interno) == PISO){
+                            moneda = ((rand()) % 10000);
 
-                            if(moneda == 0){
+                            if(mapa.gets_mapa_juego(x_externo, y_externo, x_interno, y_interno) == PISO){
 
-                                pocicion_x_guia = x_externo;
-                                pocicion_y_guia = y_externo;
-                                pocicion_x_juego = x_interno;
-                                pocicion_y_juego = y_interno;
+                                if(moneda == 0){
 
-                                mapa.sets_mapa_general(x_externo, y_externo, x_interno, y_interno, clave);
+                                    pocicion_x_guia = x_externo;
+                                    pocicion_y_guia = y_externo;
+                                    pocicion_x_juego = x_interno;
+                                    pocicion_y_juego = y_interno;
 
-                                return;
+                                    mapa.sets_mapa_general(x_externo, y_externo, x_interno, y_interno, clave);
+
+                                    return;
+
+                                }
 
                             }
 

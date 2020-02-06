@@ -30,7 +30,7 @@ void Game_loop(JUGADOR &per_jug, PILA_ENEMIGOS &pila_enemigos, MAPA &mapa, MAPA_
         ///Guardar partida.
         archivo_guardado.Guardar_partida(zona, mapa, mapa_grafico, per_jug);
 
-        pila_enemigos.Iniciar_vectores(zona, mapa);
+        pila_enemigos.Iniciar_vectores(zona, mapa, per_jug);
 
         ///Carga las pistas de audio.
         asignar_audio(zona);
@@ -83,7 +83,7 @@ void Game_loop(JUGADOR &per_jug, PILA_ENEMIGOS &pila_enemigos, MAPA &mapa, MAPA_
 
 
         ///Iniciar y reiniciar el mapa.
-        mapa.Reiniciar_mapa();
+        mapa.Reiniciar_mapa(zona);
         mapa_grafico.Reiniciar_mapa_grefico(mapa);
         per_jug.Reiniciar_jugador_parcial(mapa);
         ///pila_enemigos.Iniciar_vectores(zona, mapa);

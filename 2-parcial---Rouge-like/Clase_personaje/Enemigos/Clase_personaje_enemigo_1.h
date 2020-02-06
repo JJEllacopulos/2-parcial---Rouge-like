@@ -96,7 +96,7 @@ class ENEMIGO_1: public PERSONAJE{
         void Graficar_accion_MOBs_estado();
 
         ///Iniciar y reiniciar las estadisticas del MOBs:
-        void Reiniciar_MOBs(MAPA &mapa);
+        void Reiniciar_MOBs(MAPA &mapa, int pocicion_x_no_aseptable, int pocicion_y_no_aseptable);
 
 };
 
@@ -121,7 +121,7 @@ ENEMIGO_1::ENEMIGO_1(/*MAPA &mapa*/){
 }
 
 ///Reiniciar MOBs:
-void ENEMIGO_1::Reiniciar_MOBs(MAPA &mapa){
+void ENEMIGO_1::Reiniciar_MOBs(MAPA &mapa, int pocicion_x_no_aseptable, int pocicion_y_no_aseptable){
 
     vida_actual = 3;
     vida_maxima = 3;
@@ -129,7 +129,7 @@ void ENEMIGO_1::Reiniciar_MOBs(MAPA &mapa){
     frente = 0;
     sprite_personaje = ENEMIGO;
 
-    PERSONAJE::iniciar_personaje(mapa, sprite_personaje);
+    PERSONAJE::iniciar_personaje(mapa, sprite_personaje, pocicion_x_no_aseptable, pocicion_y_no_aseptable);
 
 }
 

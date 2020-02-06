@@ -178,7 +178,7 @@ void JUGADOR::Reiniciar_jugador_total(MAPA &mapa){
 
     frente = 0;
 
-    PERSONAJE::iniciar_personaje(mapa, sprite_personaje);
+    PERSONAJE::iniciar_personaje(mapa, sprite_personaje, -1, -1);
 
     vida_actual = MAXIMA_VIDA;
     runa_actual = MAXIMA_RUNA;
@@ -221,7 +221,7 @@ void JUGADOR::Reiniciar_jugador_parcial(MAPA &mapa){
 
     escudo = false;
 
-    PERSONAJE::iniciar_personaje(mapa, sprite_personaje);
+    PERSONAJE::iniciar_personaje(mapa, sprite_personaje, -1, -1);
 
     for(x=0 ; x<MAXIMA_FLECHAS ; x++){
 

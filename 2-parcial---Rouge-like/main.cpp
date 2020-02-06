@@ -36,13 +36,13 @@ using namespace std;
 
 ///Enemigos:
 
-#include "Clase_personaje/Clase_personaje_enemigo_1.h"
-#include "Clase_personaje/Clase_personaje_enemigo_1_graficos.h"
-#include "Clase_personaje/Clase_personaje_enemigo_1_combate.h"
+#include "Clase_personaje/Enemigos/Clase_personaje_enemigo_1.h"
+#include "Clase_personaje/Enemigos/Clase_personaje_enemigo_1_graficos.h"
+#include "Clase_personaje/Enemigos/Clase_personaje_enemigo_1_combate.h"
 
-#include "Clase_personaje/Clase_personaje_enemigo_2.h"
-#include "Clase_personaje/Clase_personaje_enemigo_2_graficos.h"
-#include "Clase_personaje/Clase_personaje_enemigo_2_combate.h"
+#include "Clase_personaje/Enemigos/Clase_personaje_enemigo_2.h"
+#include "Clase_personaje/Enemigos/Clase_personaje_enemigo_2_graficos.h"
+#include "Clase_personaje/Enemigos/Clase_personaje_enemigo_2_combate.h"
 
 
 ///interacciones

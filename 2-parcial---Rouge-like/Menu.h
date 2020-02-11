@@ -292,6 +292,12 @@ void Menu_control(JUGADOR &per_jug, PILA_ENEMIGOS &pila_enemigos, MAPA &mapa, MA
 
 
                     Game_loop( per_jug, pila_enemigos, mapa, mapa_grafico, zona, archivo_guardado);
+
+                    zona = 9;
+                    ///Carga las pistas de audio.
+                    asignar_audio(zona);
+                    ///Reproducion en bucle del tema de fondo:
+                    play_midi(Fondo, 1);
                 break;
 
                 case 1:
@@ -299,6 +305,12 @@ void Menu_control(JUGADOR &per_jug, PILA_ENEMIGOS &pila_enemigos, MAPA &mapa, MA
                     archivo_guardado.Cargar_partida(zona, mapa, mapa_grafico, per_jug);
 
                     Game_loop( per_jug, pila_enemigos, mapa, mapa_grafico, zona, archivo_guardado);
+
+                    zona = 9;
+                    ///Carga las pistas de audio.
+                    asignar_audio(zona);
+                    ///Reproducion en bucle del tema de fondo:
+                    play_midi(Fondo, 1);
                 break;
 
                 case 2:

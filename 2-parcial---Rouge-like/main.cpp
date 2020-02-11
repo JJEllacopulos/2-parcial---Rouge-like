@@ -44,6 +44,13 @@ using namespace std;
 #include "Clase_personaje/Enemigos/Clase_personaje_enemigo_2_graficos.h"
 #include "Clase_personaje/Enemigos/Clase_personaje_enemigo_2_combate.h"
 
+#include "Clase_personaje/Enemigos/Clase_personaje_enemigo_3.h"
+#include "Clase_personaje/Enemigos/Clase_personaje_enemigo_3_graficos.h"
+#include "Clase_personaje/Enemigos/Clase_personaje_enemigo_3_combate.h"
+
+#include "Clase_personaje/Enemigos/Clase_personaje_enemigo_4.h"
+#include "Clase_personaje/Enemigos/Clase_personaje_enemigo_4_graficos.h"
+#include "Clase_personaje/Enemigos/Clase_personaje_enemigo_4_combate.h"
 
 ///interacciones
 //#include "Clase_personaje/Otros/Interacciones_entre_objetos.h"

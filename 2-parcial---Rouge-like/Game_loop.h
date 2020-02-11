@@ -46,7 +46,7 @@ void Game_loop(JUGADOR &per_jug, PILA_ENEMIGOS &pila_enemigos, MAPA &mapa, MAPA_
 
             ///Rutinas del jugador:
             per_jug.rutinas_de_acciones(mapa);
-            pila_enemigos.Jugador_ataca(per_jug);
+            pila_enemigos.Jugador_ataca(per_jug, mapa);
 
             ///Limpia el mapa de bits.
             clear(buffer);
@@ -72,6 +72,12 @@ void Game_loop(JUGADOR &per_jug, PILA_ENEMIGOS &pila_enemigos, MAPA &mapa, MAPA_
 
             ///Retraso de actividades en nanosegundos.
             rest(60);
+
+            while(key[KEY_ESC]){
+                while(key[KEY_ESC]){}
+                pila_enemigos.Cerrar_vectores();
+                return;
+            }
         }
 
         //while(key[KEY_ESC]){}

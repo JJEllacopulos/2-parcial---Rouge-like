@@ -7,6 +7,8 @@ class RAYO: public PERSONAJE{
     bool activo;
     bool ataque_activo;
 
+    int tipo;
+
     int dano_rayo;
 
     CRONO animacion;
@@ -35,7 +37,7 @@ class RAYO: public PERSONAJE{
         RAYO();
 
         ///---Iniciar proyectil;
-        void Iniciar_rayo(int dano_ing, int x_guia, int y_guia, int x_juego, int y_juego);
+        void Iniciar_rayo(int dano_ing, int clase, int x_guia, int y_guia, int x_juego, int y_juego);
         void Desactivar_rayo();
 
         ///---Rutinas de proyectil:
@@ -62,7 +64,7 @@ class RAYO: public PERSONAJE{
 
 RAYO::RAYO(){
 
-    animacion.sets_tiempo(6);
+    animacion.sets_tiempo(7);
 
 }
 
@@ -72,11 +74,13 @@ void RAYO::Desactivar_rayo(){
 }
 
 ///---Iniciar proyectil:
-void RAYO::Iniciar_rayo(int dano_ing, int x_guia, int y_guia, int x_juego, int y_juego){
+void RAYO::Iniciar_rayo(int dano_ing, int clase, int x_guia, int y_guia, int x_juego, int y_juego){
 
     activo = true;
     ataque_activo = true;
     dano_rayo = dano_ing;
+
+    tipo = clase;
 
     animacion.sets_cont(1);
 
@@ -87,8 +91,8 @@ void RAYO::Iniciar_rayo(int dano_ing, int x_guia, int y_guia, int x_juego, int y
 ///---Graficar proyectil:
 void RAYO::Animar_rayo(){
 
-    blit(PILARES_spr, RAYO_spr, (animacion.gets_cont() - 1) * 17, 66, 0, 0,  TAMANO_X_SPRITE_RAYO, TAMANO_Y_SPRITE_RAYO);
-    draw_sprite_v_flip(buffer, RAYO_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y + 8, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X - 16);
+    blit(PILARES_spr, RAYO_spr, (animacion.gets_cont() - 1) * 17, tipo * 50, 0, 0,  TAMANO_X_SPRITE_RAYO, TAMANO_Y_SPRITE_RAYO);
+    draw_sprite(buffer, RAYO_spr, gets_pocicion_y_juego() * TAMANO_Y_SPRITE + ESPACIO_SUPERIOR_Y + 8, gets_pocicion_x_juego() * TAMANO_X_SPRITE + ESPACIO_SUPERIOR_X - 16);
 
     animacion.control_int();
 

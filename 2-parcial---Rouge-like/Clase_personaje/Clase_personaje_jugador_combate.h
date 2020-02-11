@@ -225,12 +225,12 @@ bool JUGADOR::Lanzar_ataque_esp_2(MAPA &mapa){
                         else{
 
                             if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego()+y, gets_pocicion_y_juego()) == PISO){
-                                especial_2[x].Iniciar_rayo( 3, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego()+y, gets_pocicion_y_juego());
+                                especial_2[x].Iniciar_rayo( 3, 0, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego()+y, gets_pocicion_y_juego());
                                 key = true;
                                 x++;
                             }else{
                                 if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego()+y, gets_pocicion_y_juego()) == ENEMIGO){
-                                    especial_2[x].Iniciar_rayo( 3, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego()+y, gets_pocicion_y_juego());
+                                    especial_2[x].Iniciar_rayo( 3, 0, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego()+y, gets_pocicion_y_juego());
                                     key = true;
                                     x++;
                                 }
@@ -254,12 +254,12 @@ bool JUGADOR::Lanzar_ataque_esp_2(MAPA &mapa){
                         else{
 
                             if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego()-y) == PISO){
-                                especial_2[x].Iniciar_rayo( 3, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego()-y);
+                                especial_2[x].Iniciar_rayo( 3, 0, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego()-y);
                                 key = true;
                                 x++;
                             }else{
                                 if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego()-y) == ENEMIGO){
-                                    especial_2[x].Iniciar_rayo( 3, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego()-y);
+                                    especial_2[x].Iniciar_rayo( 3, 0, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego()-y);
                                     key = true;
                                     x++;
                                 }
@@ -284,12 +284,12 @@ bool JUGADOR::Lanzar_ataque_esp_2(MAPA &mapa){
                         else{
 
                             if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego()-y, gets_pocicion_y_juego()) == PISO){
-                                especial_2[x].Iniciar_rayo( 3, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego()-y, gets_pocicion_y_juego());
+                                especial_2[x].Iniciar_rayo( 3, 0, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego()-y, gets_pocicion_y_juego());
                                 key = true;
                                 x++;
                             }else{
                                 if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego()-y, gets_pocicion_y_juego()) == ENEMIGO){
-                                    especial_2[x].Iniciar_rayo( 3, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego()-y, gets_pocicion_y_juego());
+                                    especial_2[x].Iniciar_rayo( 3, 0, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego()-y, gets_pocicion_y_juego());
                                     key = true;
                                     x++;
                                 }
@@ -314,12 +314,12 @@ bool JUGADOR::Lanzar_ataque_esp_2(MAPA &mapa){
                         else{
 
                             if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego()+y) == PISO){
-                                especial_2[x].Iniciar_rayo( 3, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego()+y);
+                                especial_2[x].Iniciar_rayo( 3, 0, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego()+y);
                                 key = true;
                                 x++;
                             }else{
                                 if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego()+y) == ENEMIGO){
-                                    especial_2[x].Iniciar_rayo( 3, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego()+y);
+                                    especial_2[x].Iniciar_rayo( 3, 0, gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego(), gets_pocicion_y_juego()+y);
                                     key = true;
                                     x++;
                                 }

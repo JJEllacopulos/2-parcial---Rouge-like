@@ -13,7 +13,7 @@ class JUGADOR: public PERSONAJE{
         int direccion;
         int sprite_personaje;
 
-        BITMAP *personaje_spr;
+        ///BITMAP *personaje_spr;
 
         int frente;
         CRONO frames_ataque;
@@ -211,6 +211,15 @@ void JUGADOR::Reiniciar_jugador_total(MAPA &mapa){
 
     }
 
+
+    inavilitar_acciones.sets_cont(0);
+    frames_animacion_desplasamiento.sets_cont(0);
+    frames_animacion_caminar.sets_cont(0);
+    frames_animacion_ataque_1.sets_cont(0);
+    frames_animacion_ataque_2.sets_cont(0);
+    frames_animacion_escudo.sets_cont(0);
+    frames_animacion_ataque_esp_1.sets_cont(0);
+
 }
 
 void JUGADOR::Reiniciar_jugador_parcial(MAPA &mapa){
@@ -246,6 +255,15 @@ void JUGADOR::Reiniciar_jugador_parcial(MAPA &mapa){
         }
 
     }
+
+
+    inavilitar_acciones.sets_cont(0);
+    frames_animacion_desplasamiento.sets_cont(0);
+    frames_animacion_caminar.sets_cont(0);
+    frames_animacion_ataque_1.sets_cont(0);
+    frames_animacion_ataque_2.sets_cont(0);
+    frames_animacion_escudo.sets_cont(0);
+    frames_animacion_ataque_esp_1.sets_cont(0);
 
 }
 

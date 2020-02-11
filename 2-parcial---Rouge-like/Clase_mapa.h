@@ -98,43 +98,43 @@ void MAPA::asignar_abitaciones(int zona){
 
     switch(zona){
         case 0:
-            habitaciones = 1;
-        break;
-
-        case 1:
             habitaciones = 2;
         break;
 
-        case 2:
+        case 1:
             habitaciones = 3;
         break;
 
-        case 3:
+        case 2:
             habitaciones = 4;
         break;
 
-        case 4:
+        case 3:
             habitaciones = 5;
         break;
 
-        case 5:
+        case 4:
             habitaciones = 6;
         break;
 
-        case 6:
+        case 5:
             habitaciones = 7;
         break;
 
-        case 7:
+        case 6:
             habitaciones = 8;
         break;
 
-        case 8:
+        case 7:
             habitaciones = 9;
         break;
 
-        case 9:
+        case 8:
             habitaciones = 10;
+        break;
+
+        case 9:
+            habitaciones = 11;
         break;
 
         default:

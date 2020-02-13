@@ -52,6 +52,10 @@ using namespace std;
 #include "Clase_personaje/Enemigos/Clase_personaje_enemigo_4_graficos.h"
 #include "Clase_personaje/Enemigos/Clase_personaje_enemigo_4_combate.h"
 
+#include "Clase_personaje/Enemigos/Clase_personaje_enemigo_5.h"
+#include "Clase_personaje/Enemigos/Clase_personaje_enemigo_5_graficos.h"
+#include "Clase_personaje/Enemigos/Clase_personaje_enemigo_5_combate.h"
+
 ///interacciones
 //#include "Clase_personaje/Otros/Interacciones_entre_objetos.h"
 ///Vectores dinamicos de enemigos:

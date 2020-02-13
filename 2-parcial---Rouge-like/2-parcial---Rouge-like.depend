@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1581386445 source:d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\main.cpp
+1581474257 source:d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\main.cpp
 	<ctime>
 	<allegro.h>
 	<string.h>
@@ -32,6 +32,9 @@
 	"Clase_personaje/Enemigos/Clase_personaje_enemigo_4.h"
 	"Clase_personaje/Enemigos/Clase_personaje_enemigo_4_graficos.h"
 	"Clase_personaje/Enemigos/Clase_personaje_enemigo_4_combate.h"
+	"Clase_personaje/Enemigos/Clase_personaje_enemigo_5.h"
+	"Clase_personaje/Enemigos/Clase_personaje_enemigo_5_graficos.h"
+	"Clase_personaje/Enemigos/Clase_personaje_enemigo_5_combate.h"
 	"Clase_personaje/Pila_de_enemigos.h"
 	"Controles_de_archivos/Control_partida.h"
 	"Game_loop.h"
@@ -55,7 +58,7 @@
 
 1580950608 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\clase_personaje.h
 
-1581083388 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\clase_personaje_jugador.h
+1581568418 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\clase_personaje_jugador.h
 
 1578960885 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\clase_personaje_mobs.h
 
@@ -63,11 +66,11 @@
 
 1580266226 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_mapa_grafico.h
 
-1581445658 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\controles_de_archivos\imagenes.h
+1581462350 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\controles_de_archivos\imagenes.h
 
 1573516730 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\controles_de_archivos\pistas_de_audio.h
 
-1581445703 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\controles_de_archivos\control_grafico.h
+1581475490 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\controles_de_archivos\control_grafico.h
 
 1580260975 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\controles_de_archivos\control_audio.h
 
@@ -77,17 +80,17 @@
 
 1578960734 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\clase_personaje_mobs_graficos.h
 
-1579325722 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\otros\clase_personaje_proyectil.h
+1581568775 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\otros\clase_personaje_proyectil.h
 
 1579115603 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\otros\interacciones_entre_objetos.h
 
-1581447661 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\pila_de_enemigos.h
+1581571189 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\pila_de_enemigos.h
 
 1580509972 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\clase_personaje_enemigo_1.h
 
 1580785250 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\clase_personaje_enemigo_1_graficos.h
 
-1580510744 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\otros\proyectil_flecha.h
+1581569133 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\otros\proyectil_flecha.h
 
 1581393749 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\clase_personaje_jugador_combate.h
 
@@ -113,7 +116,7 @@
 
 1581394817 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\game_loop.h
 
-1581265247 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\menu.h
+1581464013 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\menu.h
 
 1580541493 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\otros\clase_personaje_altar.h
 
@@ -130,4 +133,10 @@
 1581448114 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\enemigos\clase_personaje_enemigo_4_graficos.h
 
 1581449729 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\enemigos\clase_personaje_enemigo_4_combate.h
+
+1581565289 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\enemigos\clase_personaje_enemigo_5.h
+
+1581565192 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\enemigos\clase_personaje_enemigo_5_graficos.h
+
+1581561768 d:\desktop\mini laboratorio\2° parcial\2-parcial---rouge-like\2-parcial---rouge-like\2-parcial---rouge-like\clase_personaje\enemigos\clase_personaje_enemigo_5_combate.h
 

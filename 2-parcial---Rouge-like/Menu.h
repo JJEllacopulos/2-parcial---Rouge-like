@@ -110,7 +110,7 @@ void Instrucciones_controles(){
         ///Ejemplo ataque especial 2:
 
         for(x=0 ; x<3 ; x++){
-            blit(PILARES_spr, RAYO_spr, frames_animacion_rayo.gets_cont() * 17, 66, 0, 0,  TAMANO_X_SPRITE_RAYO, TAMANO_Y_SPRITE_RAYO);
+            blit(PILARES_spr, RAYO_spr, frames_animacion_rayo.gets_cont() * 17, 0, 0, 0,  TAMANO_X_SPRITE_RAYO, TAMANO_Y_SPRITE_RAYO);
             draw_sprite_v_flip(buffer, RAYO_spr, 215 + (32 * x), 330);
         }
 

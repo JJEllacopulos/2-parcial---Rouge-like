@@ -116,7 +116,14 @@ int FLECHA::Realizar_ataque_flecha(int x_guia, int y_guia, int x_juego, int y_ju
 
     if(!inavilitar_acciones.gets_cont_bool()){
         if(gets_pocicion_x_guia() == x_guia && gets_pocicion_y_guia() == y_guia ){
-            if(frente == 0){
+            if(verificar_inpacto(gets_pocicion_x_juego(), gets_pocicion_y_juego(), x_juego, y_juego)){
+                if(frente != escudo){
+                    dano += dano_flecha;
+                }
+                activo = false;
+                //Desactivar_flecha();
+            }
+            else if(frente == 0){
                 if(verificar_inpacto(gets_pocicion_x_juego()+1, gets_pocicion_y_juego(), x_juego, y_juego)){
                     if(frente != escudo){
                         dano += dano_flecha;

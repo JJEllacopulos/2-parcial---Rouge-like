@@ -94,6 +94,18 @@ bool PROYECTIL::Mover_proyectil(MAPA &mapa){
 
         return true;
     }
+    if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego() + x, gets_pocicion_y_juego() +y) == ENEMIGO){
+        sets_pocicion_x_juego(gets_pocicion_x_juego() + x);
+        sets_pocicion_y_juego(gets_pocicion_y_juego() + y);
+
+        return true;
+    }
+    if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego() + x, gets_pocicion_y_juego() +y) == AVATAR){
+        sets_pocicion_x_juego(gets_pocicion_x_juego() + x);
+        sets_pocicion_y_juego(gets_pocicion_y_juego() + y);
+
+        return true;
+    }
     /*if(mapa.gets_mapa_juego(gets_pocicion_x_guia(), gets_pocicion_y_guia(), gets_pocicion_x_juego() + x, gets_pocicion_y_juego() +y) == ENEMIGO){
 
         return true;

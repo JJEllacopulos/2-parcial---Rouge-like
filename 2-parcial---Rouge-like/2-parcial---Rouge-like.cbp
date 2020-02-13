@@ -50,6 +50,9 @@
 		<Unit filename="Clase_personaje/Enemigos/Clase_personaje_enemigo_4.h" />
 		<Unit filename="Clase_personaje/Enemigos/Clase_personaje_enemigo_4_combate.h" />
 		<Unit filename="Clase_personaje/Enemigos/Clase_personaje_enemigo_4_graficos.h" />
+		<Unit filename="Clase_personaje/Enemigos/Clase_personaje_enemigo_5.h" />
+		<Unit filename="Clase_personaje/Enemigos/Clase_personaje_enemigo_5_combate.h" />
+		<Unit filename="Clase_personaje/Enemigos/Clase_personaje_enemigo_5_graficos.h" />
 		<Unit filename="Clase_personaje/Otros/Clase_personaje_altar.h" />
 		<Unit filename="Clase_personaje/Otros/Clase_personaje_proyectil.h" />
 		<Unit filename="Clase_personaje/Otros/Clase_personaje_rayo.h" />

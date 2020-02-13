@@ -1,8 +1,8 @@
 #ifndef CLASE_PERSONAJE_JUGADOR_H_INCLUDED
 #define CLASE_PERSONAJE_JUGADOR_H_INCLUDED
 
-#define MAXIMA_VIDA 30
-#define MAXIMA_RUNA 30
+#define MAXIMA_VIDA 38
+#define MAXIMA_RUNA 38
 
 #define MAXIMA_FLECHAS 3
 #define MAXIMA_ESPECIAL_1 1
@@ -297,15 +297,6 @@ void JUGADOR::rutinas_de_acciones(MAPA &mapa){
             frente_escudo = -1;
         }
 
-        ///Mobimiento:
-        if(key[KEY_RIGHT] ||key[KEY_LEFT] || key[KEY_DOWN] || key[KEY_UP]){
-
-            inavilitar_acciones.sets_tiempo(3);
-            rutina_de_movimiento(mapa);
-
-            return;
-        }
-
         ///Ataque 1:
         if(key[KEY_Z]){
 
@@ -372,6 +363,15 @@ void JUGADOR::rutinas_de_acciones(MAPA &mapa){
 
                 }
             }
+            return;
+        }
+
+        ///Mobimiento:
+        if(key[KEY_RIGHT] ||key[KEY_LEFT] || key[KEY_DOWN] || key[KEY_UP]){
+
+            inavilitar_acciones.sets_tiempo(3);
+            rutina_de_movimiento(mapa);
+
             return;
         }
 

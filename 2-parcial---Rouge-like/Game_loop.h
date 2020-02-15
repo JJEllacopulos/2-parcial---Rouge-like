@@ -1,6 +1,8 @@
 #ifndef GAME_LOOP_H_INCLUDED
 #define GAME_LOOP_H_INCLUDED
 
+
+
 void Game_loop(JUGADOR &per_jug, PILA_ENEMIGOS &pila_enemigos, MAPA &mapa, MAPA_GRAFICO &mapa_grafico, int &zona, ARCHIVO_PARTIDA &archivo_guardado){
 
     ///Inicicar conometro:

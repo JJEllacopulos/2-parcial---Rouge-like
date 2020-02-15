@@ -190,7 +190,7 @@ void PILA_ENEMIGOS::Asignar_tamanos(int zona){
             tam_enemigo_2 = 8;
             tam_enemigo_3 = 8;
             tam_enemigo_4 = 4;
-            tam_enemigo_5 = 1;
+            tam_enemigo_5 = 2;
             tam_altar = 1;
         break;
 
@@ -198,8 +198,8 @@ void PILA_ENEMIGOS::Asignar_tamanos(int zona){
             tam_enemigo_1 = 9;
             tam_enemigo_2 = 9;
             tam_enemigo_3 = 8;
-            tam_enemigo_4 = 4;
-            tam_enemigo_5 = 2;
+            tam_enemigo_4 = 5;
+            tam_enemigo_5 = 3;
             tam_altar = 2;
         break;
 
@@ -431,7 +431,7 @@ void PILA_ENEMIGOS::Jugador_ataca(JUGADOR &jugador, MAPA &mapa){
 
             if(!enemigo_3[x].gets_estado_vivo()){
                 jugador.Restaurar_runa(1);
-                mapa.sets_mapa_general(enemigo_3[x].gets_pocicion_x_guia(), enemigo_3[x].gets_pocicion_y_guia(), enemigo_3[x].gets_pocicion_x_juego(), enemigo_3[x].gets_pocicion_y_juego(),PISO);
+                ///mapa.sets_mapa_general(enemigo_3[x].gets_pocicion_x_guia(), enemigo_3[x].gets_pocicion_y_guia(), enemigo_3[x].gets_pocicion_x_juego(), enemigo_3[x].gets_pocicion_y_juego(),PISO);
             }
 
         }
@@ -445,7 +445,7 @@ void PILA_ENEMIGOS::Jugador_ataca(JUGADOR &jugador, MAPA &mapa){
             enemigo_4[x].restar_vida(jugador.realizar_ataque_esp_2(enemigo_4[x].gets_pocicion_x_guia(), enemigo_4[x].gets_pocicion_y_guia(), enemigo_4[x].gets_pocicion_x_juego(), enemigo_4[x].gets_pocicion_y_juego()));
 
             if(!enemigo_4[x].gets_estado_vivo()){
-                jugador.Restaurar_runa(1);
+                jugador.Restaurar_runa(2);
                 mapa.sets_mapa_general(enemigo_4[x].gets_pocicion_x_guia(), enemigo_4[x].gets_pocicion_y_guia(), enemigo_4[x].gets_pocicion_x_juego(), enemigo_4[x].gets_pocicion_y_juego(),PISO);
             }
 
@@ -460,7 +460,7 @@ void PILA_ENEMIGOS::Jugador_ataca(JUGADOR &jugador, MAPA &mapa){
             enemigo_5[x].restar_vida(jugador.realizar_ataque_esp_2(enemigo_5[x].gets_pocicion_x_guia(), enemigo_5[x].gets_pocicion_y_guia(), enemigo_5[x].gets_pocicion_x_juego(), enemigo_5[x].gets_pocicion_y_juego()));
 
             if(!enemigo_5[x].gets_estado_vivo()){
-                jugador.Restaurar_runa(1);
+                jugador.Restaurar_runa(2);
                 mapa.sets_mapa_general(enemigo_5[x].gets_pocicion_x_guia(), enemigo_5[x].gets_pocicion_y_guia(), enemigo_5[x].gets_pocicion_x_juego(), enemigo_5[x].gets_pocicion_y_juego(),PISO);
             }
 

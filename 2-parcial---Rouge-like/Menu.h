@@ -2,7 +2,7 @@
 #define MENU_H_INCLUDED
 
 ///Menu:
-BITMAP *MENU_spr;
+
 BITMAP *TITULO_spr;
 BITMAP *SUB_TITULO_spr;
 BITMAP *FONDO_spr;
@@ -225,7 +225,7 @@ void Menu_control(JUGADOR &per_jug, PILA_ENEMIGOS &pila_enemigos, MAPA &mapa, MA
 
     int opcion = 0;
 
-    MENU_spr = load_bitmap("Imagenes/Menu.bmp", NULL);
+
     CADENA_spr = create_bitmap(21, 58);
     TACHAS_spr = create_bitmap(50, 50);
     FONDO_spr = create_bitmap(370, 390);
@@ -301,6 +301,7 @@ void Menu_control(JUGADOR &per_jug, PILA_ENEMIGOS &pila_enemigos, MAPA &mapa, MA
                 break;
 
                 case 1:
+
                     ///Cargar partida.
                     archivo_guardado.Cargar_partida(zona, mapa, mapa_grafico, per_jug);
 
@@ -311,6 +312,7 @@ void Menu_control(JUGADOR &per_jug, PILA_ENEMIGOS &pila_enemigos, MAPA &mapa, MA
                     asignar_audio(zona);
                     ///Reproducion en bucle del tema de fondo:
                     play_midi(Fondo, 1);
+
                 break;
 
                 case 2:

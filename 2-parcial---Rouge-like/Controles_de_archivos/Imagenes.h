@@ -50,6 +50,16 @@ BITMAP *BARRAS_spr;
 BITMAP *BARRAS_ACT_spr;
 BITMAP *CORAZON_spr;
 
+///---////////////////////////////////////////////////////---///
+///Animacion entre niveles:
+
+BITMAP *MOVIMIENTO_ANIMACION;
+
+BITMAP *MENSAJE_1;
+BITMAP *MENSAJE_2;
+BITMAP *MENSAJE_3;
+
+BITMAP *MENU_spr;
 
 
 #endif // IMAGENES_H_INCLUDED

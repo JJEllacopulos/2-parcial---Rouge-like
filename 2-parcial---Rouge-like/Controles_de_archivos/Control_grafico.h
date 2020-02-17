@@ -108,6 +108,17 @@ void asignar_sprites(){
     BARRAS_ACT_spr = create_bitmap(TAMANO_Y_BARRA, TAMANO_X_BARRA);
     CORAZON_spr = create_bitmap(TAMANO_Y_CORAZON, TAMANO_X_CORAZON);
 
+
+    ///---////////////////////////////////////////////////////---///
+    ///Animacion entre niveles:
+
+    MOVIMIENTO_ANIMACION = create_bitmap(TAMANO_X_SPRITE, TAMANO_Y_SPRITE);
+
+    MENU_spr = load_bitmap("Imagenes/Menu.bmp", NULL);
+
+    MENSAJE_1 = create_bitmap(225, 58);
+    MENSAJE_2 = create_bitmap(202, 31);
+    MENSAJE_3 = create_bitmap(267, 335);
 }
 
 ///Carga en el buffer los elementos de entorno (Piso, muros, etc).

@@ -16,7 +16,7 @@ int ENEMIGO_5::realizar_ataque(MAPA &mapa, int x_guia, int y_guia, int x_juego, 
 
 void ENEMIGO_5::Lanzar_flechas(MAPA &mapa, int x_guia, int y_guia, int x_juego, int y_juego){
 
-    if(direccion == 0){
+    //if(direccion == 0){
         if(!inavilitar_acciones.gets_cont_bool()){
 
             if(gets_pocicion_x_guia() == x_guia && gets_pocicion_y_guia() == y_guia ){
@@ -68,13 +68,13 @@ void ENEMIGO_5::Lanzar_flechas(MAPA &mapa, int x_guia, int y_guia, int x_juego, 
 
             }
         }
-    }
+    //}
 
 }
 
 bool ENEMIGO_5::Lanzar_flecha(MAPA &mapa){
 
-    int x;
+    int x = 0;
     int pos = -1;
 
     bool key = false;
